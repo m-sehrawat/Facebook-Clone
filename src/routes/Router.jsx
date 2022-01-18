@@ -13,14 +13,9 @@ export const Router = () => {
         <Routes>
 
        <Route path="/login" element={<Login />}></Route>
-       <Route path="/" element={
-       <PrivateRoute>
-       
-       <Homepage />
-       </PrivateRoute>
-       }></Route>
+       <Route path="/" element={<PrivateRoute><Homepage /></PrivateRoute>}></Route>
 
-       
+
         </Routes>
         </>
     );
