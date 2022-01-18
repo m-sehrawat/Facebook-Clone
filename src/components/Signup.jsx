@@ -1,8 +1,0 @@
-export const Signup = () => {
-
-    return  (
-        <>
-        
-        </>
-    );
-};
