@@ -1,11 +1,9 @@
 import { Box, Button, Container, Divider, Grid, Heading, Input, Text, VStack } from '@chakra-ui/react';
 
-import { Link, useParams } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
 
-import { useState ,useEffect} from "react"
+import { useState} from "react"
 
-import { saveData } from "../../utils/localstore";
 import { useDispatch } from "react-redux"
 import { loginfailure, loginsuccess } from "../../featuresRedux/auth/action"
 
@@ -13,16 +11,16 @@ export const Login = () => {
 
 
     const navigate=useNavigate();
-    const [form,setForm]=useState({});
+    const [email, setEmail]=useState("")
+    const [password,setPassword]=useState("")
+    
     const dispatch=useDispatch()
   
   
    
-   const handleChange=({target:{name,value}})=>{
-       setForm({
-           ...form,
-           [name]:value
-       })
+   const form={
+       email:email,
+       password:password
    }
 
 
@@ -41,8 +39,8 @@ export const Login = () => {
                     <Box >
                         <Container h={'350px'} maxW={'400px'} mt={'120px'} bg={'white'} boxShadow={'lg'} rounded={10} p={4}>
                             <VStack gap={2}>
-                                <Input type='email' placeholder='Email address or phone number' h={'50px'}  onChange={handleChange} />
-                                <Input type='password' placeholder='Password' h={'50px'}  onChange={handleChange}/>
+                                <Input type='email' value={email} placeholder='Email address or phone number' h={'50px'}  name="email"  onChange={(e)=>{setEmail(e.target.value)}} />
+                                <Input type='password' value={password} placeholder='Password' h={'50px'}  name="password"  onChange={(e)=>{setPassword(e.target.value)}} />
                                 <Button w={'100%'} type='submit' bg={'#1877f2'} color={'white'} fontWeight={500} size='lg' _hover={{ bg: '#2572d6' }} fontSize={20}
                                  onClick={()=>{
 
@@ -54,6 +52,7 @@ body:JSON.stringify(form),
 headers:{"Content-Type":"application/json"}
 ,
 }).then(res=>res.json()).then(res=>{ dispatch(loginsuccess(res.token));console.log(res); navigate(-1)})
+ setEmail('');setPassword('');
 
 }
 catch(e){console.log(e);dispatch(loginfailure(e))}
