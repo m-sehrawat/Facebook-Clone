@@ -1,23 +1,26 @@
-import { Login } from "../components/auth/login";
+import {Routes, Route} from "react-router-dom"
 
-import {Routes, Route} from "react-router-dom";
-import {Homepage} from "../components/homepage/home";
+import {Homepage} from "../components/Homepage";
+
+import {Login } from "../components/auth/login";
 import {PrivateRoute} from "../components/auth/PrivateRouter"
+
 
 export const Router = () => {
 
     return  (
         <>
         <Routes>
-        <Route path={"/login"}  element={ <Login />}/>
 
-{/* private routing to access home page.. only authorised use are allowed    */}
-       <Route path={"/"} element={
+       <Route path="/login" element={<Login />}></Route>
+       <Route path="/" element={
        <PrivateRoute>
-       <Homepage/>
+       
+       <Homepage />
        </PrivateRoute>
-       }/>
+       }></Route>
 
+       
         </Routes>
         </>
     );
