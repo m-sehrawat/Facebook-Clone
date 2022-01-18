@@ -1,6 +1,9 @@
 import {Routes, Route} from "react-router-dom"
-import { Login } from "../components/Login";
+
 import {Homepage} from "../components/Homepage";
+
+import {Login } from "../components/auth/login";
+import {PrivateRoute} from "../components/auth/PrivateRouter"
 
 
 export const Router = () => {
@@ -8,8 +11,11 @@ export const Router = () => {
     return  (
         <>
         <Routes>
+
        <Route path="/login" element={<Login />}></Route>
-       <Route path="/home" element={<Homepage />}></Route>
+       <Route path="/" element={<PrivateRoute><Homepage /></PrivateRoute>}></Route>
+
+
         </Routes>
         </>
     );
