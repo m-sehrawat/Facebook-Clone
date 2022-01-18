@@ -26,7 +26,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "gacp": "git add . && git commit -m updated && git push"
+    "gacp": "git add . && git commit -m updated && git push",
+    "server": " nodemon backend/app"
   },
   "eslintConfig": {
     "extends": [
