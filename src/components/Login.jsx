@@ -5,10 +5,8 @@ export const Login = () => {
 
     return (
         <>
-            <Box
-                bg={'#f0f2f5'}
-                h={'700px'}
-            >
+            <Box bg={'#f0f2f5'} h={'700px'}>
+
                 <Grid templateColumns='repeat(2, 1fr)' maxW={'1100px'} m={'auto'} h={'600px'} >
 
                     <Box mt={'160px'} py={5} ps={8} pe={2}>
@@ -28,8 +26,8 @@ export const Login = () => {
                             </VStack>
                         </Container>
                     </Box>
-                </Grid>
 
+                </Grid>
 
             </Box>
         </>
