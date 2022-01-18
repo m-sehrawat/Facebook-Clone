@@ -1,11 +1,4 @@
-import {LOGIN_USER,LOGIN_SUCCESS, LOGIN_FAILURE} from "./actionType.js"
-
-export const loginuser=(data)=>{
-
-return {
-    type:LOGIN_USER,
-    payload:data
-}};
+import {LOGIN_SUCCESS, LOGIN_FAILURE} from "./actionType.js"
 
 
 export const loginfailure=(err)=>{
