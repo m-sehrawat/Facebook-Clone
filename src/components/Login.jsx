@@ -1,4 +1,5 @@
 import { Box, Button, Container, Divider, Grid, Heading, Input, Text, VStack } from '@chakra-ui/react';
+import { Signup } from './Signup';
 
 
 export const Login = () => {
@@ -21,7 +22,7 @@ export const Login = () => {
                                 <Button w={'100%'} type='submit' bg={'#1877f2'} color={'white'} fontWeight={500} size='lg' _hover={{ bg: '#2572d6' }} fontSize={20}>Log In</Button>
                                 <Text>Forgotten password?</Text>
                                 <Divider />
-                                <Button size='lg' bg={'#42b72a'} fontWeight={500} color={'white'} _hover={{ bg: '#39a125' }}>Create New Account</Button>
+                                <Signup />
                             </VStack>
                         </Container>
                     </Box>
@@ -29,6 +30,8 @@ export const Login = () => {
                 </Grid>
 
             </Box>
+
+           
         </>
     );
 };
