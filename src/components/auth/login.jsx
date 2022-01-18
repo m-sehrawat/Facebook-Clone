@@ -49,7 +49,7 @@ export const Login = () => {
                     <Box >
                         <Container h={'350px'} maxW={'400px'} mt={'120px'} bg={'white'} boxShadow={'lg'} rounded={10} p={4}>
                             <VStack gap={2}>
-                                <Input type='email' value={email} placeholder='Email address or phone number' h={'50px'} name="email" onChange={(e) => { setEmail(e.target.value) }} />
+                                <Input type='email' value={email} placeholder='Email address' h={'50px'} name="email" onChange={(e) => { setEmail(e.target.value) }} />
                                 <Input type='password' value={password} placeholder='Password' h={'50px'} name="password" onChange={(e) => { setPassword(e.target.value) }} />
                                 <Button onClick={handleLogin} w={'100%'} type='submit' bg={'#1877f2'} color={'white'} fontWeight={500} size='lg' _hover={{ bg: '#2572d6' }} fontSize={20}>Log In</Button>
                                 <Text>Forgotten password?</Text>
