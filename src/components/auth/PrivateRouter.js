@@ -1,17 +1,11 @@
 
 import { Navigate } from "react-router-dom";
-
 import { useSelector } from "react-redux";
 
 
+export const PrivateRoute = ({ children }) => {
 
-export const PrivateRoute=({children})=>{
+    const { token } = useSelector(state => ({ token: state.token, isAuth: state.isAuth }));
 
-    const {token,isAuth}=useSelector(state=> ({token:state.token, isAuth:state.isAuth }));
-    console.log(token)
-
-    if(!(token.length>2)) {return <Navigate to={"/login"}/>}
-
-
-    return children
+    return !(token.length > 2) ? <Navigate to={"/login"} /> : children;
 }
