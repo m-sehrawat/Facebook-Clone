@@ -70,6 +70,9 @@ export const Navbar = () => {
                                 <MenuItem icon={<ArrowForwardIcon w={6} h={6} />}>
                                     <Text fontWeight={500}>Log Out</Text>
                                 </MenuItem>
+                              
+                                <Text px={5} color={'grey'} fontSize={13}>Privacy · Terms · Advertising · Ad choices · Cookies · More · Meta © 2022</Text>
+                                
                             </VStack>
                         </MenuList>
                     </Menu>
