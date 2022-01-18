@@ -23,7 +23,7 @@ export const Signup = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(form);
-        
+
         //Type your URL here
         fetch(`URL`, {
             method: 'POST',
@@ -34,6 +34,9 @@ export const Signup = () => {
             .then((res) => {
                 console.log(res);
                 //Type your code here
+            })
+            .catch((err) => {
+                console.log(err);
             })
     }
 
