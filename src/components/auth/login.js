@@ -1,4 +1,4 @@
-import { Box, Button, Container, Divider, Grid, Heading, Input, Text, VStack } from '@chakra-ui/reac
+import { Box, Button, Container, Divider, Grid, Heading, Input, Text, VStack } from '@chakra-ui/react'
 import { useNavigate } from "react-router-dom"
 
 import { useState} from "react"
@@ -22,7 +22,25 @@ export const Login = () => {
        password:password
    }
 
+  const handlogin=()=>{
+    try{
+        console.log(form, "I am from")
+    fetch("https://reqres.in/api/login",{
+    method:"POST",
+    body:JSON.stringify(form), 
+    headers:{"Content-Type":"application/json"}
+    ,
+    }).then(res=>res.json()).then(res=>{ dispatch(loginsuccess(res.token));console.log(res); navigate(-1)})
+     setEmail('');setPassword('');
+    
+    }
+    catch(e){console.log(e);dispatch(loginfailure(e))}
+    
+    
+    
+    }
 
+  
 
 
     return (
@@ -41,28 +59,8 @@ export const Login = () => {
                                 <Input type='email' value={email} placeholder='Email address or phone number' h={'50px'}  name="email"  onChange={(e)=>{setEmail(e.target.value)}} />
                                 <Input type='password' value={password} placeholder='Password' h={'50px'}  name="password"  onChange={(e)=>{setPassword(e.target.value)}} />
                                 <Button w={'100%'} type='submit' bg={'#1877f2'} color={'white'} fontWeight={500} size='lg' _hover={{ bg: '#2572d6' }} fontSize={20}
-                                 onClick={()=>{
+                                 onClick={handlogin}
 
-try{
-    console.log(form, "I am from")
-fetch("https://reqres.in/api/login",{
-method:"POST",
-body:JSON.stringify(form), 
-headers:{"Content-Type":"application/json"}
-,
-}).then(res=>res.json()).then(res=>{ dispatch(loginsuccess(res.token));console.log(res); navigate(-1)})
- setEmail('');setPassword('');
-
-}
-catch(e){console.log(e);dispatch(loginfailure(e))}
-
-
-
-}
-
-}
-
-                                
                                 
                                 >Log In</Button>
                                 <Text>Forgotten password?</Text>
