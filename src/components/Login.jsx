@@ -1,4 +1,5 @@
 import { Box, Button, Container, Divider, Grid, Heading, Input, Text, VStack } from '@chakra-ui/react';
+import { Signup } from './Signup';
 
 import { Link, useParams } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
@@ -76,7 +77,7 @@ catch(e){console.log(e);dispatch(loginfailure(e))}
                                 >Log In</Button>
                                 <Text>Forgotten password?</Text>
                                 <Divider />
-                                <Button size='lg' bg={'#42b72a'} fontWeight={500} color={'white'} _hover={{ bg: '#39a125' }}>Create New Account</Button>
+                                <Signup />
                             </VStack>
                         </Container>
                     </Box>
@@ -84,6 +85,8 @@ catch(e){console.log(e);dispatch(loginfailure(e))}
                 </Grid>
 
             </Box>
+
+           
         </>
     );
 };
