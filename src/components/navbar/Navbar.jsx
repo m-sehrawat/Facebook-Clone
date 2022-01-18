@@ -8,7 +8,7 @@ export const Navbar = () => {
 
     return (
         <>
-            <Flex h={'57px'} boxShadow={'dark-lg'}>
+            <Flex h={'57px'} boxShadow={'lg'}>
                 <Center mx={4}>
                     <Image boxSize='40px' borderRadius='full' alt="fbLogo" src="https://upload.wikimedia.org/wikipedia/en/thumb/0/04/Facebook_f_logo_%282021%29.svg/1200px-Facebook_f_logo_%282021%29.svg.png" />
                 </Center>
