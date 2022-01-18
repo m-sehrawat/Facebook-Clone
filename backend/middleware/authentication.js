@@ -6,7 +6,7 @@ const verifyToken=(token)=>{
     return new Promise((resolve,reject)=>{
         jwt.verify(token,process.env.JWT_ACCESS_KEY)
 
-        if(err) return reject(err);
+        // if(err) return reject(err);
         return resolve(token);
     })
     

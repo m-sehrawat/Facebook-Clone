@@ -66,7 +66,7 @@ try{
   //check if email wxist
 
   let user= await User.findOne({email:req.body.email})
-
+  let pass= user.password;
  if(!user)
     return res.status(400).json({
         status:"failed",
@@ -75,11 +75,15 @@ try{
 
  //else math then password
 
+ function checkPassword(pass,password){
+   if(pass==password){return true}
 
+   return false
+ }
  
  
  //if password not match then throw error
- const match=await user.checkPassword(req.body.password)
+ const match=checkPassword(pass,req.body.password)
  
  
  //if it matched then create the toke 

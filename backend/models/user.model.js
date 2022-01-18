@@ -20,46 +20,46 @@ const userSchema= new Schema({
 );
 
 
-userSchema.pre("save",function (next){
-    if(!this.isModified("password")) return next();
+// userSchema.pre("save",function (next){
+//     if(!this.isModified("password")) return next();
     
-    bcrypt.hash(this.password,10,(err,hash)=>{
+//     bcrypt.hash(this.password,10,(err,hash)=>{
 
-        this.password=hash;
-        return next()
+//         this.password=hash;
+//         return next()
 
-    });
+//     });
     
     
 
 
-});
+// });
 
 
-userSchema.methods.checkPassword=function (password){
+// userSchema.methods.checkPassword=function (password){
    
 
-    return new Promise((resolve,reject)=>{
+//     return new Promise((resolve,reject)=>{
 
 
-        bcrypt.compare(password,this.password,function(err,res){
+//         bcrypt.compare(password,this.password,function(err,res){
 
-            if(err) return reject(err);
-
-
-            return resolve(res)
-
-        });
+//             if(err) return reject(err);
 
 
-    })
+//             return resolve(res)
+
+//         });
+
+
+//     })
 
 
 
    
 
 
-}
+// }
 
 
 module.exports=model('user',userSchema)
