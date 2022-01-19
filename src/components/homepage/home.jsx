@@ -1,11 +1,10 @@
+import LeftSidebar from "./LeftSidebar";
 
-export const Homepage=()=>{
+export const Homepage = () => {
 
-    return <>
-        <div>This is home page.  
-        
-        import other components here to complete it
-        
-        </div>
-    </>
-}
+    return (
+        <>
+            <LeftSidebar />
+        </>
+    );
+};

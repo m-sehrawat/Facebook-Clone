@@ -4,10 +4,7 @@ const upload=require('../middleware/upload')
 
 const router = express.Router();
 
-const bodyParser = require('body-parser')
 
-const jsonParser = bodyParser.json()
-const urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 
 

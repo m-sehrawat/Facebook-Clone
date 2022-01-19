@@ -7,10 +7,14 @@ import { Navbar } from "../components/navbar/Navbar";
 export const Router = () => {
   return (
     <>
-    <Navbar />
+
       <Routes>
         <Route path="/login" element={<Login />}></Route>
-        <Route path="/" element={<PrivateRoute><Homepage /></PrivateRoute>}></Route>
+        <Route path="/" element={<PrivateRoute><Navbar /></PrivateRoute>}>
+          <Route path="home" element={<Homepage />} />
+          <Route path="groups" element={<Homepage />} />
+          <Route path="friends" element={<Homepage />} />
+        </Route>
       </Routes>
     </>
   );
