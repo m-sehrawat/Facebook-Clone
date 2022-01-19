@@ -1,21 +1,29 @@
 import React from "react";
-import cloudy from "../cloudy.png";
-import people from "../people.png";
-import pages from "../pages.png"
+import { BiChevronDown } from 'react-icons/bi';
+import { WiDayCloudy } from "react-icons/wi";
+import {BsPeople, BsFlag} from "react-icons/bs";
+import {RiMessengerLine, RiVideoAddFill} from "react-icons/ri";
+import {MdOutlineGroups} from "react-icons/md";
 import "./leftsidebar.css";   
 import SidebarRow from "./LeftSidebarRow"; 
-import messenger from "../messenger.png";
-import Icon from "@chakra-ui/icons";
+import { IconContext } from "react-icons";
 const LeftSidebar = () => {
     return (
+        <IconContext.Provider value={{ size:"1.5em", color: "#2e81f4", className: "global-class-name" }}>
         <div className="sidebar">   
-        <SidebarRow Icon={people} title="friends"/> 
-        <SidebarRow Icon={cloudy} title="weather" / > 
-        <SidebarRow Icon={pages} title="Pages" /> 
-        <SidebarRow Icon={messenger} title="Messenger"/>
-        <SidebarRow Icon={pages} title="video" />
-            
+        <SidebarRow Icon={<BsPeople />} title="Friends"/> 
+        <SidebarRow Icon={<WiDayCloudy />} title="Weather" / > 
+        <SidebarRow Icon={<BsFlag />} title="Pages" /> 
+        <SidebarRow Icon={<RiMessengerLine />} title="Messenger"/>
+        <SidebarRow Icon={<RiVideoAddFill />} title="Video" />
+        <SidebarRow Icon={<MdOutlineGroups />} title="Groups" />
+        <SidebarRow Icon={<BiChevronDown />} title="Marketplace" />
         </div>
+        </IconContext.Provider>
+
+
+            
+       
     )
 }
 
