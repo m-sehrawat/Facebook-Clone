@@ -16,7 +16,7 @@ export const Login = () => {
     const form = { email: email, password: password }
 
     const handleLogin = () => {
-        fetch("https://reqres.in/api/login", {
+        fetch("http://localhost:1234/login", {
             method: "POST",
             body: JSON.stringify(form),
             headers: { "Content-Type": "application/json" }
