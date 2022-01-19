@@ -4,6 +4,8 @@ import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { loginfailure, loginsuccess } from "../../featuresRedux/auth/action"
 import { Signup } from './Signup';
+import { saveData } from '../../utils/localstore';
+import { loadData } from '../../utils/localstore';
 
 export const Login = () => {
 
@@ -24,7 +26,9 @@ export const Login = () => {
             .then((res) => res.json())
             .then(res => {
                 dispatch(loginsuccess(res.token));
+                saveData("userdata",res)
                 console.log(res);
+                console.log(loadData("userdata"));
                 navigate(-1);
                 setEmail('');
                 setPassword('');
