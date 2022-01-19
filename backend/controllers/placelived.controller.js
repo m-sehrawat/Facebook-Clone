@@ -1,5 +1,5 @@
 const express = require("express");
-const Work =require("../models/work.model")
+const Place =require("../models/placelived.model")
 
 
 const router = express.Router();
@@ -8,21 +8,21 @@ const router = express.Router();
 
 
 
-
-
 router.post("/:userid", async (req, res) => {
     try {
-      const work = await Work.create({
+      const place = await Place.create({
         user_id:req.params.userid,  
-        company: req.body.company,
-        position:req.body.position,
-        city:req.body.position,
-        description:req.body.description,
-        timeperiod:req.body.timeperiod
+        placelived: req.body.placelived,
+        currenttown: req.body.currenttown,
+        movedon:req.body.city,
+        
+        
       });
+
+     
   
-      console.log(work);
-      return res.status(201).send(work);
+      console.log(place);
+      return res.status(201).send(place);
     } catch (e) {
       return res.status(500).json({ status: "failed", message: e.message });
     }
@@ -33,9 +33,9 @@ router.post("/:userid", async (req, res) => {
 
   router.delete("/:userid",async(req,res)=>{
     try{
-      const work=await Work.findOneAndDelete({user_id:req.params.userid}).lean().exec();
-      console.log(work);
-     return res.status(201).send(work,"this has deleted");
+      const place=await Place.findOneAndDelete({user_id:req.params.userid}).lean().exec();
+      console.log(place);
+     return res.status(201).send(place,"this has deleted");
     }
 
     catch (e) {
@@ -47,8 +47,8 @@ router.post("/:userid", async (req, res) => {
 router.patch('/:userid',async(req,res)=>{
 
     try{
-      const work=await Work.findOneAndUpdate({user_id:req.params.userid},req.body,{new:true}).lean().exec()
-        res.status(201).send(work)
+      const place=await Place.findOneAndUpdate({user_id:req.params.userid},req.body,{new:true}).lean().exec()
+        res.status(201).send(place)
     }
     
     
@@ -62,8 +62,8 @@ router.patch('/:userid',async(req,res)=>{
    router.get('/:userid',async(req,res)=>{
 
         try{
-          const work=await Work.findOne({user_id:req.params.userid}).lean().exec()
-            res.status(201).send(work)
+          const place=await Place.findOne({user_id:req.params.userid}).lean().exec()
+            res.status(201).send(place)
         }
         
         
