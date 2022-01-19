@@ -47,17 +47,23 @@ const userSchema= new Schema(
     sociallink:{type: String, required: false},
     hobbies : [{type: String, required: true}],
 
-    friend_id:[{type: Schema.Types.ObjectId, 
-        ref:"story",
+    friend_ids:[{type: Schema.Types.ObjectId, 
+        ref:"user",
         required: false}]
 
     ,
-    friend_requests_ids:[{type: Schema.Types.ObjectId, 
+    friend_request_in_ids:[{type: Schema.Types.ObjectId, 
+        ref:"user",
+        required: false}],
+
+    
+    friend_request_out_ids:[{type: Schema.Types.ObjectId, 
         ref:"user",
         required: false}],
 
     },
 
+    
 
       
 {
