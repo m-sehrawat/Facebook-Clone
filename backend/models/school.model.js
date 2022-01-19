@@ -3,17 +3,15 @@
 const mongoose = require("mongoose")
 
 
-const workSchema= mongoose.Schema({
+const schoolSchema= mongoose.Schema({
 user_id: {
         type: mongoose.Schema.Types.ObjectId, 
         ref:'user',
         required: true},
    
-company:{type:String,required:true},
-position:{type:String,required:true},
-city:{type:String,required:true},
+school:{type:String,required:true},
 description:{type:String,required:false},
-timeperiod:{type:String,required:true},
+timeperiod:{type:String,required:false},
 
 
 
@@ -27,4 +25,4 @@ timeperiod:{type:String,required:true},
 
 )
 
-module.exports = mongoose.model('work',workSchema)
+module.exports = mongoose.model('school',schoolSchema)
