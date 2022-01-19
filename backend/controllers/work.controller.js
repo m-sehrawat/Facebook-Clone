@@ -17,6 +17,7 @@ router.post("/:userid", async (req, res) => {
         company: req.body.company,
         position:req.body.position,
         city:req.body.position,
+        description:req.body.description,
         timeperiod:req.body.timeperiod
       });
   
