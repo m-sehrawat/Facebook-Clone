@@ -1,5 +1,5 @@
 {
-  "name": "Facebook-Clone",
+  "name": "facebook-clone",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -10,11 +10,17 @@
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^14.2.0",
     "express": "^4.17.2",
+    "express-validator": "^6.14.0",
     "framer-motion": "^5.6.0",
+    "install": "^0.13.0",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.1.7",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-icons": "^4.3.1",
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0",
@@ -25,7 +31,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "gacp": "git add . && git commit -m updated && git push",
+    "server": " nodemon backend/server"
   },
   "eslintConfig": {
     "extends": [
