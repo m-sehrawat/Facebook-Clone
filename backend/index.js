@@ -3,6 +3,8 @@ const express=require('express');
 
 const app=express()
 app.use(express.json())
+const profpiccontroller=require("./controllers/profilepic.controler")
+const coverpiccontroller=require("./controllers/coverpic.controller")
 const {register,login}=require("./controllers/auth.controller")
 const albumcontroller=require("./controllers/album.controller")
 const searchcontroller=require("./controllers/search.controller")
@@ -18,6 +20,8 @@ const commentcontroller=require("./controllers/comment.controller")
 
 
 app.post("/register",register)
+app.use("/profpic",profpiccontroller)
+app.use("/coverpic",coverpiccontroller)
 app.use("/place",placecontroller)
 app.use("/comment",commentcontroller)
 app.use("/search",searchcontroller)
