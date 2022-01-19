@@ -25,7 +25,8 @@ export const Signup = () => {
         console.log(form);
 
         //Type your URL here
-        fetch(`URL`, {
+        
+        fetch(`http://localhost:1234/register`, {
             method: 'POST',
             body: JSON.stringify(form),
             headers: { 'Content-Type': 'application/json' }

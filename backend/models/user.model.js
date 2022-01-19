@@ -3,7 +3,8 @@ const bcrypt=require('bcryptjs')
 const jwt=require("jsonwebtoken")
 
 const userSchema= new Schema(
-    {name:{type:String,required:true},
+    {firstName:{type:String,required:true},
+    lastName:{type:String,required:true},
     email:{type:String,required:true,unique:true},
     password:{type:String,required:true},
     
@@ -12,8 +13,8 @@ const userSchema= new Schema(
    
     
     gender:    {type: String, required: true},
-    birthdate:{type: String, required: true},
-    birthyear:{type: String, required: true},
+    date:{type: String, required: true},
+    
     interest:{type: String, required: false},
     language:[{type: String, required: false}],
     nicekname:{type: String, required: false},
