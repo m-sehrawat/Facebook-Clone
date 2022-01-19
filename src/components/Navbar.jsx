@@ -2,7 +2,7 @@ export const Navbar = () => {
 
     return  (
         <>
-        
+       
         </>
     );
 };
