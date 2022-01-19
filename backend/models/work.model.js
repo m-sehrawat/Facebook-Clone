@@ -9,11 +9,10 @@ user_id: {
         ref:'user',
         required: true},
    
-title:{type:String,required:true},
-post_id: {
-    type: mongoose.Schema.Types.ObjectId, 
-    ref:'post',
-    required: true},
+company:{type:String,required:true},
+position:{type:String,required:true},
+city:{type:String,required:true},
+timeperiod:{type:String,required:true},
 
 
 
