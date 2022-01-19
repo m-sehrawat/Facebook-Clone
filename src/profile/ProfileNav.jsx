@@ -1,5 +1,6 @@
-import { Box, Button, Divider, HStack } from "@chakra-ui/react";
+import { Box, Button, Divider, Flex, Heading, HStack, Image, Spacer, Text } from "@chakra-ui/react";
 import { Link, Outlet } from "react-router-dom";
+import { RiEdit2Fill } from "react-icons/ri";
 
 const NewButton = ({ title, path }) => {
     return (
@@ -19,12 +20,24 @@ export const ProfileNav = () => {
             <Box border={'1px solid red'} h={'570px'} bg={'white'}>
                 <Box border={'1px solid red'} w={'950px'} h={'570px'} m={'auto'}>
 
-                    <Box border={'1px solid red'} h={'300px'}>
-
+                    <Box overflow={'hidden'} border={'1px solid red'} h={'300px'}>
+                        <Image rounded={10} w={'950px'} src="https://via.placeholder.com/950x300" />
                     </Box>
 
                     <Box border={'1px solid red'} h={'200px'}>
-
+                        <Flex>
+                            <Box border={'1px solid red'} w={'200px'} h={'200px'} p={3} overflow={'hidden'}>
+                                <Image rounded={'full'} src="https://via.placeholder.com/200" />
+                            </Box>
+                            <Box p={5} mt={7}>
+                                <Heading>{'User Name'}</Heading>
+                                <Text color={'grey'}>{'Number of friends'}</Text>
+                            </Box>
+                            <Spacer />
+                            <Box>
+                                <Button leftIcon={<RiEdit2Fill />} m={'120px 50px'}>Edit Profile</Button>
+                            </Box>
+                        </Flex>
                     </Box>
                     <Divider />
 
