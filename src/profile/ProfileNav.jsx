@@ -1,6 +1,6 @@
 import { Box, Button, Divider, Flex, Heading, HStack, Image, Spacer, Text } from "@chakra-ui/react";
 import { Link, Outlet } from "react-router-dom";
-import { RiEdit2Fill } from "react-icons/ri";
+import { EditProfile } from "./EditProfile";
 
 const NewButton = ({ title, path }) => {
     return (
@@ -35,7 +35,7 @@ export const ProfileNav = () => {
                             </Box>
                             <Spacer />
                             <Box>
-                                <Button leftIcon={<RiEdit2Fill />} m={'120px 50px'}>Edit Profile</Button>
+                                <EditProfile />
                             </Box>
                         </Flex>
                     </Box>
