@@ -28,4 +28,25 @@ router.get("/:id",async(req,res)=>{
 
 })
 
+router.get("/",async(req,res)=>{
+
+    try{
+
+        
+       
+        let user = await User.find().lean().exec()
+       
+       
+         return  res.status(201).json(user)
+       
+       }
+       
+       catch(e){
+           return res.status(500).json({message:e.message,status:"Failed"})
+       }
+
+
+
+})
+
 module.exports=router
