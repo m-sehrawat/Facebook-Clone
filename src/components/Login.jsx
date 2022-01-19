@@ -61,7 +61,7 @@ method:"POST",
 body:JSON.stringify(form), 
 headers:{"Content-Type":"application/json"}
 ,
-}).then(res=>res.json()).then(res=>{ dispatch(loginsuccess(res.token));console.log(res); navigate(-1)})
+}).then(res=>res.json()).then(res=>{ dispatch(loginsuccess(res.token));console.log(res, "I am here"); navigate(-1)})
 
 }
 catch(e){console.log(e);dispatch(loginfailure(e))}
