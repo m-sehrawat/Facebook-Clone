@@ -6,7 +6,7 @@
      cursor: pointer;
  }
  .sidebarRow:hover{
-     background-color: lightgray;
+     background-color: rgb(241, 240, 240);
      border-radius:10px;
  }
 
