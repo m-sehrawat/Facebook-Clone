@@ -1,5 +1,5 @@
 const express = require("express");
-const Work =require("../models/work.model")
+const Address =require("../models/address.model")
 
 
 const router = express.Router();
@@ -12,17 +12,19 @@ const router = express.Router();
 
 router.post("/:userid", async (req, res) => {
     try {
-      const work = await Work.create({
+      const address = await Address.create({
         user_id:req.params.userid,  
-        company: req.body.company,
-        position:req.body.position,
-        city:req.body.position,
-        description:req.body.description,
-        timeperiod:req.body.timeperiod
+        address: req.body.address,
+        city:req.body.city,
+        postalcode:req.body.postalcode,
+        neighbour:req.body.neighbour,
+        
       });
+
+     
   
-      console.log(work);
-      return res.status(201).send(work);
+      console.log(address);
+      return res.status(201).send(address);
     } catch (e) {
       return res.status(500).json({ status: "failed", message: e.message });
     }
@@ -33,9 +35,9 @@ router.post("/:userid", async (req, res) => {
 
   router.delete("/:userid",async(req,res)=>{
     try{
-      const work=await Work.findOneAndDelete({user_id:req.params.userid}).lean().exec();
-      console.log(work);
-     return res.status(201).send(work,"this has deleted");
+      const address=await Address.findOneAndDelete({user_id:req.params.userid}).lean().exec();
+      console.log(address);
+     return res.status(201).send(address,"this has deleted");
     }
 
     catch (e) {
@@ -47,8 +49,8 @@ router.post("/:userid", async (req, res) => {
 router.patch('/:userid',async(req,res)=>{
 
     try{
-      const work=await Work.findOneAndUpdate({user_id:req.params.userid},req.body,{new:true}).lean().exec()
-        res.status(201).send(work)
+      const address=await Address.findOneAndUpdate({user_id:req.params.userid},req.body,{new:true}).lean().exec()
+        res.status(201).send(address)
     }
     
     
@@ -62,8 +64,8 @@ router.patch('/:userid',async(req,res)=>{
    router.get('/:userid',async(req,res)=>{
 
         try{
-          const work=await Work.findOne({user_id:req.params.userid}).lean().exec()
-            res.status(201).send(work)
+          const address=await Address.findOne({user_id:req.params.userid}).lean().exec()
+            res.status(201).send(address)
         }
         
         
