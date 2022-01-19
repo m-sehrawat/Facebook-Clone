@@ -28,4 +28,4 @@ img:{type:String,required:false},
 
 )
 
-module.exports = mongoose.model('album',postSchema)
+module.exports = mongoose.model('post',postSchema)
