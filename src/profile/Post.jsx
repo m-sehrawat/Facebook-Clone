@@ -3,10 +3,13 @@ import { Box, Heading } from "@chakra-ui/react";
 export const Post = () => {
     return (
         <>
-            <Box bg={'#f0f2f5'} minH={'200px'}>
+            <Box   bg={'#f0f2f5'} minH={'200px'} pt={3} >
 
-                <Heading>Post</Heading>
-                
+                <Box w={'950px'} m={'auto'} border={'1px solid red'} >
+
+                    <Heading>Post</Heading>
+                </Box>
+
             </Box>
         </>
     );
