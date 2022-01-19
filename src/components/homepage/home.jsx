@@ -1,7 +1,7 @@
 import { Navbar } from "../navbar/Navbar";
 import LeftSidebar from "./LeftSidebar";
 
-export const Homepage=()=>{
+export const Homepage = () => {
 
     return <>
           <LeftSidebar />
@@ -9,4 +9,4 @@ export const Homepage=()=>{
 
          
     </>
-}
+};
