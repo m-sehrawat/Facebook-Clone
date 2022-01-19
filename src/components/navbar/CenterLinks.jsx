@@ -20,7 +20,7 @@ export const CenterLinks = () => {
 
     return (
         <>
-            <CenterButton path={'/home'} iconName={VscHome} />
+            <CenterButton path={'/'} iconName={VscHome} />
             <CenterButton path={'/groups'} iconName={MdGroups} />
             <CenterButton path={'/friends'} iconName={AiOutlineUserAdd} />
         </>
