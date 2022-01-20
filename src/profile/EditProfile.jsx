@@ -13,14 +13,16 @@ export const EditProfile = () => {
     const [bio, setBio] = useState('');
 
     const uploadProfilePic = () => {
+        console.log('profile:', profile.name);
+
         fetch(`http://localhost:1234/profpic/${_id}`, {
-            method: 'PATCH',
-            body: profile,
+            method: 'POST',
+            body: JSON.stringify({ user_id: _id, img: profile.name }),
             headers: { 'Content-Type': 'application/json' }
         })
-            .then(d => d.jon())
+            .then(d => d.json())
             .then((res) => {
-                console.log(res)
+                console.log("Response:", res)
             })
             .catch(err => { console.log(err) })
 
@@ -41,7 +43,7 @@ export const EditProfile = () => {
             .catch(err => { console.log(err) })
     }
 
-    
+
 
     return (
         <>
@@ -59,9 +61,9 @@ export const EditProfile = () => {
                             <Flex>
                                 <Heading fontSize={20}>Profile Pic</Heading>
                                 <Spacer />
-                                <input id='profilePic' type='file' accept="image/png, image/jpeg" />
+                                <input type='file' accept="image/png, image/jpeg" />
                                 <Spacer />
-                                <Button onClick={uploadProfilePic}>Add</Button>
+                                <Button >Add</Button>
                             </Flex>
                             <Flex justify={'center'} m={4}>
                                 <Box w={'160px'} h={'160px'} overflow={'hidden'} rounded={'full'}>
