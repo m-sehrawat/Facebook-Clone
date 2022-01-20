@@ -4,28 +4,35 @@ import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { loginfailure, loginsuccess } from "../../featuresRedux/auth/action"
 import { Signup } from './Signup';
+import { saveData } from '../../utils/localstore';
+import { loadData } from '../../utils/localstore';
+import { useSelector } from 'react-redux';
 
 export const Login = () => {
 
+    const {isAuth, token}=useSelector(state=> ({isAuth:state.isAuth, todos:state.token }));
 
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const dispatch = useDispatch();
 
+
     const form = { email: email, password: password }
 
     const handleLogin = () => {
-        fetch("https://reqres.in/api/login", {
+        fetch("http://localhost:1234/login", {
             method: "POST",
             body: JSON.stringify(form),
             headers: { "Content-Type": "application/json" }
         })
             .then((res) => res.json())
             .then(res => {
-                dispatch(loginsuccess(res.token));
                 console.log(res);
-                navigate(-1);
+                dispatch(loginsuccess(res.token));
+                saveData("userdata",res)
+                console.log(loadData("userdata"));
+                navigate('/');
                 setEmail('');
                 setPassword('');
             })
@@ -36,7 +43,8 @@ export const Login = () => {
     }
 
 
-    return (
+    return !isAuth? (<div>Flase credentials</div>): (
+        
         <>
             <Box bg={'#f0f2f5'} h={'700px'}>
                 <Grid templateColumns='repeat(2, 1fr)' maxW={'1100px'} m={'auto'} h={'600px'} >

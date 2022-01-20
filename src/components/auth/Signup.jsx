@@ -1,4 +1,4 @@
-import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, Button, useDisclosure, Text, Heading, Divider, Flex, HStack, Input, VStack, Box, Select } from '@chakra-ui/react'
+import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, Button, useDisclosure, Text, Heading, Divider, Flex, HStack, Input, VStack, Box, Select, useToast } from '@chakra-ui/react'
 import { useState } from "react";
 
 export const Signup = () => {
@@ -15,6 +15,7 @@ export const Signup = () => {
     }
 
     const [form, setForm] = useState(initState);
+    const toast = useToast();
 
     const handleChange = ({ target: { name, value } }) => {
         setForm({ ...form, [name]: value })
@@ -22,18 +23,23 @@ export const Signup = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(form);
 
-        //Type your URL here
-        fetch(`URL`, {
+        fetch("http://localhost:1234/register", {
             method: 'POST',
             body: JSON.stringify(form),
             headers: { 'Content-Type': 'application/json' }
         })
             .then((res) => res.json())
             .then((res) => {
-                console.log(res);
-                //Type your code here
+                onClose();
+                toast({
+                    title: 'Account created',
+                    description: "Please login to use your account",
+                    status: 'success',
+                    position: 'top',
+                    duration: 9000,
+                    isClosable: true,
+                });
             })
             .catch((err) => {
                 console.log(err);

@@ -3,39 +3,18 @@ const bcrypt=require('bcryptjs')
 const jwt=require("jsonwebtoken")
 
 const userSchema= new Schema(
-    {name:{type:String,required:true},
+    {firstName:{type:String,required:true},
+    lastName:{type:String,required:true},
     email:{type:String,required:true,unique:true},
     password:{type:String,required:true},
-    album_ids : [{type: Schema.Types.ObjectId, 
-        ref:"album",
-        required: false}],
-    stories_ids : [{type: Schema.Types.ObjectId, 
-            ref:"story",
-            required: false}],
-    post_ids : [{type: Schema.Types.ObjectId, 
-                ref:"post",
-                required: false}],
     
-    work_id:{type: Schema.Types.ObjectId, 
-        ref:"work",
-        required: false} ,
-    university_id:{type: Schema.Types.ObjectId, 
-        ref:"university",
-        required: false},
-    school_id:{type: Schema.Types.ObjectId, 
-        ref:"school",
-        required: false},
-    place_id:{type: Schema.Types.ObjectId, 
-        ref:"place",
-        required: false},
+   
     mobile:{type:String,required:false},
-    address_id:{type: Schema.Types.ObjectId, 
-        ref:"place",
-        required: false},
+   
     
     gender:    {type: String, required: true},
-    birthdate:{type: String, required: true},
-    birthyear:{type: String, required: true},
+    date:{type: String, required: true},
+    
     interest:{type: String, required: false},
     language:[{type: String, required: false}],
     nicekname:{type: String, required: false},

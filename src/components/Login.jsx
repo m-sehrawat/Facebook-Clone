@@ -5,6 +5,7 @@ import { Link, useParams } from "react-router-dom"
 import { useNavigate } from "react-router-dom"
 
 import { useState ,useEffect} from "react"
+import {useSelector} from "react-redux"
 
 import { saveData } from "../../utils/localstore";
 import { useDispatch } from "react-redux"
@@ -12,7 +13,7 @@ import { loginfailure, loginsuccess } from "../../featuresRedux/auth/action"
 
 export const Login = () => {
 
-
+    const {isAuth, token}=useSelector(state=> ({isAuth:state.isAuth, todos:state.token }));
     const navigate=useNavigate();
     const [form,setForm]=useState({});
     const dispatch=useDispatch()
@@ -61,7 +62,7 @@ method:"POST",
 body:JSON.stringify(form), 
 headers:{"Content-Type":"application/json"}
 ,
-}).then(res=>res.json()).then(res=>{ dispatch(loginsuccess(res.token));console.log(res); navigate(-1)})
+}).then(res=>res.json()).then(res=>{ dispatch(loginsuccess(res.token));console.log(res, "I am here"); navigate(-1)})
 
 }
 catch(e){console.log(e);dispatch(loginfailure(e))}
