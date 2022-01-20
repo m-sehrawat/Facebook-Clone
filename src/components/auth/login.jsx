@@ -10,6 +10,7 @@ import { useSelector } from 'react-redux';
 
 export const Login = () => {
 
+    const {isAuth, token}=useSelector(state=> ({isAuth:state.isAuth, todos:state.token }));
 
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
@@ -42,7 +43,8 @@ export const Login = () => {
     }
 
 
-    return (
+    return !isAuth? (<div>Flase credentials</div>): (
+        
         <>
             <Box bg={'#f0f2f5'} h={'700px'}>
                 <Grid templateColumns='repeat(2, 1fr)' maxW={'1100px'} m={'auto'} h={'600px'} >
