@@ -1,7 +1,7 @@
 import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, Button, useDisclosure, Input, Divider, Box, Heading, Image, Flex, Spacer, VStack, } from '@chakra-ui/react'
 import { RiEdit2Fill } from 'react-icons/ri';
 import { loadData, saveData } from '../utils/localstore';
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 
 export const EditProfile = () => {
@@ -11,6 +11,17 @@ export const EditProfile = () => {
     const { _id } = loadData("user")
     const [profile, setProfile] = useState('');
     const [bio, setBio] = useState('');
+
+//    useEffect 
+//     fetch(`http://localhost:1234/user/${_id}`)
+//         .then((res) => res.json())
+//         .then((res) => {
+//             console.log(res);
+//             saveData('user', res);
+//             onClose();
+//         })
+//         .catch(err => { console.log(err) })
+
 
     const uploadProfilePic = () => {
         console.log('profile:', profile.name);

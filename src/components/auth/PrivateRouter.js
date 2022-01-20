@@ -10,3 +10,5 @@ export const PrivateRoute = ({ children }) => {
     return !(token.length > 2) ? <Navigate to={"/login"} /> : children;
 }
 
+
+
