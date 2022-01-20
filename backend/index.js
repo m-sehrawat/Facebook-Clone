@@ -18,7 +18,7 @@ const addresscontroller=require("./controllers/address.controller")
 const placecontroller=require("./controllers/placelived.controller")
 const commentcontroller=require("./controllers/comment.controller")
 
-
+// profpic/
 app.post("/register",register)
 app.use("/profpic",profpiccontroller)
 

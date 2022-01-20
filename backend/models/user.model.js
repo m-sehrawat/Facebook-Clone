@@ -14,6 +14,8 @@ const userSchema= new Schema(
     
     gender:    {type: String, required: true},
     date:{type: String, required: true},
+
+    
     
     interest:{type: String, required: false},
     language:[{type: String, required: false}],
