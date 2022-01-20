@@ -15,7 +15,7 @@ export const Homecenter = () => {
         message="yeah it's working"
         timestamp="this is a time stamp" 
         username="bhargav"
-        image={"sun.jpg"}
+        image={"logo512.png"}
 
         />
         <Feed 
@@ -31,7 +31,7 @@ export const Homecenter = () => {
         message="yeah it's working"
         timestamp="this is a time stamp" 
         username="bhargav"
-        image={"sun.jpg"}
+        image={"logo512.png"}
 
         />
         </div>
