@@ -65,14 +65,7 @@ export const Login = () => {
 
         getdata()
 
-        //  dispatch(loginsuccess(dta.token));
-        //  saveData("userdata",res)
-        //  console.log(loadData("userdata"));
-        //  navigate(-1)
-        //  console.log(isAuth,"from then")
-        //  console.log(token.length, "from then")
-        //  setEmail('');
-        //  setPassword('');
+      
 
     }
 

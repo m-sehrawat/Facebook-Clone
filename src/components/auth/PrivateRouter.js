@@ -7,6 +7,6 @@ export const PrivateRoute = ({ children }) => {
 
     const { token, isAuth} = useSelector(state => ({ token: state.token, isAuth: state.isAuth }));
 
-    return (!token)? <Navigate to={"/login"}/> : (children);
+    return !(token.length>2)? <Navigate to={"/login"}/> : children;
 }
 

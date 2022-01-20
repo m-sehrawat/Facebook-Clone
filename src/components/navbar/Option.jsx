@@ -2,6 +2,8 @@ import { Avatar, Button, Center, Divider, IconButton, Menu, MenuButton, MenuItem
 import { ArrowForwardIcon, ChatIcon, MoonIcon, QuestionIcon, SettingsIcon, TriangleDownIcon } from "@chakra-ui/icons";
 import { Link, useNavigate } from "react-router-dom";
 import { loadData } from "../../utils/localstore";
+import { saveData} from "../../utils/localstore";
+
 
 
 
@@ -13,12 +15,28 @@ const Item = ({ iconName, title }) => {
     );
 };
 
-const data = loadData('user');
-const { firstName, lastName } = data;
+
+
+
+
+
 
 export const Option = () => {
-
     const navigate = useNavigate();
+
+    const logoutfun=()=>{
+      saveData("token","");
+      saveData("auth",false);
+      saveData("user",{});
+      navigate("/login")
+      
+    }
+    
+    const {firstName, lastName} = loadData('user') || {firstName: "",lastName: "" };
+    
+   
+
+    
 
     return (
         <>
