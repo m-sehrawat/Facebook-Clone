@@ -1,7 +1,7 @@
 import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, Button, useDisclosure, } from '@chakra-ui/react'
 import { RiEdit2Fill } from 'react-icons/ri';
 import { loadData } from '../utils/localstore';
-import {useState} from "react-redux"
+import {useState} from "react"
 
 
 
