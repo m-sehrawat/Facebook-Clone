@@ -1,6 +1,5 @@
-import { Navbar } from "../navbar/Navbar";
-import { Homecenter } from "./Homecenter";
-import LeftSidebar from "./LeftSidebar";
+import { Homecenter } from "./homecenter/Homecenter";
+import LeftSidebar from "./sidebar/LeftSidebar";
 import "./home.css";
 
 export const Homepage = () => {
