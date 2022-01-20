@@ -6,6 +6,7 @@ import { loginfailure, loginsuccess } from "../../featuresRedux/auth/action"
 import { Signup } from './Signup';
 import { saveData } from '../../utils/localstore';
 import { loadData } from '../../utils/localstore';
+import { useSelector } from 'react-redux';
 
 export const Login = () => {
 
@@ -14,6 +15,7 @@ export const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const dispatch = useDispatch();
+
 
     const form = { email: email, password: password }
 
@@ -25,11 +27,11 @@ export const Login = () => {
         })
             .then((res) => res.json())
             .then(res => {
+                console.log(res);
                 dispatch(loginsuccess(res.token));
                 saveData("userdata",res)
-                console.log(res);
                 console.log(loadData("userdata"));
-                navigate(-1);
+                navigate('/');
                 setEmail('');
                 setPassword('');
             })
