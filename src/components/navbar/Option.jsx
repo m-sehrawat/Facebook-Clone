@@ -1,6 +1,8 @@
 import { Avatar, Button, Center, Divider, IconButton, Menu, MenuButton, MenuItem, MenuList, Tag, TagLabel, Text, VStack } from "@chakra-ui/react";
 import { ArrowForwardIcon, ChatIcon, MoonIcon, QuestionIcon, SettingsIcon, TriangleDownIcon } from "@chakra-ui/icons";
 import { Link, useNavigate } from "react-router-dom";
+import { loadData } from "../../utils/localstore";
+
 
 
 const Item = ({ iconName, title }) => {
@@ -11,6 +13,8 @@ const Item = ({ iconName, title }) => {
     );
 };
 
+const data = loadData('user');
+const { firstName, lastName } = data;
 
 export const Option = () => {
 
@@ -21,8 +25,8 @@ export const Option = () => {
             <Center mr={4}>
                 <Link to={'/profile'}>
                     <Tag size='lg' colorScheme='white' borderRadius='full' _hover={{ bg: "#f0f2f5" }} h={10}>
-                        <Avatar size='sm' name='Segun Adebayo' ml={-1} mr={2} src='https://bit.ly/sage-adebayo' />
-                        <TagLabel>UserName</TagLabel>
+                        <Avatar size='sm' name={`${firstName} ${lastName}`} ml={-1} mr={2} src='' />
+                        <TagLabel>{firstName}</TagLabel>
                     </Tag>
                 </Link>
             </Center>
@@ -37,8 +41,8 @@ export const Option = () => {
                     <MenuList w={'360px'} boxShadow={'2xl'}>
                         <VStack gap={2} fontSize={17}>
 
-                            <MenuItem onClick={() => navigate('/profile')} icon={<Avatar size={'lg'} src="https://bit.ly/sage-adebayo" />}>
-                                <Text fontSize={20} fontWeight={500} >{'User Name'}</Text>
+                            <MenuItem onClick={() => navigate('/profile')} icon={<Avatar name={`${firstName} ${lastName}`} size={'lg'} src="" />}>
+                                <Text fontSize={20} fontWeight={500} >{firstName} {lastName}</Text>
                                 <Text fontSize={14} color={'grey'}>See your profile</Text>
                             </MenuItem>
 

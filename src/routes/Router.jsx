@@ -8,6 +8,7 @@ import { Post } from "../profile/Post";
 import { About } from "../profile/About";
 import { Friends } from "../profile/Friends";
 import { Photos } from "../profile/Photos";
+import {Bkwas} from "../components/bkwas"
 
 export const Router = () => {
   return (
@@ -26,6 +27,9 @@ export const Router = () => {
             <Route path="photos" element={<Photos />} />
           </Route>
         </Route>
+
+        <Route path="/bkwas" element={<Bkwas/>} />
+        <Route path="*" element={<div>Page not found</div>} />
       </Routes>
     </>
   );

@@ -41,8 +41,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "gacp": "git add . && git commit -m updated && git push",
-    "server": " nodemon backend/server",
-    "chat":"nodemon chatapp/index"
+    "server": " nodemon backend/server"
+    
   },
   "eslintConfig": {
     "extends": [
