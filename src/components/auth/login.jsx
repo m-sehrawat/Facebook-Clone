@@ -1,89 +1,84 @@
-import { Box, Button, Container, Divider, Grid, Heading, Input, Text, VStack } from '@chakra-ui/react';
+import { Box, Button, Container, Divider, Grid, Heading, Input, Text, useToast, VStack } from '@chakra-ui/react';
 import { useNavigate } from "react-router-dom"
 import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { loginfailure, loginsuccess } from "../../featuresRedux/auth/action"
 import { Signup } from './Signup';
 import { saveData } from '../../utils/localstore';
-import { Navigate } from 'react-router';
 import { loadData } from '../../utils/localstore';
 import { useSelector } from 'react-redux';
 
 export const Login = () => {
 
-    const {isAuth, token}=useSelector(state=> ({isAuth:state.isAuth, todos:state.token }));
-
     const navigate = useNavigate();
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
     const dispatch = useDispatch();
+    const { isAuth, token } = useSelector(state => ({ isAuth: state.isAuth, todos: state.token }));
+    const [form, setForm] = useState({ email: "", password: "" });
+
+    const displayToast = useToast();
+    const toast = (title, description, status) => {
+        return displayToast({
+            title,
+            description,
+            status,
+            position: 'top',
+            duration: 7000,
+            isClosable: true,
+        });
+    }
+
+    const handleChange = ({ target: { name, value } }) => setForm({ ...form, [name]: value });
 
 
-    const form = { email: email, password: password }
+    const handleSubmit = (e) => {
+        e.preventDefault();
 
-    const handleLogin = () => {
+        const getdata = async () => {
+            try {
+                const res = await fetch("http://localhost:1234/login", {
+                    method: "POST",
+                    body: JSON.stringify(form),
+                    headers: { "Content-Type": "application/json" }
+                })
+                const data = await res.json();
+                const dta = await data
 
-   const getdata=async()=>{
-     try{
+                if (!dta.status) {
+                    dispatch(loginsuccess(dta.token))
+                    saveData("user", dta.user)
+                    console.log(loadData("user"))
+                    toast('Login Successful', 'Got to profile section to add more details', 'success');
+                    navigate('/');
 
-      const res=  await fetch("http://localhost:1234/login", {
-                        method: "POST",
-                        body: JSON.stringify(form),
-                        headers: { "Content-Type": "application/json" }
-                         })
+                } else {
+                    console.log(dta)
+                    dispatch(loginfailure(dta))
+                    saveData("user", "")
+                    toast('Invalid Details', 'Please check your email id or password', 'error');
+                }
 
-      const data = await res.json()        ;        
-
-          const dta=await data
-          
-          if(dta.status==undefined){
-              dispatch(loginsuccess(dta.token))
-              saveData("user",dta.user)
-              console.log(loadData("user"))
-              navigate(-1)
-          }
-          
-        else{console.log(dta)
-            dispatch(loginfailure(dta))
-            saveData("user","")
-            alert("Provide correct credentials")
+            } catch (err) {
+                console.log(err)
+                toast('Network Error', 'Please try again', 'error');
+            }
         }
-     }   
 
-     catch(err){
-           console.log(err)
-           
-           console.log("from catch")
-         
-     }
-   }
-  
-   getdata()
-    
-    //  dispatch(loginsuccess(dta.token));
-    //  saveData("userdata",res)
-    //  console.log(loadData("userdata"));
-    //  navigate(-1)
-    //  console.log(isAuth,"from then")
-    //  console.log(token.length, "from then")
-    //  setEmail('');
-    //  setPassword('');
+        getdata()
 
+        //  dispatch(loginsuccess(dta.token));
+        //  saveData("userdata",res)
+        //  console.log(loadData("userdata"));
+        //  navigate(-1)
+        //  console.log(isAuth,"from then")
+        //  console.log(token.length, "from then")
+        //  setEmail('');
+        //  setPassword('');
 
-      
-                
-           
-            
-            
-            
-                
-        
-           
     }
 
 
-    return  (
-        
+    return (
+
         <>
             <Box bg={'#f0f2f5'} h={'700px'}>
                 <Grid templateColumns='repeat(2, 1fr)' maxW={'1100px'} m={'auto'} h={'600px'} >
@@ -95,16 +90,18 @@ export const Login = () => {
 
                     <Box >
                         <Container h={'350px'} maxW={'400px'} mt={'120px'} bg={'white'} boxShadow={'lg'} rounded={10} p={4}>
-                            <VStack gap={2}>
-                                <Input type='email' value={email} placeholder='Email address' h={'50px'} name="email" onChange={(e) => { setEmail(e.target.value) }} />
-                                <Input type='password' value={password} placeholder='Password' h={'50px'} name="password" onChange={(e) => { setPassword(e.target.value) }} />
-                                <Button onClick={()=>{handleLogin()}} w={'100%'} type='submit' bg={'#1877f2'} color={'white'} fontWeight={500} size='lg' _hover={{ bg: '#2572d6' }} fontSize={20}>Log In</Button>
-                                <Text>Forgotten password?</Text>
-                                <Divider />
+                            <form onSubmit={handleSubmit}>
+                                <VStack gap={2}>
+                                    <Input type='email' name='email' placeholder='Email address' h={'50px'} onChange={handleChange} />
+                                    <Input type='password' name='password' placeholder='Password' h={'50px'} onChange={handleChange} />
+                                    <Button type='submit' w={'100%'} bg={'#1877f2'} color={'white'} fontWeight={500} size='lg' _hover={{ bg: '#2572d6' }} fontSize={20}>Log In</Button>
+                                    <Text>Forgotten password?</Text>
+                                    <Divider />
 
-                                <Signup />
+                                    <Signup />
 
-                            </VStack>
+                                </VStack>
+                            </form>
                         </Container>
                     </Box>
 
