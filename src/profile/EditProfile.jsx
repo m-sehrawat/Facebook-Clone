@@ -1,28 +1,47 @@
 import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, Button, useDisclosure, Input, Divider, Box, Heading, Image, Flex, Spacer, VStack, } from '@chakra-ui/react'
 import { RiEdit2Fill } from 'react-icons/ri';
-import { loadData } from '../utils/localstore';
+import { loadData, saveData } from '../utils/localstore';
 import { useState } from "react"
 
 
 export const EditProfile = () => {
 
-    const { _id } = loadData("user")
+    const { isOpen, onOpen, onClose } = useDisclosure();
 
+    const { _id } = loadData("user")
     const [profile, setProfile] = useState('');
+    const [bio, setBio] = useState('');
 
     const uploadProfilePic = () => {
-
         fetch(`http://localhost:1234/profpic/${_id}`, {
             method: 'PATCH',
             body: profile,
             headers: { 'Content-Type': 'application/json' }
         })
-            .then(d => d.jon()).then((res) => { console.log(res) })
+            .then(d => d.jon())
+            .then((res) => {
+                console.log(res)
+            })
             .catch(err => { console.log(err) })
 
     }
 
-    const { isOpen, onOpen, onClose } = useDisclosure()
+    const onSubmit = () => {
+        fetch(`http://localhost:1234/user/${_id}`, {
+            method: 'PATCH',
+            body: JSON.stringify({ bio }),
+            headers: { 'Content-Type': 'application/json' }
+        })
+            .then((res) => res.json())
+            .then((res) => {
+                console.log(res);
+                saveData('user', res);
+                onClose();
+            })
+            .catch(err => { console.log(err) })
+    }
+
+    
 
     return (
         <>
@@ -73,8 +92,8 @@ export const EditProfile = () => {
                         <Box m={'20px'}>
                             <Heading fontSize={20}>Bio</Heading>
                             <Flex my={2} gap={2}>
-                                <Input type={'text'} placeholder='Add your Bio' />
-                                <Button>Add</Button>
+                                <Input onChange={(e) => { setBio(e.target.value) }} type={'text'} placeholder='Add your Bio' />
+                                <Button onClick={onSubmit} >Add</Button>
                             </Flex>
                         </Box>
 

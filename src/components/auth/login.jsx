@@ -1,4 +1,4 @@
-import { Box, Button, Container, Divider, Grid, Heading, Input, Text, useToast, VStack } from '@chakra-ui/react';
+import { Box, Button, Container, Divider, Flex, Grid, Heading, Input, Text, useToast, VStack } from '@chakra-ui/react';
 import { useNavigate } from "react-router-dom"
 import { useState } from "react"
 import { useDispatch } from "react-redux"
@@ -12,7 +12,6 @@ export const Login = () => {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { isAuth, token } = useSelector(state => ({ isAuth: state.isAuth, todos: state.token }));
     const [form, setForm] = useState({ email: "", password: "" });
 
     const displayToast = useToast();
@@ -90,11 +89,11 @@ export const Login = () => {
                                     <Button type='submit' w={'100%'} bg={'#1877f2'} color={'white'} fontWeight={500} size='lg' _hover={{ bg: '#2572d6' }} fontSize={20}>Log In</Button>
                                     <Text>Forgotten password?</Text>
                                     <Divider />
-
-                                    <Signup />
-
                                 </VStack>
                             </form>
+                            <Flex justify={'center'} mt={6}>
+                            <Signup />
+                            </Flex>
                         </Container>
                     </Box>
 

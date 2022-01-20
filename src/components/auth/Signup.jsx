@@ -47,6 +47,7 @@ export const Signup = () => {
             })
                 .then((res) => res.json())
                 .then((res) => {
+                    console.log(res);
                     onClose();
                     toast('Account created', 'Please login to continue', 'success');
                 })
