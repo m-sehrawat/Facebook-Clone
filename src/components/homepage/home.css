@@ -1,0 +1,8 @@
+.Home{
+    background-color: #f1f2f5;
+    height: 100vh;
+}
+.HomeBody{
+    display: flex;
+
+}

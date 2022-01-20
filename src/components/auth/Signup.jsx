@@ -1,5 +1,6 @@
-import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, Button, useDisclosure, Text, Heading, Divider, Flex, HStack, Input, VStack, Box, Select } from '@chakra-ui/react'
+import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, Button, useDisclosure, Text, Heading, Divider, Flex, HStack, Input, VStack, Box, Select, useToast } from '@chakra-ui/react'
 import { useState } from "react";
+
 
 export const Signup = () => {
 
@@ -16,30 +17,47 @@ export const Signup = () => {
 
     const [form, setForm] = useState(initState);
 
+    const displayToast = useToast();
+    const toast = (title, description, status) => {
+        return displayToast({
+            title,
+            description,
+            status,
+            position: 'top',
+            duration: 7000,
+            isClosable: true,
+        });
+    }
+
     const handleChange = ({ target: { name, value } }) => {
         setForm({ ...form, [name]: value })
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(form);
 
-        //Type your URL here
-        
-        fetch("http://localhost:1234/register", {
-            method: 'POST',
-            body: JSON.stringify(form),
-            headers: { 'Content-Type': 'application/json' }
-        })
-            .then((res) => res.json())
-            .then((res) => {
-                console.log(res);
-                alert('working')
-                //Type your code here
+        const { firstName, lastName, email, password, date, gender } = form;
+
+        if (firstName && lastName && email && password.length > 7 && date && gender) {
+
+            fetch("http://localhost:1234/register", {
+                method: 'POST',
+                body: JSON.stringify(form),
+                headers: { 'Content-Type': 'application/json' }
             })
-            .catch((err) => {
-                console.log(err);
-            })
+                .then((res) => res.json())
+                .then((res) => {
+                    onClose();
+                    toast('Account created', 'Please login to continue', 'success');
+                })
+                .catch((err) => {
+                    console.log(err);
+                    toast('Network Error', 'Please try again', 'error');
+                })
+
+        } else {
+            toast('Fill all the details', 'Password should be min 8 length', 'error');
+        }
     }
 
 

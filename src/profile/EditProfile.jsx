@@ -1,7 +1,32 @@
 import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, Button, useDisclosure, } from '@chakra-ui/react'
 import { RiEdit2Fill } from 'react-icons/ri';
+import { loadData } from '../utils/localstore';
+import {useState} from "react"
+
+
+
+
+
+
 
 export const EditProfile = () => {
+const {_id}=loadData("user")
+       console.log(_id, "mai user id hu")
+       const [pic,setPic]=useState('')
+       const dta={
+          img:pic
+       }
+    function handlesaveprof(){
+
+     fetch(`http://localhost:1234/profpic/${_id}`,{
+        method: 'PATCH',
+        body: JSON.stringify(dta),
+        headers: { 'Content-Type': 'application/json' }
+    })
+     .then(d=>d.jon()).then(res=>{console.log(res)})
+      .catch(err=>{console.log(err)})
+        
+    }
 
     const { isOpen, onOpen, onClose } = useDisclosure()
 

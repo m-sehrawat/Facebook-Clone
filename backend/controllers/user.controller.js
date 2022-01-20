@@ -1,7 +1,7 @@
 const User= require("../models/user.model")
 
 const express=require('express');
-
+const upload=require('../middleware/upload')
 
 const router=express.Router();
 
@@ -48,5 +48,38 @@ router.get("/",async(req,res)=>{
 
 
 })
+
+
+router.patch('/:userid',async(req,res)=>{
+
+    try{
+      const user=await User.findByIdAndUpdate(req.params.userid,req.body,{new:true}).lean().exec()
+        res.status(201).send(user)
+    }
+    
+    
+    catch(e){
+        res.status(500).json({message:e.message, status:"Failed"})
+    }
+    
+    })
+
+    router.delete('/:userid',async(req,res)=>{
+
+        try{
+          const user=await User.findByIdAndDelete(req.params.userid).lean().exec()
+            res.status(201).send(user)
+        }
+        
+        
+        catch(e){
+            res.status(500).json({message:e.message, status:"Failed"})
+        }
+        
+        })    
+
+
+
+
 
 module.exports=router
