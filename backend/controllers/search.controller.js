@@ -13,7 +13,7 @@ router.get("/:name",async(req,res)=>{
 
        
        
-        let user = await User.find({name:req.params.name}).lean().exec()
+        let user = await User.find({firstName:req.params.name}).lean().exec()
        
        
          return  res.status(201).json(user)
