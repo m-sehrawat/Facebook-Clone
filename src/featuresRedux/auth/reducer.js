@@ -18,6 +18,7 @@ switch(type){
         };
     case LOGIN_FAILURE:{
         saveData("token","")
+        saveData("auth",false)
          return {
              ...state,
              isAuth:false,

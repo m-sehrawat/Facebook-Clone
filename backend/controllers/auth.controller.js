@@ -40,7 +40,7 @@ try{
  //return the user and the token
 
 
-    res.status(201).json({user,token})
+  return  res.status(201).json({user,token})
 
 }
 
@@ -76,7 +76,7 @@ try{
  //else math then password
 
  function checkPassword(pass,password){
-   if(pass==password){return true}
+   if(pass===password){return true}
 
    return false
  }
@@ -97,7 +97,7 @@ try{
 const token =newToken(user);
 
  // return the user and the token
- res.status(201).json({user,token})
+ return res.status(201).json({user,token})
 }
 
 catch(e){

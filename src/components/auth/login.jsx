@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux"
 import { loginfailure, loginsuccess } from "../../featuresRedux/auth/action"
 import { Signup } from './Signup';
 import { saveData } from '../../utils/localstore';
+import { Navigate } from 'react-router';
 import { loadData } from '../../utils/localstore';
 import { useSelector } from 'react-redux';
 
@@ -21,29 +22,67 @@ export const Login = () => {
     const form = { email: email, password: password }
 
     const handleLogin = () => {
-        fetch("http://localhost:1234/login", {
-            method: "POST",
-            body: JSON.stringify(form),
-            headers: { "Content-Type": "application/json" }
-        })
-            .then((res) => res.json())
-            .then(res => {
-                console.log(res);
-                dispatch(loginsuccess(res.token));
-                saveData("userdata",res)
-                console.log(loadData("userdata"));
-                navigate('/');
-                setEmail('');
-                setPassword('');
-            })
-            .catch((e) => {
-                console.log(e);
-                dispatch(loginfailure(e));
-            })
+
+   const getdata=async()=>{
+     try{
+
+      const res=  await fetch("http://localhost:1234/login", {
+                        method: "POST",
+                        body: JSON.stringify(form),
+                        headers: { "Content-Type": "application/json" }
+                         })
+
+      const data = await res.json()        ;        
+
+          const dta=await data
+          
+          if(dta.status==undefined){
+              dispatch(loginsuccess(dta.token))
+              saveData("user",dta.user)
+              console.log(loadData("user"))
+              navigate(-1)
+          }
+          
+        else{console.log(dta)
+            dispatch(loginfailure(dta))
+            saveData("user","")
+            alert("Provide correct credentials")
+        }
+     }   
+
+     catch(err){
+           console.log(err)
+           
+           console.log("from catch")
+         
+     }
+   }
+  
+   getdata()
+    
+    //  dispatch(loginsuccess(dta.token));
+    //  saveData("userdata",res)
+    //  console.log(loadData("userdata"));
+    //  navigate(-1)
+    //  console.log(isAuth,"from then")
+    //  console.log(token.length, "from then")
+    //  setEmail('');
+    //  setPassword('');
+
+
+      
+                
+           
+            
+            
+            
+                
+        
+           
     }
 
 
-    return !isAuth? (<div>Flase credentials</div>): (
+    return  (
         
         <>
             <Box bg={'#f0f2f5'} h={'700px'}>
@@ -59,7 +98,7 @@ export const Login = () => {
                             <VStack gap={2}>
                                 <Input type='email' value={email} placeholder='Email address' h={'50px'} name="email" onChange={(e) => { setEmail(e.target.value) }} />
                                 <Input type='password' value={password} placeholder='Password' h={'50px'} name="password" onChange={(e) => { setPassword(e.target.value) }} />
-                                <Button onClick={handleLogin} w={'100%'} type='submit' bg={'#1877f2'} color={'white'} fontWeight={500} size='lg' _hover={{ bg: '#2572d6' }} fontSize={20}>Log In</Button>
+                                <Button onClick={()=>{handleLogin()}} w={'100%'} type='submit' bg={'#1877f2'} color={'white'} fontWeight={500} size='lg' _hover={{ bg: '#2572d6' }} fontSize={20}>Log In</Button>
                                 <Text>Forgotten password?</Text>
                                 <Divider />
 
