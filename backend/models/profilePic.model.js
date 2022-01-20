@@ -4,10 +4,12 @@ const mongoose = require("mongoose")
 
 
 const profilepicSchema= mongoose.Schema({
-    user_id: {
-        type: mongoose.Schema.Types.ObjectId, 
-        ref:'user',
-        required: true},
+    user_id:{type:String,required:true},
+    
+    // {
+    //     type: mongoose.Schema.Types.ObjectId, 
+    //     ref:'user',
+    //     required: true},
    
 
 img:{type:String,required:true}
