@@ -17,7 +17,7 @@ const LeftSidebar = () => {
         <SidebarRow Icon={<RiMessengerLine />} title="Messenger"/>
         <SidebarRow Icon={<RiVideoAddFill />} title="Video" />
         <SidebarRow Icon={<MdOutlineGroups />} title="Groups" />
-        <SidebarRow Icon={<BiChevronDown />} title="Mrketplace" />
+        <SidebarRow Icon={<BiChevronDown />} title="Marketplace" />
         </div>
         </IconContext.Provider>
 
