@@ -1,10 +1,8 @@
-import { Avatar, Button, Center, Divider, IconButton, Menu, MenuButton, MenuItem, MenuList, Tag, TagLabel, Text, VStack } from "@chakra-ui/react";
+import { Avatar, Button, Center, Divider, IconButton, Menu, MenuButton, MenuItem, MenuList, Tag, TagLabel, Text, useToast, VStack } from "@chakra-ui/react";
 import { ArrowForwardIcon, ChatIcon, MoonIcon, QuestionIcon, SettingsIcon, TriangleDownIcon } from "@chakra-ui/icons";
 import { Link, useNavigate } from "react-router-dom";
 import { loadData } from "../../utils/localstore";
-import { saveData} from "../../utils/localstore";
-
-
+import { saveData } from "../../utils/localstore";
 
 
 const Item = ({ iconName, title }) => {
@@ -15,28 +13,32 @@ const Item = ({ iconName, title }) => {
     );
 };
 
-
-
-
-
-
-
 export const Option = () => {
+
     const navigate = useNavigate();
 
-    const logoutfun=()=>{
-      saveData("token","");
-      saveData("auth",false);
-      saveData("user",{});
-      navigate("/login")
-      
+    const displayToast = useToast();
+    const toast = (title, status) => {
+        return displayToast({
+            title,
+            status,
+            position: 'top',
+            duration: 7000,
+            isClosable: true,
+        });
     }
-    
-    const {firstName, lastName} = loadData('user') || {firstName: "",lastName: "" };
-    
-   
 
-    
+    const handleLogout = () => {
+        saveData("token", "");
+        saveData("auth", false);
+        saveData("user", {});
+        toast('Logout Successful', 'success');
+        navigate("/login");
+    }
+
+
+
+    const { firstName, lastName } = loadData('user') || { firstName: "", lastName: "" };
 
     return (
         <>
@@ -74,7 +76,11 @@ export const Option = () => {
                             <Item iconName={<SettingsIcon w={6} h={6} />} title={'Settings & privacy'} />
                             <Item iconName={<QuestionIcon w={6} h={6} />} title={'Help & support'} />
                             <Item iconName={<MoonIcon w={6} h={6} />} title={'Display & accessibility'} />
-                            <Item iconName={<ArrowForwardIcon w={6} h={6} />} title={'Log Out'} />
+
+                            <MenuItem onClick={handleLogout} icon={<ArrowForwardIcon w={6} h={6} />}>
+                                <Text fontWeight={500}>Log Out</Text>
+                            </MenuItem>
+
                             <Text px={5} color={'grey'} fontSize={13}>Privacy · Terms · Advertising · Ad choices · Cookies · More · Meta © 2022</Text>
 
                         </VStack>
