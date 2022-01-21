@@ -4,7 +4,7 @@ import { loadData, saveData } from '../utils/localstore';
 import { useState } from "react"
 
 
-export const EditProfile = () => {
+export const EditProfile = ({m, w, title}) => {
 
     const { isOpen, onOpen, onClose } = useDisclosure();
     const { _id } = loadData("user");
@@ -12,15 +12,10 @@ export const EditProfile = () => {
     const displayToast = useToast();
     const toast = (title, description, status) => displayToast({ title, description, status, position: 'top', duration: 7000, isClosable: true, });
 
-
-    const initIntro = { currentCity: "", workplace: "", university: "", school: "", homeTown: "", relationship: "" };
-    const initHobbies = { hobbies: "", interest: "", language: "" };
-    const initWebsite = { website: "", socialLink: "" };
-
     const [bio, setBio] = useState('');
-    const [intro, setIntro] = useState(initIntro);
-    const [hobbies, setHobbies] = useState(initHobbies);
-    const [website, setWebsite] = useState(initWebsite);
+    const [intro, setIntro] = useState({});
+    const [hobbies, setHobbies] = useState({});
+    const [website, setWebsite] = useState({});
 
 
     const handleChange = (e, state, setState) => {
@@ -74,7 +69,7 @@ export const EditProfile = () => {
 
     return (
         <>
-            <Button leftIcon={<RiEdit2Fill />} m={'120px 50px'} onClick={onOpen}>Edit Profile</Button>
+            <Button leftIcon={<RiEdit2Fill />} m={m} w={w} onClick={onOpen}>{title}</Button>
 
             <Modal isOpen={isOpen} onClose={onClose} size={'2xl'}>
                 <ModalOverlay />

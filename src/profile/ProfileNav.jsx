@@ -36,7 +36,7 @@ export const ProfileNav = () => {
                             </Box>
                             <Spacer />
                             <Box>
-                                <EditProfile />
+                                <EditProfile m={'120px 50px'} title={'Edit Profile'} />
                             </Box>
                         </Flex>
                     </Box>
