@@ -1,4 +1,4 @@
-import { Box, Button, Divider, Flex, Heading, HStack, Image, Spacer, Text } from "@chakra-ui/react";
+import { Box, Button, Divider, Flex, Heading, HStack, Image, Spacer } from "@chakra-ui/react";
 import { Link, Outlet } from "react-router-dom";
 import { loadData } from "../utils/localstore";
 
