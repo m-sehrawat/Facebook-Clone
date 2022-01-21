@@ -4,6 +4,7 @@ import { loadData } from '../../utils/localstore';
 import { useEffect, useState } from "react"
 
 
+
 export const EditProfile = ({ m, w, title }) => {
 
     const { isOpen, onOpen, onClose } = useDisclosure();
@@ -16,7 +17,7 @@ export const EditProfile = ({ m, w, title }) => {
     const [intro, setIntro] = useState({});
     const [hobbies, setHobbies] = useState({});
     const [website, setWebsite] = useState({});
-    // const [profile, setProfile] = useState('');
+    const [profile, setProfile] = useState('');
 
     useEffect(() => {
 
@@ -50,21 +51,21 @@ export const EditProfile = ({ m, w, title }) => {
 
 
 
-    // const uploadProfilePic = () => {
+    const uploadProfilePic = (e) => {
+        e.preventDefault();
 
+        fetch(`http://localhost:1234/profpic/${_id}`, {
+            method: 'POST',
+            body: JSON.stringify({ user_id: _id, img: profile }),
+            headers: { 'Content-Type': 'application/json' }
+        })
+            .then(d => d.json())
+            .then((res) => {
+                console.log("Response:", res)
+            })
+            .catch(err => { console.log(err) })
 
-    //     fetch(`http://localhost:1234/profpic/${_id}`, {
-    //         method: 'POST',
-    //         body: JSON.stringify({ user_id: _id, img: profile }),
-    //         headers: { 'Content-Type': 'application/json' }
-    //     })
-    //         .then(d => d.json())
-    //         .then((res) => {
-    //             console.log("Response:", res)
-    //         })
-    //         .catch(err => { console.log(err) })
-
-    // }
+    }
 
 
 
@@ -82,13 +83,15 @@ export const EditProfile = ({ m, w, title }) => {
                     <ModalBody >
 
                         <Box m={'10px'}>
-                            <Flex>
-                                <Heading fontSize={20}>Profile Pic</Heading>
-                                <Spacer />
-                                <input type='file' accept="image/png, image/jpeg" />
-                                <Spacer />
-                                <Button >Add</Button>
-                            </Flex>
+                            <form onSubmit={uploadProfilePic}>
+                                <Flex>
+                                    <Heading fontSize={20}>Profile Pic</Heading>
+                                    <Spacer />
+                                    <input onChange={(e) => { setProfile(e.target.files[0].name) }} type='file' accept="image/png, image/jpeg" />
+                                    <Spacer />
+                                    <Button type='submit' >Add</Button>
+                                </Flex>
+                            </form>
                             <Flex justify={'center'} m={4}>
                                 <Box w={'160px'} h={'160px'} overflow={'hidden'} rounded={'full'}>
                                     <Image src='https://via.placeholder.com/200' />
