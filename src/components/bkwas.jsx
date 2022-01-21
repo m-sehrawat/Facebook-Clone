@@ -13,12 +13,17 @@ const {_id}=loadData('user')
    }
   
 
-    
+    useEffect(()=>{
+      getdata(_id)
+    },[])
    
-  getdata(_id)
+//   
     
+  frdids.forEach((userid)=>{
+     console.log(userid)
+  })       
 
-console.log(frdids)
+
 
 
 
