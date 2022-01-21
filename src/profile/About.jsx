@@ -23,7 +23,7 @@ export const About = () => {
     
     useEffect(() => {
         getData(_id, setData);
-    }, [data]);
+    }, [_id, data]);
 
 
     return (
