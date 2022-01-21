@@ -18,16 +18,7 @@ export const Signup = () => {
     const [form, setForm] = useState(initState);
 
     const displayToast = useToast();
-    const toast = (title, description, status) => {
-        return displayToast({
-            title,
-            description,
-            status,
-            position: 'top',
-            duration: 7000,
-            isClosable: true,
-        });
-    }
+    const toast = (title, description, status) => displayToast({ title, description, status, position: 'top', duration: 7000, isClosable: true, });
 
     const handleChange = ({ target: { name, value } }) => {
         setForm({ ...form, [name]: value })

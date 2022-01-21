@@ -15,16 +15,7 @@ export const Login = () => {
     const [form, setForm] = useState({ email: "", password: "" });
 
     const displayToast = useToast();
-    const toast = (title, description, status) => {
-        return displayToast({
-            title,
-            description,
-            status,
-            position: 'top',
-            duration: 7000,
-            isClosable: true,
-        });
-    }
+    const toast = (title, description, status) => displayToast({ title, description, status, position: 'top', duration: 7000, isClosable: true, });
 
     const handleChange = ({ target: { name, value } }) => setForm({ ...form, [name]: value });
 

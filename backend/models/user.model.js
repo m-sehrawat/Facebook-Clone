@@ -13,16 +13,21 @@ const userSchema = new Schema(
         date: { type: String, required: true },
 
         bio: { type: String, required: false },
-        interest: { type: String, required: false },
-        language: [{ type: String, required: false }],
-        nicekname: { type: String, required: false },
-        favrouritequotes: { type: String, required: false },
-        aboutyou: { type: String, required: false },
+
+        currentCity: { type: String, required: false },
+        workplace: { type: String, required: false },
+        university: { type: String, required: false },
+        school: { type: String, required: false },
+        homeTown: { type: String, required: false },
         relationship: { type: String, required: false },
-        prounounciation: { type: String, required: false },
-        website: { type: String, required: false },
-        sociallink: { type: String, required: false },
+
         hobbies: { type: String, required: false },
+        interest: { type: String, required: false },
+        language: { type: String, required: false },
+
+        website: { type: String, required: false },
+        socialLink: { type: String, required: false },
+
 
         friend_ids: [{
             type: Schema.Types.ObjectId,
