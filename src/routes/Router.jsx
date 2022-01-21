@@ -14,6 +14,7 @@ import { UserAbout } from "../components/userProfile/UserAbout";
 import { UserPhotos } from "../components/userProfile/UserPhotos";
 import { ProfileNav } from "../components/profile/ProfileNav";
 import { UserProfileNav } from "../components/userProfile/UserProfileNav";
+import { Groups } from "../components/groups/groups";
 
 export const Router = () => {
   return (
@@ -23,7 +24,7 @@ export const Router = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<PrivateRoute><Navbar /></PrivateRoute>}>
           <Route path="/" element={<Homepage />} />
-          <Route path="groups" element={<Homepage />} />
+          <Route path="groups" element={<Groups />} />
           <Route path="friends" element={<FriendRequest />} />
           <Route path="profile" element={<ProfileNav />}>
             <Route path="" element={<Post />} />

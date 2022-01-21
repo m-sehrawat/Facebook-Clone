@@ -4,19 +4,18 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ChakraProvider } from '@chakra-ui/react';
-import {Provider as ReduxProvider} from 'react-redux'
-import {store} from "../src/featuresRedux/store"
-import {BrowserRouter} from "react-router-dom";
+import { Provider as ReduxProvider } from 'react-redux'
+import { store } from "../src/featuresRedux/store"
+import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.render(
   <React.StrictMode>
-  <ReduxProvider store={store}>
-  <BrowserRouter>
-
-    <ChakraProvider>
-    <App />
-    </ChakraProvider>
-    </BrowserRouter>
+    <ReduxProvider store={store}>
+      <BrowserRouter>
+        <ChakraProvider>
+          <App />
+        </ChakraProvider>
+      </BrowserRouter>
     </ReduxProvider>
   </React.StrictMode>,
   document.getElementById('root')
