@@ -1,9 +1,14 @@
 .friendlist{
+    position: relative;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 150px;
+    height: 220px;
+    box-shadow: 0px 5px 17px rgba(0, 0, 0, 0.75);
+    border-radius: 5px;
+    transition: transform 100ms ease-in;
+    cursor: pointer;
     display: flex;
-    float: right;
-    border:1px solid red;
-    flex: auto;
-    width: 75%;
-    margin-right: 10px;
-    margin-top: 3px;
+    
 }
