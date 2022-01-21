@@ -9,7 +9,7 @@
 
 
 export const Bkwas=()=>{
-    const myarr=loadData("searcharr")
+    // const myarr=loadData("searcharr")
      const sender=loadData("user")
 
     const [arr, setArr]=useState([]);

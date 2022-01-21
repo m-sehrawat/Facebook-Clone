@@ -1,4 +1,4 @@
-import { Flex, Spacer } from "@chakra-ui/react";
+import { Box, Flex, Spacer } from "@chakra-ui/react";
 import { Search } from "./Search";
 import { Option } from "./Option";
 import { CenterLinks } from "./CenterLinks";
@@ -8,7 +8,7 @@ export const Navbar = () => {
 
     return (
         <>
-            <Flex h={'57px'} boxShadow={'lg'}>
+            <Flex h={'57px'} boxShadow={'lg'} pos="fixed" w={'100%'} bg={'white'} zIndex={2}>
 
                 <Search />
 
@@ -22,7 +22,9 @@ export const Navbar = () => {
 
             </Flex>
 
-            <Outlet />
+            <Box pt={'57px'}>
+                <Outlet />
+            </Box>
         </>
     );
 };
