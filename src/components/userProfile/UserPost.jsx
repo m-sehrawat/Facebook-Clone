@@ -1,9 +1,9 @@
 import { Box, Flex, Grid, Heading, Icon, Text } from "@chakra-ui/react";
-import { loadData } from "../utils/localstore";
 import { AiFillHeart } from "react-icons/ai";
 import { MdMapsHomeWork, MdPlace, MdSkateboarding, MdAccountBalance, MdSchool } from "react-icons/md";
-import { getData } from "../utils/getData";
 import { useEffect, useState } from "react";
+import { loadData } from "../../utils/localstore";
+import { getData } from "../../utils/getData";
 
 const IntroText = ({ icon, title }) => {
     return (
@@ -22,7 +22,7 @@ export const UserPost = () => {
 
     useEffect(() => {
         getData(id, setUserData);
-    }, [userData]);
+    }, [id, userData]);
 
 
     return (

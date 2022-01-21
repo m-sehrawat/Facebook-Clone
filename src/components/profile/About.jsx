@@ -1,9 +1,10 @@
 import { Box, Flex, Grid, Heading, Icon, Text } from "@chakra-ui/react";
-import { loadData } from "../utils/localstore";
+import { loadData } from "../../utils/localstore";
+import { EditProfile } from "./EditProfile";
 import { AiFillHeart } from "react-icons/ai";
 import { MdMapsHomeWork, MdPlace, MdSkateboarding, MdAccountBalance, MdSchool, MdPermContactCalendar, MdQrCodeScanner, MdImportContacts, MdDvr, MdVolumeUp } from "react-icons/md";
 import { useEffect, useState } from "react";
-import { getData } from "../utils/getData";
+import { getData } from "../../utils/getData";
 
 const IntroText = ({ icon, title }) => {
     return (
@@ -14,15 +15,15 @@ const IntroText = ({ icon, title }) => {
     );
 };
 
-export const UserAbout = () => {
+export const About = () => {
 
-    const id = loadData("viewProfileId");
-    const [userData, setUserData] = useState({ university: "", school: "", currentCity: "", homeTown: "", relationship: "", hobbies: "", date: "", interest: "", language: "", website: "", socialLink: "" });
-    const { university, school, currentCity, homeTown, relationship, hobbies, date, interest, language, website, socialLink } = userData;
-
+    const { _id } = loadData("user");
+    const [data, setData] = useState({ university: "", school: "", currentCity: "", homeTown: "", relationship: "", hobbies: "", date: "", interest: "", language: "", website: "", socialLink: ""});
+    const { university, school, currentCity, homeTown, relationship, hobbies, date, interest, language, website, socialLink } = data;
+    
     useEffect(() => {
-        getData(id, setUserData);
-    }, [userData]);
+        getData(_id, setData);
+    }, [_id, data]);
 
 
     return (
@@ -46,6 +47,8 @@ export const UserAbout = () => {
                             {date ? <Text my={3} fontSize={18}>Date of Birth</Text> : null}
                             {website ? <Text my={3} fontSize={18}>Website</Text> : null}
                             {socialLink ? <Text my={3} fontSize={18}>Socialmedia Links</Text> : null}
+
+                            <EditProfile w={'100%'} m={'15px auto 5px'} title={'Edit About Section'} />
                         </Box>
 
                         <Box bg={'white'} rounded={6} p={5} boxShadow={'lg'} pt={'50px'}>
@@ -60,6 +63,8 @@ export const UserAbout = () => {
                             {date ? <IntroText title={date} icon={MdPermContactCalendar} /> : null}
                             {website ? <IntroText title={website} icon={MdDvr} /> : null}
                             {socialLink ? <IntroText title={socialLink} icon={MdQrCodeScanner} /> : null}
+
+                            
                         </Box>
 
                     </Grid>

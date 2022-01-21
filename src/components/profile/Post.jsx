@@ -1,10 +1,10 @@
 import { Box, Flex, Grid, Heading, Icon, Text } from "@chakra-ui/react";
-import { loadData } from "../utils/localstore";
+import { loadData } from "../../utils/localstore";
 import { EditProfile } from "./EditProfile";
 import { AiFillHeart } from "react-icons/ai";
 import { MdMapsHomeWork, MdPlace, MdSkateboarding, MdAccountBalance, MdSchool } from "react-icons/md";
 import { useEffect, useState } from "react";
-import { getData } from "../utils/getData";
+import { getData } from "../../utils/getData";
 
 const IntroText = ({ icon, title }) => {
     return (

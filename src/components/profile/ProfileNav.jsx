@@ -1,8 +1,7 @@
-import { Box, Button, Divider, Flex, Heading, HStack, Image, Spacer } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { Box, Button, Divider, Flex, Heading, HStack, Image, Spacer, Text } from "@chakra-ui/react";
 import { Link, Outlet } from "react-router-dom";
-import { getData } from "../utils/getData";
-import { loadData } from "../utils/localstore";
+import { loadData } from "../../utils/localstore";
+import { EditProfile } from "./EditProfile";
 
 const NewButton = ({ title, path }) => {
     return (
@@ -13,17 +12,9 @@ const NewButton = ({ title, path }) => {
 };
 
 
-export const UserProfileNav = () => {
+export const ProfileNav = () => {
 
-    const id = loadData("viewProfileId");
-    const [userData, setUserData] = useState({ firstName: "", lastName: "" });
-    const { firstName, lastName } = userData;
-    
-
-    useEffect(() => {
-        getData(id, setUserData);
-    }, [id, userData]);
-
+    const {firstName, lastName} = loadData('user');
 
     return (
         <>
@@ -39,12 +30,13 @@ export const UserProfileNav = () => {
                             <Box w={'200px'} h={'200px'} p={3} overflow={'hidden'}>
                                 <Image rounded={'full'} src="https://via.placeholder.com/200" />
                             </Box>
-                            <Box p={5} mt={10}>
+                            <Box p={5} mt={7}>
                                 <Heading>{firstName} {lastName}</Heading>
+                                <Text color={'grey'}>{'Number of friends'}</Text>
                             </Box>
                             <Spacer />
                             <Box>
-
+                                <EditProfile m={'120px 50px'} title={'Edit Profile'} />
                             </Box>
                         </Flex>
                     </Box>
@@ -52,9 +44,10 @@ export const UserProfileNav = () => {
 
                     <Box h={'50px'} mt={3}>
                         <HStack>
-                            <NewButton title={'Post'} path={'/userprofile'} />
-                            <NewButton title={'About'} path={'/userprofile/about'} />
-                            <NewButton title={'Photos'} path={'/userprofile/photos'} />
+                            <NewButton title={'Post'} path={'/profile'} />
+                            <NewButton title={'About'} path={'/profile/about'} />
+                            <NewButton title={'Friends'} path={'/profile/friends'} />
+                            <NewButton title={'Photos'} path={'/profile/photos'} />
                         </HStack>
                     </Box>
                 </Box>

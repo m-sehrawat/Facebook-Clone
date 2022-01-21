@@ -3,17 +3,17 @@ import { Homepage } from "../components/homepage/home";
 import { Login } from "../components/auth/login";
 import { PrivateRoute } from "../components/auth/PrivateRouter";
 import { Navbar } from "../components/navbar/Navbar";
-import { ProfileNav } from "../profile/ProfileNav";
-import { Post } from "../profile/Post";
-import { About } from "../profile/About";
-import { Friends } from "../profile/Friends";
-import { Photos } from "../profile/Photos";
+import { Post } from "../components/profile/Post";
+import { About } from "../components/profile/About";
+import { Friends } from "../components/profile/Friends";
+import { Photos } from "../components/profile/Photos";
 import { Bkwas } from "../components/bkwas"
 import { FriendRequest } from "../components/friends/FriendRequest";
-import { UserProfileNav } from "../userProfile/UserProfileNav";
-import { UserPost } from "../userProfile/UserPost";
-import { UserAbout } from "../userProfile/UserAbout";
-import { UserPhotos } from "../userProfile/UserPhotos";
+import { UserPost } from "../components/userProfile/UserPost";
+import { UserAbout } from "../components/userProfile/UserAbout";
+import { UserPhotos } from "../components/userProfile/UserPhotos";
+import { ProfileNav } from "../components/profile/ProfileNav";
+import { UserProfileNav } from "../components/userProfile/UserProfileNav";
 
 export const Router = () => {
   return (
