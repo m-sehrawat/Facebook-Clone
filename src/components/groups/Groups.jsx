@@ -1,4 +1,4 @@
-import { Box, Button, Center, Flex, Heading, Image, SimpleGrid, Spacer, Text, useDisclosure, useToast } from "@chakra-ui/react";
+import { Box, Button, Center, Flex, Heading, Image, SimpleGrid, Spacer, Text, useToast } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { CreateGroup } from "./CreateGroup";
 
