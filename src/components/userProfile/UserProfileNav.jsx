@@ -44,8 +44,8 @@ export const UserProfileNav = () => {
                                 <Heading>{firstName} {lastName}</Heading>
                             </Box>
                             <Spacer />
-                            <Box>
-
+                            <Box >
+                                <Button colorScheme={'blue'} m={'120px 50px'}>Send Request</Button>
                             </Box>
                         </Flex>
                     </Box>
