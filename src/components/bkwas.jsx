@@ -4,7 +4,10 @@ import { loadData } from '../utils/localstore';
 
 export const Bkwas=()=>{
 const [frdids,setFrdids]=useState([])
+const [item,setItem]=useState({})
 const {_id}=loadData('user')
+
+
 
    function getdata(id){
 
@@ -17,13 +20,21 @@ const {_id}=loadData('user')
       getdata(_id)
     },[])
    
-//   
     
-  frdids.forEach((userid)=>{
-     console.log(userid)
-  })       
+     
 
+    
+    useEffect(()=>{
+      frdids.forEach((userid)=>{
 
+        fetch(`http://localhost:1234/user/${userid}`).then(d=>d.json()).then(res=>console.log(res))
+            .catch(err=>{console.log(err)})
+          
+      })  
+
+    },[frdids])
+       
+  
 
 
 
