@@ -9,6 +9,7 @@ import { About } from "../profile/About";
 import { Friends } from "../profile/Friends";
 import { Photos } from "../profile/Photos";
 import {Bkwas} from "../components/bkwas"
+import { FriendRequest } from "../components/friends/FriendRequest";
 
 export const Router = () => {
   return (
@@ -19,6 +20,7 @@ export const Router = () => {
         <Route path="/" element={<PrivateRoute><Navbar /></PrivateRoute>}>
           <Route path="/" element={<Homepage />} />
           <Route path="groups" element={<Homepage />} />
+          <Route path="friends" element={<FriendRequest />} />
           <Route path="profile" element={<ProfileNav />}>
             <Route path="" element={<Post />} />
             <Route path="about" element={<About />} />
