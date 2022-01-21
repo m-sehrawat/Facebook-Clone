@@ -14,7 +14,7 @@ import { UserAbout } from "../components/userProfile/UserAbout";
 import { UserPhotos } from "../components/userProfile/UserPhotos";
 import { ProfileNav } from "../components/profile/ProfileNav";
 import { UserProfileNav } from "../components/userProfile/UserProfileNav";
-import { Groups } from "../components/groups/groups";
+import { Groups } from "../components/groups/Groups";
 
 export const Router = () => {
   return (
