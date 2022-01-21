@@ -1,0 +1,8 @@
+.friendrequest{
+    margin-top: 20px;
+    display: flex;
+    margin-left: 400px;
+    margin-right: 15px;
+    flex: 20% 20% 20% 20%;
+    width: 60%;
+}
