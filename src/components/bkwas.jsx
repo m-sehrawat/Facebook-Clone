@@ -1,5 +1,4 @@
 import { RiCheckboxBlankCircleFill } from "react-icons/ri";
-import log from "E:\\facebook\\Facebook-Clone\\src\\uploadsPic\\firstYearpIC.jpg"
 import { useState } from "react";
 import { loadData, saveData } from "../utils/localstore";
 
