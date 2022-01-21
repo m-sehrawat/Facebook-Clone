@@ -1,10 +1,11 @@
 import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, Button, useDisclosure, Input, Divider, Box, Heading, Image, Flex, Spacer, VStack, useToast, } from '@chakra-ui/react'
 import { RiEdit2Fill } from 'react-icons/ri';
 import { loadData } from '../../utils/localstore';
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 
-export const EditProfile = ({m, w, title}) => {
+
+export const EditProfile = ({ m, w, title }) => {
 
     const { isOpen, onOpen, onClose } = useDisclosure();
     const { _id } = loadData("user");
@@ -16,6 +17,11 @@ export const EditProfile = ({m, w, title}) => {
     const [intro, setIntro] = useState({});
     const [hobbies, setHobbies] = useState({});
     const [website, setWebsite] = useState({});
+    const [profile, setProfile] = useState('');
+
+    useEffect(() => {
+
+    }, []);
 
 
 
@@ -57,21 +63,21 @@ export const EditProfile = ({m, w, title}) => {
 
 
 
-    // const uploadProfilePic = () => {
-    //     console.log('profile:', profile.name);
+    const uploadProfilePic = (e) => {
+        e.preventDefault();
 
-    //     fetch(`http://localhost:1234/profpic/${_id}`, {
-    //         method: 'POST',
-    //         body: JSON.stringify({ user_id: _id, img: profile.name }),
-    //         headers: { 'Content-Type': 'application/json' }
-    //     })
-    //         .then(d => d.json())
-    //         .then((res) => {
-    //             console.log("Response:", res)
-    //         })
-    //         .catch(err => { console.log(err) })
+        fetch(`http://localhost:1234/profpic/${_id}`, {
+            method: 'POST',
+            body: JSON.stringify({ user_id: _id, img: profile }),
+            headers: { 'Content-Type': 'application/json' }
+        })
+            .then(d => d.json())
+            .then((res) => {
+                console.log("Response:", res)
+            })
+            .catch(err => { console.log(err) })
 
-    // }
+    }
 
 
 
@@ -89,13 +95,15 @@ export const EditProfile = ({m, w, title}) => {
                     <ModalBody >
 
                         <Box m={'10px'}>
-                            <Flex>
-                                <Heading fontSize={20}>Profile Pic</Heading>
-                                <Spacer />
-                                <input type='file' accept="image/png, image/jpeg" />
-                                <Spacer />
-                                <Button >Add</Button>
-                            </Flex>
+                            <form onSubmit={uploadProfilePic}>
+                                <Flex>
+                                    <Heading fontSize={20}>Profile Pic</Heading>
+                                    <Spacer />
+                                    <input onChange={(e) => { setProfile(e.target.files[0].name) }} type='file' accept="image/png, image/jpeg" />
+                                    <Spacer />
+                                    <Button type='submit' >Add</Button>
+                                </Flex>
+                            </form>
                             <Flex justify={'center'} m={4}>
                                 <Box w={'160px'} h={'160px'} overflow={'hidden'} rounded={'full'}>
                                     <Image src='https://via.placeholder.com/200' />

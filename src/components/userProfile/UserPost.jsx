@@ -22,7 +22,7 @@ export const UserPost = () => {
 
     useEffect(() => {
         getData(id, setUserData);
-    }, [id, userData]);
+    }, []);
 
 
     return (
