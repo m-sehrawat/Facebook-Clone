@@ -2,6 +2,8 @@ import { Box, Flex, Grid, Heading, Icon, Text } from "@chakra-ui/react";
 import { loadData } from "../utils/localstore";
 import { AiFillHeart } from "react-icons/ai";
 import { MdMapsHomeWork, MdPlace, MdSkateboarding, MdAccountBalance, MdSchool } from "react-icons/md";
+import { getData } from "../utils/getData";
+import { useEffect, useState } from "react";
 
 const IntroText = ({ icon, title }) => {
     return (
@@ -14,7 +16,14 @@ const IntroText = ({ icon, title }) => {
 
 export const UserPost = () => {
 
-    const { bio, university, school, currentCity, homeTown, relationship, hobbies } = loadData('viewProfile');
+    const id = loadData("viewProfileId");
+    const [userData, setUserData] = useState({ bio: "", university: "", school: "", currentCity: "", homeTown: "", relationship: "", hobbies: "" });
+    const { bio, university, school, currentCity, homeTown, relationship, hobbies } = userData;
+
+    useEffect(() => {
+        getData(id, setUserData);
+    }, [userData]);
+
 
     return (
         <>

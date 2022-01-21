@@ -1,6 +1,6 @@
 import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, Button, useDisclosure, Input, Divider, Box, Heading, Image, Flex, Spacer, VStack, useToast, } from '@chakra-ui/react'
 import { RiEdit2Fill } from 'react-icons/ri';
-import { loadData, saveData } from '../utils/localstore';
+import { loadData } from '../utils/localstore';
 import { useState } from "react"
 
 
@@ -25,8 +25,6 @@ export const EditProfile = ({m, w, title}) => {
 
 
     const handleSubmit = (data) => {
-        console.log('data:', data)
-
         fetch(`http://localhost:1234/user/${_id}`, {
             method: 'PATCH',
             body: JSON.stringify(data),
@@ -35,11 +33,10 @@ export const EditProfile = ({m, w, title}) => {
             .then((res) => res.json())
             .then((res) => {
                 console.log(res);
-                saveData('user', res);
                 toast('Task Done', 'Your details updated succesfully', 'success')
                 onClose();
             })
-            .catch(err => {
+            .catch((err) => {
                 console.log(err);
                 toast('Network Error', 'Please try again', 'error')
             })

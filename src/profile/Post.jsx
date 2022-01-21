@@ -3,6 +3,8 @@ import { loadData } from "../utils/localstore";
 import { EditProfile } from "./EditProfile";
 import { AiFillHeart } from "react-icons/ai";
 import { MdMapsHomeWork, MdPlace, MdSkateboarding, MdAccountBalance, MdSchool } from "react-icons/md";
+import { useEffect, useState } from "react";
+import { getData } from "../utils/getData";
 
 const IntroText = ({ icon, title }) => {
     return (
@@ -15,7 +17,14 @@ const IntroText = ({ icon, title }) => {
 
 export const Post = () => {
 
-    const { bio, university, school, currentCity, homeTown, relationship, hobbies } = loadData('user');
+    const { _id } = loadData("user");
+    const [data, setData] = useState({ bio: "", university: "", school: "", currentCity: "", homeTown: "", relationship: "", hobbies: "" });
+    const { bio, university, school, currentCity, homeTown, relationship, hobbies } = data;
+
+    useEffect(() => {
+        getData(_id, setData);
+    }, [data]);
+
 
     return (
         <>
@@ -23,8 +32,8 @@ export const Post = () => {
 
                 <Box w={'950px'} m={'auto'} >
 
-                    <Grid templateColumns='40% 58%' gap={5} border={'1px solid red'}>
-                        <Box bg={'white'} rounded={6} p={5} boxShadow={'lg'}>
+                    <Grid templateColumns='40% 58%' gap={5}>
+                        <Box minH={20} bg={'white'} rounded={6} p={5} boxShadow={'lg'}>
                             <Heading fontSize={23}>Intro</Heading>
                             <Text fontSize={18} my={4}>{bio}</Text>
                             {university ? <IntroText title={`Studied at ${university}`} icon={MdSchool} /> : null}

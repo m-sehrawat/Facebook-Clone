@@ -31,8 +31,8 @@ export const Search = () => {
         }
     }
 
-    const viewProfile = (userData) => {
-        saveData('viewProfile', userData);
+    const viewProfile = (id) => {
+        saveData('viewProfileId', id);
         navigate('/userprofile');
         setText('');
         setIsOpen(false);
@@ -40,11 +40,11 @@ export const Search = () => {
     }
 
 
-    const frdRequest = (senderId, receiverId) => {
-        console.log("senderId", senderId);
-        console.log("receiverId", receiverId)
+    // const frdRequest = (senderId, receiverId) => {
+    //     console.log("senderId", senderId);
+    //     console.log("receiverId", receiverId)
 
-    }
+    // }
 
 
     return (
@@ -59,10 +59,10 @@ export const Search = () => {
                 </InputGroup>
             </Center>
             <Container id='style-3' display={isOpen ? 'block' : 'none'} w={'350px'} minH={'300px'} maxH={'300px'} top={'50px'} pos="fixed" p={5} rounded={8} bg={'white'} boxShadow={'xl'} overflow={'auto'}>
-                {arr.map((e) => (
-                    <Flex p={2} my={1} onClick={() => { viewProfile(e) }} key={e._id} cursor={'pointer'} _hover={{ bg: '#ebebeb' }}>
+                {arr.map(({ _id, firstName, lastName }) => (
+                    <Flex p={2} my={1} onClick={() => { viewProfile(_id) }} key={_id} cursor={'pointer'} _hover={{ bg: '#ebebeb' }}>
                         <Avatar size={'sm'} />
-                        <Text ml={4} fontSize={17}>{e.firstName} {e.lastName}</Text>
+                        <Text ml={4} fontSize={17}>{firstName} {lastName}</Text>
                     </Flex>
                 ))}
             </Container>

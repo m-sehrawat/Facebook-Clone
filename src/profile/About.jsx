@@ -3,6 +3,8 @@ import { loadData } from "../utils/localstore";
 import { EditProfile } from "./EditProfile";
 import { AiFillHeart } from "react-icons/ai";
 import { MdMapsHomeWork, MdPlace, MdSkateboarding, MdAccountBalance, MdSchool, MdPermContactCalendar, MdQrCodeScanner, MdImportContacts, MdDvr, MdVolumeUp } from "react-icons/md";
+import { useEffect, useState } from "react";
+import { getData } from "../utils/getData";
 
 const IntroText = ({ icon, title }) => {
     return (
@@ -15,7 +17,14 @@ const IntroText = ({ icon, title }) => {
 
 export const About = () => {
 
-    const { university, school, currentCity, homeTown, relationship, hobbies, date, interest, language, website, socialLink } = loadData('user');
+    const { _id } = loadData("user");
+    const [data, setData] = useState({ university: "", school: "", currentCity: "", homeTown: "", relationship: "", hobbies: "", date: "", interest: "", language: "", website: "", socialLink: ""});
+    const { university, school, currentCity, homeTown, relationship, hobbies, date, interest, language, website, socialLink } = data;
+    
+    useEffect(() => {
+        getData(_id, setData);
+    }, [data]);
+
 
     return (
         <>

@@ -1,5 +1,7 @@
 import { Box, Button, Divider, Flex, Heading, HStack, Image, Spacer } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
+import { getData } from "../utils/getData";
 import { loadData } from "../utils/localstore";
 
 const NewButton = ({ title, path }) => {
@@ -13,7 +15,14 @@ const NewButton = ({ title, path }) => {
 
 export const UserProfileNav = () => {
 
-    const {firstName, lastName} = loadData('viewProfile');
+    const id = loadData("viewProfileId");
+    const [userData, setUserData] = useState({ firstName: "", lastName: "" });
+    const { firstName, lastName } = userData;
+    
+
+    useEffect(() => {
+        getData(id, setUserData);
+    }, [userData]);
 
 
     return (
@@ -35,7 +44,7 @@ export const UserProfileNav = () => {
                             </Box>
                             <Spacer />
                             <Box>
-                                
+
                             </Box>
                         </Flex>
                     </Box>
