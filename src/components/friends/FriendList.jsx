@@ -14,7 +14,7 @@ export const FriendList = ({title,src, mutual}) => {
                 <Text fontWeight={500} fontSize={12}>{`${mutual} mutual friends`}</Text>
             </Box>
             <Center h={'50px'} w={'100%'} p={4} mr={'5px'} >
-                <Button w={'100%'} bgColor={"blue"} color={"white"}>Confirm</Button>
+                <Button w={'100%'} bgColor={"#2e81f4"} color={"white"}>Confirm</Button>
             </Center>
             <Center h={'50px'} w={'100%'} p={4} mr={'5px'} >
                 <Button w={'100%'}>Delete</Button>
