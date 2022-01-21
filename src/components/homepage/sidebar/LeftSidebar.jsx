@@ -11,7 +11,7 @@ const LeftSidebar = () => {
     return (
         <IconContext.Provider value={{ size:"1.5em", color: "#2e81f4", className: "global-class-name" }}>
         <div className="sidebar">   
-        <SidebarRow Icon={<BsPeople />} title="Friends"/> 
+        <SidebarRow  Icon={<BsPeople />} title="Friends"/> 
         <SidebarRow Icon={<WiDayCloudy />} title="Weather" / > 
         <SidebarRow Icon={<BsFlag />} title="Pages" /> 
         <SidebarRow Icon={<RiMessengerLine />} title="Messenger"/>

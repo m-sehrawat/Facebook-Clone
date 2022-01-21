@@ -19,7 +19,6 @@ export const Router = () => {
         <Route path="/" element={<PrivateRoute><Navbar /></PrivateRoute>}>
           <Route path="/" element={<Homepage />} />
           <Route path="groups" element={<Homepage />} />
-          <Route path="friends" element={<Homepage />} />
           <Route path="profile" element={<ProfileNav />}>
             <Route path="" element={<Post />} />
             <Route path="about" element={<About />} />
