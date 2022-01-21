@@ -1,6 +1,7 @@
 .Home{
     background-color: #f1f2f5;
-    height: 100vh;
+    min-height: 100vh;
+    padding-bottom: 100px;
 }
 .HomeBody{
     display: flex;
