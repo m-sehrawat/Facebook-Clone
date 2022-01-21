@@ -23,7 +23,7 @@ export const Post = () => {
 
     useEffect(() => {
         getData(_id, setData);
-    }, [_id, data]);
+    }, []);
 
 
     return (

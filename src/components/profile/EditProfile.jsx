@@ -1,10 +1,10 @@
 import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, Button, useDisclosure, Input, Divider, Box, Heading, Image, Flex, Spacer, VStack, useToast, } from '@chakra-ui/react'
 import { RiEdit2Fill } from 'react-icons/ri';
 import { loadData } from '../../utils/localstore';
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 
-export const EditProfile = ({m, w, title}) => {
+export const EditProfile = ({ m, w, title }) => {
 
     const { isOpen, onOpen, onClose } = useDisclosure();
     const { _id } = loadData("user");
@@ -16,6 +16,11 @@ export const EditProfile = ({m, w, title}) => {
     const [intro, setIntro] = useState({});
     const [hobbies, setHobbies] = useState({});
     const [website, setWebsite] = useState({});
+    // const [profile, setProfile] = useState('');
+
+    useEffect(() => {
+
+    }, []);
 
 
     const handleChange = (e, state, setState) => {
@@ -46,11 +51,11 @@ export const EditProfile = ({m, w, title}) => {
 
 
     // const uploadProfilePic = () => {
-    //     console.log('profile:', profile.name);
+
 
     //     fetch(`http://localhost:1234/profpic/${_id}`, {
     //         method: 'POST',
-    //         body: JSON.stringify({ user_id: _id, img: profile.name }),
+    //         body: JSON.stringify({ user_id: _id, img: profile }),
     //         headers: { 'Content-Type': 'application/json' }
     //     })
     //         .then(d => d.json())

@@ -23,7 +23,7 @@ export const UserProfileNav = () => {
 
     useEffect(() => {
         getData(id, setUserData);
-    }, [id, userData]);
+    }, []);
 
 
     return (
