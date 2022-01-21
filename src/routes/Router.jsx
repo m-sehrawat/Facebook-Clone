@@ -8,8 +8,12 @@ import { Post } from "../profile/Post";
 import { About } from "../profile/About";
 import { Friends } from "../profile/Friends";
 import { Photos } from "../profile/Photos";
-import {Bkwas} from "../components/bkwas"
+import { Bkwas } from "../components/bkwas"
 import { FriendRequest } from "../components/friends/FriendRequest";
+import { UserProfileNav } from "../userProfile/UserProfileNav";
+import { UserPost } from "../userProfile/UserPost";
+import { UserAbout } from "../userProfile/UserAbout";
+import { UserPhotos } from "../userProfile/UserPhotos";
 
 export const Router = () => {
   return (
@@ -27,10 +31,15 @@ export const Router = () => {
             <Route path="friends" element={<Friends />} />
             <Route path="photos" element={<Photos />} />
           </Route>
+          <Route path="userprofile" element={<UserProfileNav />}>
+            <Route path="" element={<UserPost />} />
+            <Route path="about" element={<UserAbout />} />
+            <Route path="photos" element={<UserPhotos />} />
+          </Route>
         </Route>
 
-        <Route path="/bkwas" element={<Bkwas/>} />
-        <Route path="*" element={<div>Page not found</div>} />
+        <Route path="/bkwas" element={<Bkwas />} />
+        <Route path="*" element={<h1>Page not found</h1>} />
       </Routes>
     </>
   );

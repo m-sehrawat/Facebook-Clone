@@ -1,13 +1,15 @@
 import { Search2Icon } from "@chakra-ui/icons";
 import { Avatar, Center, Container, Flex, Image, Input, InputGroup, InputLeftElement, Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { saveData } from "../../utils/localstore";
 
 export const Search = () => {
 
     const [isOpen, setIsOpen] = useState(false);
     const [text, setText] = useState('');
     const [arr, setArr] = useState([]);
-    console.log('arr:', arr)
+    const navigate = useNavigate();
 
     useEffect(() => {
         searchUser(text);
@@ -27,6 +29,14 @@ export const Search = () => {
         } catch (e) {
             console.log(e)
         }
+    }
+
+    const viewProfile = (userData) => {
+        saveData('viewProfile', userData);
+        navigate('/userprofile');
+        setText('');
+        setIsOpen(false);
+
     }
 
 
@@ -49,10 +59,10 @@ export const Search = () => {
                 </InputGroup>
             </Center>
             <Container id='style-3' display={isOpen ? 'block' : 'none'} w={'350px'} minH={'300px'} maxH={'300px'} top={'50px'} pos="fixed" p={5} rounded={8} bg={'white'} boxShadow={'xl'} overflow={'auto'}>
-                {arr.map(({ firstName, lastName }) => (
-                    <Flex my={4}>
+                {arr.map((e) => (
+                    <Flex p={2} my={1} onClick={() => { viewProfile(e) }} key={e._id} cursor={'pointer'} _hover={{ bg: '#ebebeb' }}>
                         <Avatar size={'sm'} />
-                        <Text ml={4} fontSize={17}>{firstName} {lastName}</Text>
+                        <Text ml={4} fontSize={17}>{e.firstName} {e.lastName}</Text>
                     </Flex>
                 ))}
             </Container>
