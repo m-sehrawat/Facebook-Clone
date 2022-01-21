@@ -1,5 +1,4 @@
 import { Box, Flex, Grid, Heading, Icon, Text } from "@chakra-ui/react";
-import { AiOutlineHome } from "react-icons/ai";
 import { loadData } from "../utils/localstore";
 import { EditProfile } from "./EditProfile";
 import { AiFillHeart } from "react-icons/ai";
@@ -7,7 +6,7 @@ import { MdMapsHomeWork, MdPlace, MdSkateboarding, MdAccountBalance, MdSchool } 
 
 const IntroText = ({ icon, title }) => {
     return (
-        <Flex my={2}>
+        <Flex my={3}>
             <Icon as={icon} w={6} h={6} color={'grey'} mr={4} />
             <Text fontSize={18}>{title}</Text>
         </Flex>
@@ -20,7 +19,7 @@ export const Post = () => {
 
     return (
         <>
-            <Box bg={'#f0f2f5'} minH={'300px'} pt={3} pb={'100px'}>
+            <Box bg={'#f0f2f5'} minH={'300px'} pt={5} pb={'100px'}>
 
                 <Box w={'950px'} m={'auto'} >
 
@@ -35,7 +34,7 @@ export const Post = () => {
                             {relationship ? <IntroText title={relationship} icon={AiFillHeart} /> : null}
                             {hobbies ? <IntroText title={hobbies} icon={MdSkateboarding} /> : null}
 
-                            <EditProfile w={'100%'} m={'5px auto'} title={'Edit Intro'} />
+                            <EditProfile w={'100%'} m={'15px auto 5px'} title={'Edit Intro'} />
 
                         </Box>
                         <Box border={'1px solid red'} h={20}>
