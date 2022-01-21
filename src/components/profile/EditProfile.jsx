@@ -18,6 +18,18 @@ export const EditProfile = ({m, w, title}) => {
     const [website, setWebsite] = useState({});
 
 
+
+    // function displayImage(e) {
+    //     if (e.files[0]) {
+    //         var reader = new FileReader();
+    //         reader.onload = function(e) {
+    //             document.querySelector('#profileDisplay').setAttribute('src', e.target.result);
+    //         }
+    //         reader.readAsDataURL(e.files[0]);
+    //     }
+    // }
+
+
     const handleChange = (e, state, setState) => {
         let { name, value } = e.target;
         setState({ ...state, [name]: value });
