@@ -6,7 +6,6 @@ import { loginfailure, loginsuccess } from "../../featuresRedux/auth/action"
 import { Signup } from './Signup';
 import { saveData } from '../../utils/localstore';
 import { loadData } from '../../utils/localstore';
-import { useSelector } from 'react-redux';
 
 export const Login = () => {
 

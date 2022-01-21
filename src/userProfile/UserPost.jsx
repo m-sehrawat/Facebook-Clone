@@ -1,10 +1,9 @@
 import { Box, Flex, Grid, Heading, Icon, Text } from "@chakra-ui/react";
 import { loadData } from "../utils/localstore";
-import { EditProfile } from "./EditProfile";
 import { AiFillHeart } from "react-icons/ai";
 import { MdMapsHomeWork, MdPlace, MdSkateboarding, MdAccountBalance, MdSchool } from "react-icons/md";
-import { useEffect, useState } from "react";
 import { getData } from "../utils/getData";
+import { useEffect, useState } from "react";
 
 const IntroText = ({ icon, title }) => {
     return (
@@ -15,15 +14,15 @@ const IntroText = ({ icon, title }) => {
     );
 };
 
-export const Post = () => {
+export const UserPost = () => {
 
-    const { _id } = loadData("user");
-    const [data, setData] = useState({ bio: "", university: "", school: "", currentCity: "", homeTown: "", relationship: "", hobbies: "" });
-    const { bio, university, school, currentCity, homeTown, relationship, hobbies } = data;
+    const id = loadData("viewProfileId");
+    const [userData, setUserData] = useState({ bio: "", university: "", school: "", currentCity: "", homeTown: "", relationship: "", hobbies: "" });
+    const { bio, university, school, currentCity, homeTown, relationship, hobbies } = userData;
 
     useEffect(() => {
-        getData(_id, setData);
-    }, [_id, data]);
+        getData(id, setUserData);
+    }, [userData]);
 
 
     return (
@@ -32,8 +31,8 @@ export const Post = () => {
 
                 <Box w={'950px'} m={'auto'} >
 
-                    <Grid templateColumns='40% 58%' gap={5}>
-                        <Box minH={20} bg={'white'} rounded={6} p={5} boxShadow={'lg'}>
+                    <Grid templateColumns='40% 58%' gap={5} border={'1px solid red'}>
+                        <Box bg={'white'} rounded={6} p={5} boxShadow={'lg'}>
                             <Heading fontSize={23}>Intro</Heading>
                             <Text fontSize={18} my={4}>{bio}</Text>
                             {university ? <IntroText title={`Studied at ${university}`} icon={MdSchool} /> : null}
@@ -42,8 +41,6 @@ export const Post = () => {
                             {homeTown ? <IntroText title={`From ${homeTown}`} icon={MdPlace} /> : null}
                             {relationship ? <IntroText title={relationship} icon={AiFillHeart} /> : null}
                             {hobbies ? <IntroText title={hobbies} icon={MdSkateboarding} /> : null}
-
-                            <EditProfile w={'100%'} m={'15px auto 5px'} title={'Edit Intro'} />
 
                         </Box>
                         <Box border={'1px solid red'} h={20}>

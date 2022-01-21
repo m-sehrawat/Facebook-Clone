@@ -1,17 +1,26 @@
-export const Bkwas=()=>{ }
 
-/*
-import log from "E:\\facebook\\Facebook-Clone\\src\\uploadsPic\\fb.png"
-import { useState } from "react";
-import { loadData, saveData } from "../utils/localstore";
+
+// import log from "E:\\facebook\\Facebook-Clone\\src\\uploadsPic\\fb.png"
+
+
+ import { useState, useEffect } from "react";
+ import { loadData, saveData } from "../utils/localstore";
 
 
 
 export const Bkwas=()=>{
-    const myarr=loadData("searcharr")
+    // const myarr=loadData("searcharr")
      const sender=loadData("user")
 
     const [arr, setArr]=useState([]);
+  
+    useEffect(()=>{
+        console.log(arr)
+    }
+    ,[arr])
+
+
+
 
     async function searchUser(username){  
   
@@ -45,9 +54,7 @@ export const Bkwas=()=>{
        let res = await searchUser(username)
          
        console.log(res)
-      setArr(res)
-      saveData("searcharr",res)
-      console.log(arr)
+            setArr(res)
       }
 
 
@@ -80,16 +87,7 @@ export const Bkwas=()=>{
      
     return <><div>Bakwas Page hu mai<input style={{border:"2px solid black"}} type="text" placeholder="search user her" id='searchbox' onInput={()=>debounce(main,1000)} /></div>
     
-    <div>!(myarr)? <div>no data</div>:{myarr.forEach(user => {
-   
-    <div>{user.firstName}
-    <button onClick={()=>{frdRequest(sender._id, user._id)}}>send req</button>
-    <button>Message</button></div>
-     
-      })}
-
-      </div>
-      
+       
       </>
 
     
@@ -98,4 +96,3 @@ export const Bkwas=()=>{
 
 }
 
-*/
