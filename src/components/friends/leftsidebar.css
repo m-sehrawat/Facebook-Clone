@@ -1,0 +1,10 @@
+.sidebar1{
+    margin-top: 1px;
+    padding:25px 10px;
+    flex:1;
+    width: 20%;
+    height: 100%;
+    position: fixed;
+    background-color: white;
+    box-shadow: 0px 5px 7px -7px rgba(0, 0, 0, 0.75); 
+}

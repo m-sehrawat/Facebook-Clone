@@ -4,6 +4,7 @@
      align-items: center;
      padding: 10px;
      cursor: pointer;
+     
  }
  .sidebarRow:hover{
      background-color: rgb(241, 240, 240);

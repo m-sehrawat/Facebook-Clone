@@ -9,6 +9,7 @@ import {BsEmojiSmile} from "react-icons/bs";
 export const MessageSender = () => {
 
     const [input, setInput] = useState('');
+    const [imageUrl, setImageUrl] = useState("")
 
     const handleSubmit=(e)=>{
         e.preventDefault();
