@@ -1,5 +1,5 @@
-import { RiCheckboxBlankCircleFill } from "react-icons/ri";
-import log from "E:\\facebook\\Facebook-Clone\\src\\uploadsPic\\firstYearpIC.jpg"
+/*
+import log from "E:\\facebook\\Facebook-Clone\\src\\uploadsPic\\fb.png"
 import { useState } from "react";
 import { loadData, saveData } from "../utils/localstore";
 
@@ -96,3 +96,4 @@ export const Bkwas=()=>{
 
 }
 
+*/
