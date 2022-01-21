@@ -1,11 +1,14 @@
 
 import { useState , useEffect} from "react";
+import { resolvePath } from "react-router";
 import { loadData } from '../utils/localstore';
 
 export const Bkwas=()=>{
 const [frdids,setFrdids]=useState([])
-const [item,setItem]=useState({})
+// const [arr,setArr]=useState([])
+const [obj,setObj]=useState({})
 const {_id}=loadData('user')
+var arr=[]
 
 
 
@@ -27,19 +30,25 @@ const {_id}=loadData('user')
     useEffect(()=>{
       frdids.forEach((userid)=>{
 
-        fetch(`http://localhost:1234/user/${userid}`).then(d=>d.json()).then(res=>console.log(res))
+        fetch(`http://localhost:1234/user/${userid}`).then(d=>d.json()).then(res=>setObj(res))
             .catch(err=>{console.log(err)})
           
       })  
 
     },[frdids])
        
+    
+    
   
 
 
 
 
-return <div>Hello mai v bak hu frd list k liye</div>
+return <>
+   
+   
+
+</>
 
 
 
