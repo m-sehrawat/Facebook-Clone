@@ -1,6 +1,7 @@
 const express = require("express");
 const Profilepic =require("../models/profilePic.model")
 const upload=require('../middleware/upload')
+const fs = require('fs');
 
 const router = express.Router();
 
@@ -72,7 +73,10 @@ console.log(req.body)
     try{
       const profpic=await Profilepic.findOneAndUpdate({user_id:req.params.userid},req.body,{new:true}).lean().exec()
         res.status(201).send(profpic)
-    }
+    
+    
+    
+      }
     
     
     catch(e){
