@@ -1,6 +1,7 @@
 import { Box, Center, Flex, Heading, Image, SimpleGrid } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { getDataInside, getDataIterate } from "../../utils/getData";
 import { loadData, saveData } from "../../utils/localstore";
 
 
@@ -27,28 +28,13 @@ export const Friends = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch(`http://localhost:1234/user/${_id}`)
-            .then((res) => res.json())
-            .then((res) => {
-                setFriendsId(res.friend_ids);
-            })
-            .catch((err) => {
-                console.log(err);
-            })
+        getDataInside(_id, setFriendsId)
     }, []);
 
 
     useEffect(() => {
         friendsId.forEach((id) => {
-            fetch(`http://localhost:1234/user/${id}`)
-                .then((res) => res.json())
-                .then((res) => {
-                    arr.push(res);
-                    setArr([...arr]);
-                })
-                .catch((err) => {
-                    console.log(err);
-                })
+            getDataIterate(id, arr, setArr)
         })
     }, [friendsId])
 
