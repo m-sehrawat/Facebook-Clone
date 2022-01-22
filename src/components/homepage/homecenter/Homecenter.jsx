@@ -3,18 +3,34 @@ import {StoryReel}  from "./StoryReel"
 import "./homecenter.css";
 import { MessageSender } from "./MessageSender";
 import { Feed } from "./Feed";
+import { useEffect,useState } from "react";
 
 
 export const Homecenter = () => {
 
+  const [arr,setArr]=useState([])
+ useEffect(()=>{
+ getpost()
+
+ },[])
+
+  
+ const getpost=()=>{
+  fetch(`http://localhost:1234/post`)
+
+  .then(d => d.json())
+  .then((res) => {
+      
+      console.log("Response:", setArr(res))
+     
+  })
+  .catch(err => { console.log(err) })
+
+ }
 
 
-    
 
-
-
-
-
+console.log(arr, "I am post")
 
 
     return (
@@ -22,6 +38,9 @@ export const Homecenter = () => {
         <StoryReel  />
 
         <MessageSender /> 
+
+
+       
         
         <Feed 
         ProfilePic={"pages.jpg"}

@@ -10,7 +10,7 @@ export const CreatePost = () => {
 
     const photo=useRef()
     const  {_id}=loadData('user')
-    console.log(_id)
+    
 
 
     const makepost = () => {
