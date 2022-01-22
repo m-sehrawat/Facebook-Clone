@@ -17,17 +17,17 @@ console.log(loadData('user'), "mai use data hu")
 
         
         var formData = new FormData();
-        console.log(photo ,"mai he hu bta")
+      
 
-        console.log(text,"Mai hu asli text")
+      
        formData.append('user_id',_id)
        formData.append('title', text)
        formData.append('username',firstName)
        formData.append('post_img', photo.current.files[0])
 
-      console.log(photo.current.files[0], "cat")
+    //   console.log(photo.current.files[0], "cat")
 
-        for (var data of formData.entries()){console.log(data,"i am for loop")}
+    //     for (var data of formData.entries()){console.log(data,"i am for loop")}
 
               
          
