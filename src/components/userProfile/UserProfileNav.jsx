@@ -20,35 +20,44 @@ export const UserProfileNav = () => {
     const {_id}=loadData("user")
     const [userData, setUserData] = useState({ firstName: "", lastName: "" });
     const { firstName, lastName } = userData;
-    const [senderin ,setSenderin]=useState("")
+    const [receiverin ,setReceiverin]=useState([])
     
     function sendrequest( senderid, receiverid){
 
 
-
-
-        fetch(`http://localhost:1234/profpic/${_id}`).then(d => d.json()).then((res) => {
-        console.log("Response:", res, " I am response")
+  
+       // receiver array editing
+        fetch(`http://localhost:1234/user/${id}`).then(d => d.json()).then((res) => {
+            setReceiverin(res.friend_request_in_ids)
+        console.log("Response:", res.friend_request_in_ids, " I am response from frd request")
         }).catch(err => { console.log(err) })
+         
+       
 
 
 
+        fetch(`http://localhost:1234/user/${id}`, {
+            method: 'POST',
+            body:JSON.stringify({
+                friend_request_in_ids:[]
 
-    //     fetch(`http://localhost:1234/profpic/${_id}`, {
-    //         method: 'POST',
-    //         body:formData
-    //    })
-    //         .then(d => d.json())
-    //         .then((res) => {
+            }),
+            headers:{"Content-Type":"application/json"}
+       })
+            .then(d => d.json())
+            .then((res) => {
                 
-    //             console.log("Response:", res, " I am response",formData)
+                console.log("Response:", res, " I am response from post reques")
                
-    //         })
-    //         .catch(err => { console.log(err) })
-        
-        console.log("senderid",senderid);
+            })
+            .catch(err => { console.log(err) })
 
-        console.log("receiverid",receiverid)
+            fetch(`http://localhost:1234/user/${id}`).then(d => d.json()).then((res) => {
+            setReceiverin(res.friend_request_in_ids)
+        console.log("Response:", res.friend_request_in_ids, " I am third")
+        }).catch(err => { console.log(err) })
+        
+       
 
     }
 
