@@ -68,7 +68,8 @@ export const EditProfile = ({ m, w, title }) => {
 
         fetch(`http://localhost:1234/profpic/${_id}`, {
             method: 'POST',
-            body: JSON.stringify({ user_id: _id, img: profile }),
+            body: JSON.stringify({user_id:_id,
+                img: profile }),
             headers: { 'Content-Type': 'application/json' }
         })
             .then(d => d.json())
@@ -99,7 +100,7 @@ export const EditProfile = ({ m, w, title }) => {
                                 <Flex>
                                     <Heading fontSize={20}>Profile Pic</Heading>
                                     <Spacer />
-                                    <input onChange={(e) => { setProfile(e.target.files[0].name) }} type='file' accept="image/png, image/jpeg" />
+                                    <input onChange={(e) => { setProfile(e.target.files[0].name) }} type='file' accept="image/png, image/jpeg" name='mypic' />
                                     <Spacer />
                                     <Button type='submit' >Add</Button>
                                 </Flex>

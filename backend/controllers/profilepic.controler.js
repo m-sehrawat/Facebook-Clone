@@ -11,7 +11,7 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 
 
-router.post("/:userid", upload.single("album_img"), async (req, res) => {
+router.post("/:userid", upload.single("mypic"), async (req, res) => {
 
     
 
@@ -23,7 +23,7 @@ router.post("/:userid", upload.single("album_img"), async (req, res) => {
         img:req.file.path
       });
   
-      console.log(profpic)
+      console.log(req.file,"mai yhi hu")
       return res.status(201).send(profpic);
     } catch (e) {
       return res.status(500).json({ status: "failed", message: e.message });
@@ -57,7 +57,7 @@ router.post("/:userid", upload.single("album_img"), async (req, res) => {
    
 })
 
-router.patch('/:userid',async(req,res)=>{
+router.patch('/:userid',upload.single('mypic'),async(req,res)=>{
 
     try{
       const profpic=await Profilepic.findOneAndUpdate({user_id:req.params.userid},req.body,{new:true}).lean().exec()

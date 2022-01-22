@@ -1,8 +1,16 @@
 const express = require('express');
-
+const bodyParser=require('body-parser')
 
 const app = express()
 app.use(express.json())
+
+app.use(
+    bodyParser.urlencoded({
+      extended: true,
+    })
+  );
+
+
 const profpiccontroller = require("./controllers/profilepic.controler")
 const coverpiccontroller = require("./controllers/coverpic.controller")
 const { register, login } = require("./controllers/auth.controller")
