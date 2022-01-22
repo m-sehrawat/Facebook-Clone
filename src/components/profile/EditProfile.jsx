@@ -1,7 +1,7 @@
 import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, Button, useDisclosure, Input, Divider, Box, Heading, Image, Flex, Spacer, VStack, useToast, } from '@chakra-ui/react'
 import { RiEdit2Fill } from 'react-icons/ri';
 import { loadData } from '../../utils/localstore';
-import { useEffect, useState } from "react"
+import { useEffect, useState , useRef} from "react"
 import { getData } from '../../utils/getData';
 
 
@@ -10,6 +10,7 @@ import { getData } from '../../utils/getData';
 
 
 export const EditProfile = ({ m, w, title }) => {
+    
 
     const { isOpen, onOpen, onClose } = useDisclosure();
     const { _id } = loadData("user");
@@ -21,14 +22,9 @@ export const EditProfile = ({ m, w, title }) => {
     const [intro, setIntro] = useState({});
     const [hobbies, setHobbies] = useState({});
     const [website, setWebsite] = useState({});
-    const [profile, setProfile] = useState('');
-
-    
-
-
-
   
-
+  const profile=useRef()
+          
 
     const handleChange = (e, state, setState) => {
         let { name, value } = e.target;
@@ -71,41 +67,33 @@ export const EditProfile = ({ m, w, title }) => {
     const uploadProfilePic = (e) => {
 
         e.preventDefault();
+        var formData = new FormData();
+        console.log(profile ,"mai he hu bta")
+      formData.append('mypic', profile.current.files[0])
+         console.log(formData.entries, profile)
+
+        for (var data of formData.entries()){console.log(data,"i am for loop")}
 
        
+         
        
-       if(profile.length>2){
+      
         fetch(`http://localhost:1234/profpic/${_id}`, {
             method: 'PATCH',
-            body: JSON.stringify({
-                img: profile }),
-            headers: { 'Content-Type': 'application/json' }
-        })
+            body:formData
+       })
+    
             .then(d => d.json())
             .then((res) => {
-                setProfile(res.img)
+                
                 console.log("Response:", res)
                
             })
             .catch(err => { console.log(err) })
 
-        }  
         
-        else{
-            fetch(`http://localhost:1234/profpic/${_id}`, {
-                method: 'POST',
-                body: JSON.stringify({
-                    user_id:_id,
-                    img: profile }),
-                headers: { 'Content-Type': 'application/json' }
-            })
-                .then(d => d.json())
-                .then((res) => {
-                    console.log("Response:", res)
-                })
-                .catch(err => { console.log(err) })
-    
-            } 
+        
+       
 
 
         
@@ -132,7 +120,7 @@ export const EditProfile = ({ m, w, title }) => {
                                 <Flex>
                                     <Heading fontSize={20}>Profile Pic</Heading>
                                     <Spacer />
-                                    <input onChange={(e) => { setProfile(e.target.files[0].name) }} type='file' accept="image/png, image/jpeg" name='mypic' />
+                                    <input ref={profile} type='file' accept="image/png, image/jpeg" name='mypic' />
                                     <Spacer />
                                     <Button type='submit' >Add</Button>
                                 </Flex>
@@ -156,7 +144,7 @@ export const EditProfile = ({ m, w, title }) => {
                             </Flex>
                             <Flex justify={'center'} m={4}>
                                 <Box w={'330px'} h={'100px'} overflow={'hidden'} rounded={4}>
-                                    <Image w={'100%'} src='https://via.placeholder.com/200' />
+                                    <Image w={'100%'} src="https://via.placeholder.com/200" />
                                 </Box>
                             </Flex>
                         </Box>

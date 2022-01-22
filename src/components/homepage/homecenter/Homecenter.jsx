@@ -9,7 +9,9 @@ export const Homecenter = () => {
     return (
         <div className="Homecenter">
         <StoryReel  />
+
         <MessageSender /> 
+        
         <Feed 
         ProfilePic={"pages.jpg"}
         message="yeah it's working"

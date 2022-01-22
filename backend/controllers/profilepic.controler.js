@@ -24,6 +24,7 @@ router.post("/:userid", upload.single("mypic"), async (req, res) => {
   //   path: 'E:\\facebook\\Facebook-Clone\\src\\uploadImgs\\alk.jpg',
   //   size: 213109
   // } 
+  console.log(req.body, "I am frm backend")
 
     try {
       const profpic = await Profilepic.create({
@@ -31,7 +32,7 @@ router.post("/:userid", upload.single("mypic"), async (req, res) => {
         
         img:req.file.filename
       });
-  
+       
       
       return res.status(201).send(profpic);
     } catch (e) {
@@ -67,7 +68,7 @@ router.post("/:userid", upload.single("mypic"), async (req, res) => {
 })
 
 router.patch('/:userid',upload.single('mypic'),async(req,res)=>{
-
+console.log(req.body)
     try{
       const profpic=await Profilepic.findOneAndUpdate({user_id:req.params.userid},req.body,{new:true}).lean().exec()
         res.status(201).send(profpic)

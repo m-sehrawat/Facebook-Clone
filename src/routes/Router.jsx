@@ -16,6 +16,7 @@ import { ProfileNav } from "../components/profile/ProfileNav";
 import { UserProfileNav } from "../components/userProfile/UserProfileNav";
 import { Groups } from "../components/groups/Groups";
 
+
 export const Router = () => {
   return (
     <>
@@ -38,10 +39,9 @@ export const Router = () => {
             <Route path="photos" element={<UserPhotos />} />
           </Route>
         </Route>
-
-        <Route path="/bkwas" element={<Bkwas />} />
         <Route path="*" element={<h1>Page not found</h1>} />
       </Routes>
     </>
   );
 };
+
