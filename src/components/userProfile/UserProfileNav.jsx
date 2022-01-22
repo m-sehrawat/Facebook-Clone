@@ -17,9 +17,40 @@ const NewButton = ({ title, path }) => {
 export const UserProfileNav = () => {
 
     const id = loadData("viewProfileId");
+    const {_id}=loadData("user")
     const [userData, setUserData] = useState({ firstName: "", lastName: "" });
     const { firstName, lastName } = userData;
+    const [senderin ,setSenderin]=useState("")
     
+    function sendrequest( senderid, receiverid){
+
+
+
+
+        fetch(`http://localhost:1234/profpic/${_id}`).then(d => d.json()).then((res) => {
+        console.log("Response:", res, " I am response")
+        }).catch(err => { console.log(err) })
+
+
+
+
+    //     fetch(`http://localhost:1234/profpic/${_id}`, {
+    //         method: 'POST',
+    //         body:formData
+    //    })
+    //         .then(d => d.json())
+    //         .then((res) => {
+                
+    //             console.log("Response:", res, " I am response",formData)
+               
+    //         })
+    //         .catch(err => { console.log(err) })
+        
+        console.log("senderid",senderid);
+
+        console.log("receiverid",receiverid)
+
+    }
 
     useEffect(() => {
         getData(id, setUserData);
@@ -45,7 +76,7 @@ export const UserProfileNav = () => {
                             </Box>
                             <Spacer />
                             <Box >
-                                <Button colorScheme={'blue'} m={'120px 50px'}>Send Request</Button>
+                                <Button colorScheme={'blue'} m={'120px 50px'} onClick={()=>{sendrequest( _id,id)}}>Send Request</Button>
                             </Box>
                         </Flex>
                     </Box>
