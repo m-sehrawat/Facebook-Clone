@@ -39,8 +39,15 @@ console.log(arr, "I am post")
 
         <MessageSender /> 
 
+        {arr.map(e=> <Feed 
+        ProfilePic={e.img}
+        message={e.title}
+        timestamp={e.createdAt} 
+        username="bhargav"
+        image={e.img}
 
-       
+        />   )}
+            
         
         <Feed 
         ProfilePic={"pages.jpg"}
