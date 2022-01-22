@@ -1,5 +1,5 @@
 import React from "react";
-import {Avatar} from "@chakra-ui/react";
+import {Avatar, Box, Image} from "@chakra-ui/react";
 import {FiThumbsUp} from "react-icons/fi"
 import {FaRegCommentAlt} from "react-icons/fa";
 import "./feed.css";
@@ -19,7 +19,9 @@ export const Feed = ({ProfilePic, image, username, timestamp, message}) => {
         <p>{message}</p>    
         </div>
         <div className="feed__image">
-        <img src={image} alt=""/>
+        <Box px={10} >
+        <Image m={'auto'} h={'500px'} src={image} alt=""/>
+        </Box>
         </div>
         <div className="feed__options">
         <div className="feed__option">
