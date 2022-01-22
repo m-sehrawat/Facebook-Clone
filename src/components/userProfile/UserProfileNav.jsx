@@ -17,9 +17,18 @@ const NewButton = ({ title, path }) => {
 export const UserProfileNav = () => {
 
     const id = loadData("viewProfileId");
+    const {_id}=loadData("user")
     const [userData, setUserData] = useState({ firstName: "", lastName: "" });
     const { firstName, lastName } = userData;
     
+    function sendrequest( senderid, receiverid){
+        
+        
+        console.log("senderid",senderid);
+
+        console.log("receiverid",receiverid)
+
+    }
 
     useEffect(() => {
         getData(id, setUserData);
@@ -45,7 +54,7 @@ export const UserProfileNav = () => {
                             </Box>
                             <Spacer />
                             <Box >
-                                <Button colorScheme={'blue'} m={'120px 50px'}>Send Request</Button>
+                                <Button colorScheme={'blue'} m={'120px 50px'} onClick={()=>{sendrequest( _id,id)}}>Send Request</Button>
                             </Box>
                         </Flex>
                     </Box>
