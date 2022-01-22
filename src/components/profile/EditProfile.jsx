@@ -67,8 +67,8 @@ export const EditProfile = ({ m, w, title }) => {
         e.preventDefault();
 
         fetch(`http://localhost:1234/profpic/${_id}`, {
-            method: 'POST',
-            body: JSON.stringify({user_id:_id,
+            method: 'PATCH',
+            body: JSON.stringify({
                 img: profile }),
             headers: { 'Content-Type': 'application/json' }
         })

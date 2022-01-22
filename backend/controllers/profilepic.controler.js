@@ -20,7 +20,7 @@ router.post("/:userid", upload.single("mypic"), async (req, res) => {
       const profpic = await Profilepic.create({
         user_id:req.params.userid,  
         
-        img:req.file.path
+        img:req.file.filename
       });
   
       console.log(req.file,"mai yhi hu")
