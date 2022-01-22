@@ -29,10 +29,10 @@ export const Homecenter = () => {
 
  }
 
-
+  var str=arr[0].img
      
-console.log(arr)
-
+    str=str.split(`\\`)
+    console.log(str, "mai str hu")
 
     return (
         <div className="Homecenter">
