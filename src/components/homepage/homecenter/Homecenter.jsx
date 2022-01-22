@@ -10,6 +10,7 @@ export const Homecenter = () => {
 
 
   const [arr,setArr]=useState([])
+  
  useEffect(()=>{
  getpost()
 
@@ -29,10 +30,7 @@ export const Homecenter = () => {
 
  }
 
-  var str=arr[0].img
-     
-    str=str.split(`\\`)
-    console.log(str, "mai str hu")
+  
 
     return (
         <div className="Homecenter">
@@ -45,7 +43,7 @@ export const Homecenter = () => {
         message={e.title}
         timestamp={e.createdAt} 
         username={e.username}
-        image={e.img}
+        image={e.img.slice(-1,200)}
 
         />   )}
             
