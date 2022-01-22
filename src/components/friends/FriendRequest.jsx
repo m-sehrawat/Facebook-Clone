@@ -7,7 +7,14 @@ import { loadData } from "../../utils/localstore";
 import { useNavigate } from "react-router-dom";
 import { getDataInside, getDataIterate, getDataRequest } from "../../utils/getData";
 
-const FriendList = ({ title, src }) => {
+const FriendList = ({ title, src, element }) => {
+
+    const { _id } = loadData('user');
+
+    const confirmRequest  = (receiver, senderObj) => {
+        
+    }
+
     return (
         <Box rounded={8} bg={'white'} h={'360px'} overflow={'hidden'} boxShadow={'lg'}>
             <Box h={'200px'} overflow={'hidden'}>
@@ -17,7 +24,7 @@ const FriendList = ({ title, src }) => {
                 <Text fontWeight={500} fontSize={20}>{title}</Text>
             </Box>
             <Center h={'50px'} w={'100%'} p={4} mr={'5px'} >
-                <Button w={'100%'} bgColor={"#2e81f4"} color={"white"}>Confirm</Button>
+                <Button onClick={()=>{confirmRequest( _id, element)}} w={'100%'} bgColor={"#2e81f4"} color={"white"}>Confirm</Button>
             </Center>
             <Center h={'50px'} w={'100%'} p={4} mr={'5px'} >
                 <Button w={'100%'}>Delete</Button>
@@ -46,6 +53,11 @@ export const FriendRequest = () => {
     }, [friendRequestId])
 
 
+    const confirmRequest  = () => {
+        
+    }
+
+
     return (
         <div>
             <Leftsidebar />
@@ -56,7 +68,7 @@ export const FriendRequest = () => {
                 <SimpleGrid columns={5} spacing={3} w={'1100px'} m={'auto'} minH={200}>
 
                     {arr.map((e) => (
-                        <FriendList title={`${e.firstName} ${e.lastName}`} src={"https://via.placeholder.com/200"} />
+                        <FriendList element={e} title={`${e.firstName} ${e.lastName}`} src={"https://via.placeholder.com/200"} />
                     ))}
 
                 </SimpleGrid>
