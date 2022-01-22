@@ -5,14 +5,14 @@ import { MdPhotoLibrary, MdOutlineMood } from "react-icons/md";
 import { CreatePost } from "./CreatePost";
 
 
-export const MessageSender = () => {
+export const MessageSender = ({getpost}) => {
 
     return (
         <div className="messageSender">
             <div className="messageSender__top">
                
                 <Avatar mr={4} />
-                <CreatePost />
+                <CreatePost getpost={getpost} />
                 
             </div>
 
