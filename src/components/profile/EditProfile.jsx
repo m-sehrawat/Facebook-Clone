@@ -22,6 +22,7 @@ export const EditProfile = ({ m, w, title }) => {
     const [intro, setIntro] = useState({});
     const [hobbies, setHobbies] = useState({});
     const [website, setWebsite] = useState({});
+    const [im,setIm]=useState("")
   
   const profile=useRef()
           
@@ -55,7 +56,7 @@ export const EditProfile = ({ m, w, title }) => {
     fetch(`http://localhost:1234/profpic/${_id}`)
         .then(d => d.json())
         .then((res) => {
-            console.log("Response:", res)
+            console.log("Response:", setIm(res.img))
         })
         .catch(err => { console.log(err) })
 
@@ -69,12 +70,14 @@ export const EditProfile = ({ m, w, title }) => {
         e.preventDefault();
         var formData = new FormData();
         console.log(profile ,"mai he hu bta")
-      formData.append('mypic', profile.current.files[0])
-         console.log(formData.entries, profile)
+       formData.append('user_id',_id)
+       formData.append('mypic', profile.current.files[0])
+
+      console.log(profile.current.files[0], "cat")
 
         for (var data of formData.entries()){console.log(data,"i am for loop")}
 
-       
+              
          
        
       
@@ -86,7 +89,7 @@ export const EditProfile = ({ m, w, title }) => {
             .then(d => d.json())
             .then((res) => {
                 
-                console.log("Response:", res)
+                console.log("Response:", res, " I am response",formData)
                
             })
             .catch(err => { console.log(err) })
@@ -120,7 +123,7 @@ export const EditProfile = ({ m, w, title }) => {
                                 <Flex>
                                     <Heading fontSize={20}>Profile Pic</Heading>
                                     <Spacer />
-                                    <input ref={profile} type='file' accept="image/png, image/jpeg" name='mypic' />
+                                    <input ref={profile} type='file' accept="image/png, image/jpeg" name='mypic'  />
                                     <Spacer />
                                     <Button type='submit' >Add</Button>
                                 </Flex>

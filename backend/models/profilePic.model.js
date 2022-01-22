@@ -4,7 +4,7 @@ const mongoose = require("mongoose")
 
 
 const profilepicSchema= mongoose.Schema({
-    user_id:{type:String,required:true},
+    user_id:{type:String,required:true,unique:true},
     
     // {
     //     type: mongoose.Schema.Types.ObjectId, 
