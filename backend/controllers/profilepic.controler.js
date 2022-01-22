@@ -14,7 +14,16 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false })
 router.post("/:userid", upload.single("mypic"), async (req, res) => {
 
     
-
+  // { ye req.file hai
+  //   fieldname: 'mypic',
+  //   originalname: 'alk.jpg',
+  //   encoding: '7bit',
+  //   mimetype: 'image/jpeg',
+  //   destination: 'E:\\facebook\\Facebook-Clone\\src\\uploadImgs',
+  //   filename: 'alk.jpg',
+  //   path: 'E:\\facebook\\Facebook-Clone\\src\\uploadImgs\\alk.jpg',
+  //   size: 213109
+  // } 
 
     try {
       const profpic = await Profilepic.create({
@@ -23,7 +32,7 @@ router.post("/:userid", upload.single("mypic"), async (req, res) => {
         img:req.file.filename
       });
   
-      console.log(req.file,"mai yhi hu")
+      
       return res.status(201).send(profpic);
     } catch (e) {
       return res.status(500).json({ status: "failed", message: e.message });

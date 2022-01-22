@@ -2,6 +2,10 @@ import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody,
 import { RiEdit2Fill } from 'react-icons/ri';
 import { loadData } from '../../utils/localstore';
 import { useEffect, useState } from "react"
+import { getData } from '../../utils/getData';
+
+
+
 
 
 
@@ -19,21 +23,11 @@ export const EditProfile = ({ m, w, title }) => {
     const [website, setWebsite] = useState({});
     const [profile, setProfile] = useState('');
 
-    useEffect(() => {
-
-    }, []);
+    
 
 
 
-    // function displayImage(e) {
-    //     if (e.files[0]) {
-    //         var reader = new FileReader();
-    //         reader.onload = function(e) {
-    //             document.querySelector('#profileDisplay').setAttribute('src', e.target.result);
-    //         }
-    //         reader.readAsDataURL(e.files[0]);
-    //     }
-    // }
+  
 
 
     const handleChange = (e, state, setState) => {
@@ -60,12 +54,27 @@ export const EditProfile = ({ m, w, title }) => {
             })
     }
 
+   useEffect(()=>{
+
+    fetch(`http://localhost:1234/profpic/${_id}`)
+        .then(d => d.json())
+        .then((res) => {
+            console.log("Response:", res)
+        })
+        .catch(err => { console.log(err) })
 
 
+   },[])
+     
+    
 
     const uploadProfilePic = (e) => {
+
         e.preventDefault();
 
+       
+       
+       if(profile.length>2){
         fetch(`http://localhost:1234/profpic/${_id}`, {
             method: 'PATCH',
             body: JSON.stringify({
@@ -74,9 +83,32 @@ export const EditProfile = ({ m, w, title }) => {
         })
             .then(d => d.json())
             .then((res) => {
+                setProfile(res.img)
                 console.log("Response:", res)
+               
             })
             .catch(err => { console.log(err) })
+
+        }  
+        
+        else{
+            fetch(`http://localhost:1234/profpic/${_id}`, {
+                method: 'POST',
+                body: JSON.stringify({
+                    user_id:_id,
+                    img: profile }),
+                headers: { 'Content-Type': 'application/json' }
+            })
+                .then(d => d.json())
+                .then((res) => {
+                    console.log("Response:", res)
+                })
+                .catch(err => { console.log(err) })
+    
+            } 
+
+
+        
 
     }
 
@@ -107,11 +139,11 @@ export const EditProfile = ({ m, w, title }) => {
                             </form>
                             <Flex justify={'center'} m={4}>
                                 <Box w={'160px'} h={'160px'} overflow={'hidden'} rounded={'full'}>
-                                    <Image src='https://via.placeholder.com/200' />
+                                    <Image src="https://via.placeholder.com/200" />
                                 </Box>
                             </Flex>
                         </Box>
-
+                        {/* https://via.placeholder.com/200 */}
                         <Divider />
 
                         <Box m={'20px'}>
@@ -191,3 +223,4 @@ export const EditProfile = ({ m, w, title }) => {
 
     );
 };
+
