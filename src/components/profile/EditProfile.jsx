@@ -22,7 +22,7 @@ export const EditProfile = ({ m, w, title }) => {
     const [intro, setIntro] = useState({});
     const [hobbies, setHobbies] = useState({});
     const [website, setWebsite] = useState({});
-    const [im,setIm]=useState("")
+    
   
   const profile=useRef()
           
@@ -56,7 +56,7 @@ export const EditProfile = ({ m, w, title }) => {
     fetch(`http://localhost:1234/profpic/${_id}`)
         .then(d => d.json())
         .then((res) => {
-            console.log("Response:", setIm(res.img))
+            console.log("Response:",res.img)
         })
         .catch(err => { console.log(err) })
 

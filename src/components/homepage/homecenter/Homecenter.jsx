@@ -6,6 +6,17 @@ import { Feed } from "./Feed";
 
 
 export const Homecenter = () => {
+
+
+
+    
+
+
+
+
+
+
+
     return (
         <div className="Homecenter">
         <StoryReel  />

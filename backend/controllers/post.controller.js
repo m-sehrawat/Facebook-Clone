@@ -10,6 +10,20 @@ const jsonParser = bodyParser.json()
 const urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 
+router.get("/",async(req,res)=>{
+  try{
+    const posts=await Post.find( ).lean().exec();
+    console.log(posts);
+   return res.status(201).send(posts);
+  }
+
+  catch (e) {
+    return res.status(500).json({ status: "failed", message: e.message });
+  }
+ 
+})
+
+
 
 router.post("/:userid", upload.single("post_img"), async (req, res) => {
 
@@ -42,9 +56,19 @@ router.post("/:userid", upload.single("post_img"), async (req, res) => {
      
   })
 
+
+
+
+
+
+
+
+
+
+
   router.delete("/:userid/:postid",async(req,res)=>{
     try{
-      const post=await Post.findByIdAndDelete(req.params.albumid).lean().exec();
+      const post=await Post.findByIdAndDelete(req.params.postid).lean().exec();
       console.log(post);
      return res.status(201).send(post);
     }
@@ -55,7 +79,7 @@ router.post("/:userid", upload.single("post_img"), async (req, res) => {
    
 })
 
-router.patch('/:userid/:postid',async(req,res)=>{
+router.patch('/:userid/:postid',upload.single("post_img"),async(req,res)=>{
 
     try{
       const album=await Post.findByIdAndUpdate(req.params.postid,req.body,{new:true}).lean().exec()
