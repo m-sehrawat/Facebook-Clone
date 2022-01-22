@@ -77,15 +77,11 @@ export const EditProfile = ({ m, w, title }) => {
 
         for (var data of formData.entries()){console.log(data,"i am for loop")}
 
-              
-         
-       
       
         fetch(`http://localhost:1234/profpic/${_id}`, {
             method: 'PATCH',
             body:formData
        })
-    
             .then(d => d.json())
             .then((res) => {
                 

@@ -4,20 +4,18 @@ import { useState, useEffect } from "react";
 import { loadData } from '../utils/localstore';
 
 export const Bkwas = () => {
-  const [frdids, setFrdids] = useState([])
-  console.log('frdids:', frdids)
+  const [friendsId, setFriendsId] = useState([]);
  
-  const [arr, setArr] = useState([])
-  console.log('arrOutside:', arr)
+  const [arr, setArr] = useState([]);
 
-  const { _id } = loadData('user')
+  const { _id } = loadData('user');
 
   
 
 
   function getdata(id) {
 
-    fetch(`http://localhost:1234/user/${id}`).then(d => d.json()).then(res => setFrdids(res.friend_ids))
+    fetch(`http://localhost:1234/user/${id}`).then(d => d.json()).then(res => setFriendsId(res.friend_ids))
       .catch(err => { console.log(err) })
   }
 
@@ -29,12 +27,11 @@ export const Bkwas = () => {
 
   useEffect(() => {
 
-    frdids.forEach((id) => {
+    friendsId.forEach((id) => {
       fetch(`http://localhost:1234/user/${id}`)
         .then((res) => res.json())
         .then((res) => {
           arr.push(res)
-          
           setArr([...arr]);
         })
         .catch((err) => {
@@ -42,7 +39,7 @@ export const Bkwas = () => {
         })
     })
 
-  }, [ frdids])
+  }, [ friendsId])
 
 
   
