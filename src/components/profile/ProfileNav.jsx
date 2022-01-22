@@ -1,7 +1,9 @@
 import { Box, Button, Divider, Flex, Heading, HStack, Image, Spacer, Text } from "@chakra-ui/react";
+import { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import { loadData } from "../../utils/localstore";
 import { EditProfile } from "./EditProfile";
+
 
 const NewButton = ({ title, path }) => {
     return (
@@ -13,6 +15,7 @@ const NewButton = ({ title, path }) => {
 
 
 export const ProfileNav = () => {
+    const [pic, setPic]=useState('')
 
     const {firstName, lastName} = loadData('user');
 
@@ -36,7 +39,7 @@ export const ProfileNav = () => {
                             </Box>
                             <Spacer />
                             <Box>
-                                <EditProfile m={'120px 50px'} title={'Edit Profile'} />
+                                <EditProfile m={'120px 50px'} title={'Edit Profile'} pic={pic} setPic={setPic} />
                             </Box>
                         </Flex>
                     </Box>
