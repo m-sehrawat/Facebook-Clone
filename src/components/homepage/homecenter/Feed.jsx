@@ -11,7 +11,7 @@ export const Feed = ({ProfilePic, image, username, timestamp, message}) => {
          <Avatar src={ProfilePic}  className="feed__avatar "/>
          <div className="feed__topInfo">
              <h3>{username}</h3>
-             <p>timestamp..</p>
+             <p>{timestamp}</p>
          </div>
         </div> 
 

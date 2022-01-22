@@ -9,17 +9,20 @@ export const CreatePost = () => {
     const [text,setText]=useState("");
 
     const photo=useRef()
-    const  {_id}=loadData('user')
+    const  {_id,firstName}=loadData('user')
     
-
+console.log(loadData('user'), "mai use data hu")
 
     const makepost = () => {
 
         
         var formData = new FormData();
         console.log(photo ,"mai he hu bta")
+
+        console.log(text,"Mai hu asli text")
        formData.append('user_id',_id)
-       formData.append('title',text)
+       formData.append('title', text)
+       formData.append('username',firstName)
        formData.append('post_img', photo.current.files[0])
 
       console.log(photo.current.files[0], "cat")
@@ -71,7 +74,7 @@ export const CreatePost = () => {
                     <Divider />
                     <ModalBody>
                         <VStack gap={3} mb={'20px'}>
-                            <Textarea minH={'200px'} fontSize={23} placeholder="what's on your mind ?" onChange={e=>setText(e)} />
+                            <Textarea minH={'200px'} fontSize={23} placeholder="what's on your mind ?" onChange={e=>setText(e.target.value)} />
                             <HStack>
                                 <Text fontSize={20} fontWeight={500}>Add Image: </Text>
                                 <input ref={photo} type={'file'} accept="image/png, image/jpeg" />

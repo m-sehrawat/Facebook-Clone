@@ -8,6 +8,7 @@ import { useEffect,useState } from "react";
 
 export const Homecenter = () => {
 
+
   const [arr,setArr]=useState([])
  useEffect(()=>{
  getpost()
@@ -21,7 +22,7 @@ export const Homecenter = () => {
   .then(d => d.json())
   .then((res) => {
       
-      console.log("Response:", setArr(res))
+      console.log("Response:", setArr(res.reverse()))
      
   })
   .catch(err => { console.log(err) })
@@ -29,50 +30,30 @@ export const Homecenter = () => {
  }
 
 
-
-console.log(arr, "I am post")
+     
+console.log(arr)
 
 
     return (
         <div className="Homecenter">
         <StoryReel  />
 
-        <MessageSender /> 
+        <MessageSender  /> 
 
         {arr.map(e=> <Feed 
         ProfilePic={e.img}
         message={e.title}
         timestamp={e.createdAt} 
-        username="bhargav"
+        username={e.username}
         image={e.img}
 
         />   )}
             
         
-        <Feed 
-        ProfilePic={"pages.jpg"}
-        message="yeah it's working"
-        timestamp="this is a time stamp" 
-        username="bhargav"
-        image={"logo512.png"}
+       
+       
 
-        />
-        <Feed 
-        ProfilePic={"pages.jpg"}
-        message="yeah it's working"
-        timestamp="this is a time stamp" 
-        username="bhargav"
-        image={"sun.jpg"}
-
-        />
-      <Feed 
-        ProfilePic={"pages.jpg"}
-        message="yeah it's working"
-        timestamp="this is a time stamp" 
-        username="bhargav"
-        image={"logo512.png"}
-
-        />
+       
         </div>
     )
 }
