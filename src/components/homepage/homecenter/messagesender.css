@@ -13,28 +13,8 @@
     padding-bottom: 15px;
     padding:15px;
 }
-.messageSender__top > form {
-    flex:1;
-    display: flex;
-}
-.messageSender__top > form > input{
-    outline-width: 0;
-    border:none;
-    padding: 5px 20px;
-    margin: 0 10px;
-    border-radius: 999px;
-    background-color: #eff2f5;
-}
 
-@media(max-width: 1200px){
-    .messageSender__top>form>button{
-        display: visible;
-    }
-}
 
-.messageSender__top > form > button {
-    display: none;
-}
 .messageSender__input{
     flex: 1;
 }
