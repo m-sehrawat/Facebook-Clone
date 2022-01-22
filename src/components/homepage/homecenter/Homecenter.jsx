@@ -43,7 +43,7 @@ export const Homecenter = () => {
         message={e.title}
         timestamp={e.createdAt} 
         username={e.username}
-        image={e.img.slice(-1,200)}
+        image={e.img}
 
         />   )}
             
