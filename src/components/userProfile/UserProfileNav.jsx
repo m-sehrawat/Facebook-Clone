@@ -36,9 +36,9 @@ export const UserProfileNav = () => {
     }).catch(err => { console.log(err) })
 
        
-      setReceiver(p=>{setReceiver(p.push(senderid))})
+      setReceiver(p=>{setReceiver( p.push(senderid) )})
      
-
+              console.log(receiver, 'mai hu receiver')
 
     fetch(`http://localhost:1234/user/${id}`, {
       method: "PATCH",
@@ -47,9 +47,9 @@ export const UserProfileNav = () => {
         friend_request_in_ids: receiver
 
       }),
-      headers: {
-        'Content-Type': "application/json"
-      }
+      // headers: {
+      //   'Content-Type': "application/json"
+      // }
     })
       .then((d) => d.json())
       .then((res) => {
