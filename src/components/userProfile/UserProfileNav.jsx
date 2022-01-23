@@ -1,13 +1,4 @@
-import {
-  Box,
-  Button,
-  Divider,
-  Flex,
-  Heading,
-  HStack,
-  Image,
-  Spacer,
-} from "@chakra-ui/react";
+import { Box, Button, Divider, Flex, Heading, HStack, Image, Spacer } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import { getData } from "../../utils/getData";
@@ -31,28 +22,28 @@ export const UserProfileNav = () => {
   function sendrequest(senderid, receiverid) {
     var arr = [];
     arr.push(senderid);
-   
-       // receiver array editing
-        fetch(`http://localhost:1234/user/${id}`).then(d => d.json()).then((res) => {
-            setReceiverin(res.friend_request_in_ids)
-        console.log("Response:", res.friend_request_in_ids)
-        }).catch(err => { console.log(err) })
-        
-        setReceiverin(p=>[...p, ...arr])
-        // var arr3=receiverin;
-        // arr3[arr3.length-1]=senderid
-        //   console.log(arr, "I am arr3")
-        console.log(receiverin)
+
+    // receiver array editing
+    fetch(`http://localhost:1234/user/${id}`).then(d => d.json()).then((res) => {
+      setReceiverin(res.friend_request_in_ids)
+      console.log("Response:", res.friend_request_in_ids)
+    }).catch(err => { console.log(err) })
+
+    setReceiverin(p => [...p, ...arr])
+    // var arr3=receiverin;
+    // arr3[arr3.length-1]=senderid
+    //   console.log(arr, "I am arr3")
+    console.log(receiverin)
 
     fetch(`http://localhost:1234/user/${id}`, {
       method: "PATCH",
       body: JSON.stringify({
-        friend_request_in_ids:receiverin
+        friend_request_in_ids: receiverin
       }),
-      headers:{
-          'Content-Type':"application/json"
+      headers: {
+        'Content-Type': "application/json"
       }
-      })
+    })
       .then((d) => d.json())
       .then((res) => {
         console.log("Response:", res, " I am response from patch reques");
@@ -60,7 +51,7 @@ export const UserProfileNav = () => {
       .catch((err) => {
         console.log(err);
       });
-      
+
 
 
 
