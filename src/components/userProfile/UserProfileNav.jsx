@@ -38,30 +38,33 @@ export const UserProfileNav = () => {
         console.log("Response:", res.friend_request_in_ids)
         }).catch(err => { console.log(err) })
         
-        setReceiverin(receiverin.concat(arr))
-        console.log(receiverin, "I am receiver arr", arr, "i am ")
-        
+        setReceiverin(p=>[...p, ...arr])
+        // var arr3=receiverin;
+        // arr3[arr3.length-1]=senderid
+        //   console.log(arr, "I am arr3")
+        console.log(receiverin)
 
-    // fetch(`http://localhost:1234/user/${id}`, {
-    //   method: "PATCH",
-    //   body: JSON.stringify({
-    //     friend_request_in_ids: receiverin.concate(arr),
-    //   }),
-    //   })
-    //   .then((d) => d.json())
-    //   .then((res) => {
-    //     console.log("Response:", res, " I am response from patch reques");
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+    fetch(`http://localhost:1234/user/${id}`, {
+      method: "PATCH",
+      body: JSON.stringify({
+        friend_request_in_ids:receiverin
+      }),
+      headers:{
+          'Content-Type':"application/json"
+      }
+      })
+      .then((d) => d.json())
+      .then((res) => {
+        console.log("Response:", res, " I am response from patch reques");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+      
 
-    // fetch(`http://localhost:1234/user/${id}`).then((d) => d.json()).then((res) => {
-    //     console.log("Response:", res.friend_request_in_ids, " I am third");
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+
+
+
   }
 
   useEffect(() => {
