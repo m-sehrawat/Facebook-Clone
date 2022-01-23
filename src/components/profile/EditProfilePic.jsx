@@ -1,4 +1,4 @@
-import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, Button, useDisclosure, Input, Divider, Box, Heading, Image, Flex, Spacer, VStack, useToast, } from '@chakra-ui/react'
+import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, Button, useDisclosure, Divider, Box, Heading, Image, Flex, Spacer } from '@chakra-ui/react'
 import { RiEdit2Fill } from 'react-icons/ri';
 import { loadData } from '../../utils/localstore';
 import { useEffect, useRef } from "react"
@@ -8,10 +8,6 @@ export const EditProfilePic = ({ m, w, title, pic, setPic }) => {
 
     const { isOpen, onOpen, onClose } = useDisclosure();
     const { _id } = loadData("user");
-
-    const displayToast = useToast();
-    const toast = (title, description, status) => displayToast({ title, description, status, position: 'top', duration: 7000, isClosable: true, });
-
 
     const profile = useRef()
 
