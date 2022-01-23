@@ -4,6 +4,7 @@ import { MdMapsHomeWork, MdPlace, MdSkateboarding, MdAccountBalance, MdSchool } 
 import { useEffect, useState } from "react";
 import { loadData } from "../../utils/localstore";
 import { getData } from "../../utils/getData";
+import { Homecenter } from "../homepage/homecenter/Homecenter";
 
 const IntroText = ({ icon, title }) => {
     return (
@@ -56,8 +57,8 @@ export const UserPost = () => {
                             {hobbies ? <IntroText title={hobbies} icon={MdSkateboarding} /> : null}
 
                         </Box>
-                        <Box h={20}>
-
+                        <Box minH={20}>
+                        <Homecenter />
                         </Box>
                     </Grid>
                 </Box>

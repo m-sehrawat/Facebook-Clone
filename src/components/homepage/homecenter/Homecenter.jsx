@@ -35,7 +35,7 @@ export const Homecenter = () => {
 
             {arr.map((e) => (
                 <div key={e._id}>
-                    <Feed
+                    <Feed wid={'70%'} mgtop={'7px'}
                     ProfilePic={`uploadImgs/${e.userimg}`}
                     message={e.title}
                     timestamp={e.createdAt}
@@ -43,7 +43,7 @@ export const Homecenter = () => {
                     image={`uploadImgs/${e.img}`}
                     likeCount={2}
                 />
-                <input type={'text'} />
+                
                 </div>))}
         </div>
     )
