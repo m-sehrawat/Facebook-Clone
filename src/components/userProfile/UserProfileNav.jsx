@@ -18,6 +18,7 @@ export const UserProfileNav = () => {
   const [userData, setUserData] = useState({ firstName: "", lastName: "" });
   const { firstName, lastName } = userData;
   const [receiver, setReceiver] = useState([]);
+  const altimage="https://via.placeholder.com/200";
   const [pic,setPic]=useState("https://via.placeholder.com/200")
   const [mycpic,setMycpic]=useState("https://via.placeholder.com/200")
 
@@ -101,7 +102,7 @@ export const UserProfileNav = () => {
           <Box h={"200px"}>
             <Flex>
               <Box w={"200px"} h={"200px"} p={3} overflow={"hidden"}>
-                <Image rounded={"full"} src={`uploadImgs/${pic}`} />
+                <Image rounded={"full"} src={`uploadImgs/${pic}` || altimage} />
               </Box>
               <Box p={5} mt={10}>
                 <Heading>
