@@ -31,7 +31,7 @@ export const ProfileNav = () => {
                     <Box h={'200px'}>
                         <Flex>
                             <Box w={'200px'} h={'200px'} p={3} overflow={'hidden'}>
-                                <Image rounded={'full'} src="https://via.placeholder.com/200" />
+                                <Image rounded={'full'} src={`uploadImgs/${pic}`} />
                             </Box>
                             <Box p={5} mt={7}>
                                 <Heading>{firstName} {lastName}</Heading>
