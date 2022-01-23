@@ -75,7 +75,7 @@ export const UserPost = () => {
                             {hobbies ? <IntroText title={hobbies} icon={MdSkateboarding} /> : null}
 
                         </Box>
-                        <Box minH={20}>
+                        {/* <Box minH={20}>
                             {arr.map((e) => (
                                 <div key={e._id}>
                                     <Feed mgtop={'7px'}
@@ -87,7 +87,7 @@ export const UserPost = () => {
                                         likeCount={2}
                                     />
                                 </div>))}
-                        </Box>
+                        </Box> */}
                     </Grid>
                 </Box>
 

@@ -1,4 +1,4 @@
-import { Box, Button, Divider, Flex, Heading, HStack, Image, Spacer } from "@chakra-ui/react";
+import { Box, Button, Divider, Flex, Heading, HStack, Image, Spacer, useToast } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import { getData } from "../../utils/getData";
@@ -21,6 +21,10 @@ export const UserProfileNav = () => {
   const [receiver, setReceiver] = useState([]);
   const [pic, setPic] = useState("https://via.placeholder.com/200")
   const [mycpic, setMycpic] = useState("https://via.placeholder.com/900x350")
+
+  const displayToast = useToast();
+  const toast = (title, description, status) => displayToast({ title, description, status, position: 'top', duration: 7000, isClosable: true, });
+
 
 
   function sendrequest(senderid, receiverid) {
@@ -119,7 +123,7 @@ export const UserProfileNav = () => {
                   colorScheme={"blue"}
                   m={"120px 50px"}
                   onClick={() => {
-                    sendrequest(_id, id);
+                    toast('Friend Request Send', '','success')
                   }}
                 >
                   Send Request

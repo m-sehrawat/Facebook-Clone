@@ -10,7 +10,7 @@ import { getDataInside, getDataIterate, getDataRequest } from "../../utils/getDa
 
 const NewText = () => {
     return (
-        <Flex justify={'center'} mt={'50px'}>
+        <Flex  justify={'center'} mt={'50px'}>
             <Text fontSize={20} color={'grey'} fontWeight={800}>No friends to show</Text>
         </Flex>
     )
