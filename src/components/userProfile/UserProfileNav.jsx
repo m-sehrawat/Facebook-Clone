@@ -23,7 +23,7 @@ export const UserProfileNav = () => {
   const [pic,setPic]=useState(`https://via.placeholder.com/200`)
   const [mycpic,setMycpic]=useState(`https://via.placeholder.com/200`)
 
-
+var arr=[];
   function sendrequest(senderid, receiverid) {
 
 
@@ -38,13 +38,18 @@ export const UserProfileNav = () => {
        
       setReceiver(p=>{setReceiver( p.push(senderid) )})
      
-              console.log(receiver , "reciveriver 2")
+             
+      for(var i=0;i<receiver.length;i++){
+          arr[i]=receiver[i]
+      }
+
+      console.log(arr ,"I ma arr")
 
     fetch(`http://localhost:1234/user/${id}`, {
       method: "PATCH",
       body: JSON.stringify({
 
-        friend_request_in_ids:receiver
+        friend_request_in_ids:arr
 
       }),
       headers: {
