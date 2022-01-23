@@ -4,12 +4,14 @@ import { loadData } from '../../utils/localstore';
 import { useEffect, useRef } from "react"
 
 
-export const EditProfilePic = ({ m, w, title, pic, setPic }) => {
+
+export const EditProfilePic = ({ m, w, title, pic, setPic, mycpic, setMycpic }) => {
 
     const { isOpen, onOpen, onClose } = useDisclosure();
     const { _id } = loadData("user");
 
     const profile = useRef()
+    const coverpic=useRef()
 
     useEffect(() => {
 
@@ -21,7 +23,20 @@ export const EditProfilePic = ({ m, w, title, pic, setPic }) => {
             })
             .catch(err => { console.log(err) })
 
-    }, [profile])
+    }, [setPic, _id])
+
+
+    useEffect(() => {
+
+        fetch(`http://localhost:1234/coverpic/${_id}`)
+            .then(d => d.json())
+            .then((res) => {
+                setMycpic(res.img)
+                console.log("Response:", res, "I got set")
+            })
+            .catch(err => { console.log(err) })
+
+    }, [setMycpic, _id])
 
 
 
@@ -48,6 +63,40 @@ export const EditProfilePic = ({ m, w, title, pic, setPic }) => {
         for (var data of formData.entries()) { console.log(data, "i am for loop") }
 
         fetch(`http://localhost:1234/profpic/${_id}`, {
+            method: 'POST',
+            body: formData
+        })
+            .then(d => d.json())
+            .then((res) => {
+                console.log("Response:", res, " I am response", formData)
+            })
+            .catch(err => { console.log(err) })
+    }
+
+
+    const uploadcoverPic = (e) => {
+        e.preventDefault();
+
+        fetch(`http://localhost:1234/coverpic/${_id}`, {
+            method: 'DELETE',
+        })
+            .then(d => d.json())
+            .then((res) => {
+                console.log("item delted ", res)
+            })
+            .catch(err => { console.log(err) })
+
+
+        var formData = new FormData();
+        console.log(coverpic, "mai he hu bta")
+        formData.append('user_id', _id)
+        formData.append('cpic', coverpic.current.files[0])
+
+        console.log(coverpic.current.files[0], "cat")
+
+        for (var data of formData.entries()) { console.log(data, "i am for loop") }
+
+        fetch(`http://localhost:1234/coverpic/${_id}`, {
             method: 'POST',
             body: formData
         })
@@ -87,20 +136,23 @@ export const EditProfilePic = ({ m, w, title, pic, setPic }) => {
                                 </Box>
                             </Flex>
                         </Box>
-
                         <Divider />
-
                         <Box m={'20px'}>
+                        <form onSubmit={uploadcoverPic}>
                             <Flex>
                                 <Heading fontSize={20}>Cover Photo</Heading>
                                 <Spacer />
-                                <input id='profilePic' type='file' accept="image/png, image/jpeg" />
+                                <input id='profilePic' ref={coverpic} type='file' accept="image/png, image/jpeg" name="mycpic" />
                                 <Spacer />
-                                <Button>Add</Button>
+                                <Button type='submit'>Add</Button>
                             </Flex>
+
+                            </form>
+
+
                             <Flex justify={'center'} m={4}>
                                 <Box w={'330px'} h={'100px'} overflow={'hidden'} rounded={4}>
-                                    <Image w={'100%'} src="https://via.placeholder.com/200" />
+                                    <Image w={'100%'} src={`uploadImgs/${mycpic}`} />
                                 </Box>
                             </Flex>
                         </Box>

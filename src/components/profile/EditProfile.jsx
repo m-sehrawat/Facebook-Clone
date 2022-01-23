@@ -17,7 +17,6 @@ export const EditProfile = ({ m, w, title, getUserData }) => {
     const [hobbies, setHobbies] = useState({});
     const [website, setWebsite] = useState({});
 
-
     const handleChange = (e, state, setState) => {
         let { name, value } = e.target;
         setState({ ...state, [name]: value });

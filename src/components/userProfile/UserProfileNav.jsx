@@ -17,21 +17,26 @@ export const UserProfileNav = () => {
   const { _id } = loadData("user");
   const [userData, setUserData] = useState({ firstName: "", lastName: "" });
   const { firstName, lastName } = userData;
-  const [receiver, setReceiver] = useState({});
-  const [pic, setPic] = useState("https://via.placeholder.com/200")
+
+  const [receiver, setReceiver] = useState([]);
+  const [pic,setPic]=useState("https://via.placeholder.com/200")
+  const [mycpic,setMycpic]=useState("https://via.placeholder.com/200")
+
 
   function sendrequest(senderid, receiverid) {
 
 
     // receiver array editing
     fetch(`http://localhost:1234/user/${id}`).then(d => d.json()).then((res) => {
-      setReceiver(res)
 
+        setReceiver(res.friend_request_in_ids)
+      
     }).catch(err => { console.log(err) })
 
-    var arr = receiver.friend_request_in_ids
+       
+      setReceiver([...receiver,senderid])
+      console.log(receiver, "Mai hu receiver")
 
-    console.log(arr, "mai he hu wo arry")
 
     fetch(`http://localhost:1234/user/${id}`, {
       method: "PATCH",
@@ -66,11 +71,25 @@ export const UserProfileNav = () => {
 
   }
 
+ function getsetcover(id){
+  fetch(`http://localhost:1234/coverpic/${id}`).then(res=>res.json()).then(res=>{setMycpic(res.img);
+    
+    
+
+}).catch(err=>{
+    console.log(err)
+})
+
+
+
+ }
+
 
   useEffect(() => {
     getsetprofile(id)
+    getsetcover(id)
     getData(id, setUserData);
-  }, []);
+  }, [id]);
 
   return (
     <>
@@ -80,7 +99,7 @@ export const UserProfileNav = () => {
             <Image
               rounded={10}
               w={"950px"}
-              src="https://via.placeholder.com/950x300"
+              src={`uploadImgs/${mycpic}`}
             />
           </Box>
 
