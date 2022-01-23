@@ -4,7 +4,6 @@ import { EditProfile } from "./EditProfile";
 import { AiFillHeart } from "react-icons/ai";
 import { MdMapsHomeWork, MdPlace, MdSkateboarding, MdAccountBalance, MdSchool } from "react-icons/md";
 import { useEffect, useState } from "react";
-import { getData } from "../../utils/getData";
 
 const IntroText = ({ icon, title }) => {
     return (
@@ -21,8 +20,19 @@ export const Post = () => {
     const [data, setData] = useState({ bio: "", university: "", school: "", currentCity: "", homeTown: "", relationship: "", hobbies: "" });
     const { bio, university, school, currentCity, homeTown, relationship, hobbies } = data;
 
+    const getUserData = () => {
+        fetch(`http://localhost:1234/user/${_id}`)
+            .then((res) => res.json())
+            .then((res) => {
+                setData(res);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    }
+
     useEffect(() => {
-        getData(_id, setData);
+        getUserData();
     }, []);
 
 
@@ -43,7 +53,7 @@ export const Post = () => {
                             {relationship ? <IntroText title={relationship} icon={AiFillHeart} /> : null}
                             {hobbies ? <IntroText title={hobbies} icon={MdSkateboarding} /> : null}
 
-                            <EditProfile w={'100%'} m={'15px auto 5px'} title={'Edit Intro'} />
+                            <EditProfile w={'100%'} m={'15px auto 5px'} title={'Edit Intro'} getUserData={getUserData} />
 
                         </Box>
                         <Box border={'1px solid red'} h={20}>

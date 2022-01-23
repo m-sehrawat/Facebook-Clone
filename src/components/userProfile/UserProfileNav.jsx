@@ -38,7 +38,7 @@ export const UserProfileNav = () => {
     fetch(`http://localhost:1234/user/${id}`, {
       method: "PATCH",
       body: JSON.stringify({
-        friend_request_in_ids: receiverin
+        friend_request_in_ids: [...receiverin]
       }),
       headers: {
         'Content-Type': "application/json"

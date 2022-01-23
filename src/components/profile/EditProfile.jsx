@@ -9,7 +9,7 @@ import { getData } from '../../utils/getData';
 
 
 
-export const EditProfile = ({ m, w, title,pic,setPic }) => {
+export const EditProfile = ({ m, w, title,pic,setPic, getUserData }) => {
     
 
     const { isOpen, onOpen, onClose } = useDisclosure();
@@ -42,9 +42,11 @@ export const EditProfile = ({ m, w, title,pic,setPic }) => {
         })
             .then((res) => res.json())
             .then((res) => {
-                console.log(res);
+                getUserData();
                 toast('Task Done', 'Your details updated succesfully', 'success')
                 onClose();
+               
+
             })
             .catch((err) => {
                 console.log(err);

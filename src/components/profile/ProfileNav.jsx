@@ -1,5 +1,5 @@
 import { Box, Button, Divider, Flex, Heading, HStack, Image, Spacer, Text } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import { loadData } from "../../utils/localstore";
 import { EditProfile } from "./EditProfile";
@@ -17,7 +17,26 @@ const NewButton = ({ title, path }) => {
 export const ProfileNav = () => {
     const [pic, setPic]=useState('')
 
-    const {firstName, lastName} = loadData('user');
+    // const {firstName, lastName} = loadData('user');
+
+    const { _id } = loadData("user");
+    const [data, setData] = useState({ firstName: "", lastName: ""});
+    const { firstName, lastName } = data;
+
+    const getUserData = () => {
+        fetch(`http://localhost:1234/user/${_id}`)
+            .then((res) => res.json())
+            .then((res) => {
+                setData(res);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    }
+
+    useEffect(() => {
+        getUserData();
+    }, []);
 
     return (
         <>
@@ -39,7 +58,7 @@ export const ProfileNav = () => {
                             </Box>
                             <Spacer />
                             <Box>
-                                <EditProfile m={'120px 50px'} title={'Edit Profile'} pic={pic} setPic={setPic} />
+                                <EditProfile m={'120px 50px'} title={'Edit Profile'} pic={pic} setPic={setPic} getUserData={getUserData} />
                             </Box>
                         </Flex>
                     </Box>
