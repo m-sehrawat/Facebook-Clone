@@ -23,7 +23,7 @@ export const EditProfile = ({ m, w, title,pic,setPic }) => {
     const [hobbies, setHobbies] = useState({});
     const [website, setWebsite] = useState({});
     
-    
+    const coverpic=useRef()
   
   const profile=useRef()
           
@@ -146,7 +146,7 @@ export const EditProfile = ({ m, w, title,pic,setPic }) => {
                                 </Box>
                             </Flex>
                         </Box>
-                        {/* https://via.placeholder.com/200 */}
+                       
                         <Divider />
 
                         <Box m={'20px'}>

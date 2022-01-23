@@ -17,7 +17,7 @@ export const UserProfileNav = () => {
   const { _id } = loadData("user");
   const [userData, setUserData] = useState({ firstName: "", lastName: "" });
   const { firstName, lastName } = userData;
-  const [receiver, setReceiver] = useState({});
+  const [receiver, setReceiver] = useState([]);
   const [pic,setPic]=useState("https://via.placeholder.com/200")
 
   function sendrequest(senderid, receiverid) {
@@ -25,13 +25,13 @@ export const UserProfileNav = () => {
 
     // receiver array editing
     fetch(`http://localhost:1234/user/${id}`).then(d => d.json()).then((res) => {
-        setReceiver(res)
+        setReceiver(res.friend_request_in_ids)
       
     }).catch(err => { console.log(err) })
 
-       var arr=receiver.friend_request_in_ids
-      
-       console.log(arr,"mai he hu wo arry")
+       
+      setReceiver([...receiver,senderid])
+      console.log(receiver, "Mai hu receiver")
 
     fetch(`http://localhost:1234/user/${id}`, {
       method: "PATCH",
@@ -72,7 +72,7 @@ export const UserProfileNav = () => {
   useEffect(() => {
     getsetprofile(id)
     getData(id, setUserData);
-  }, []);
+  }, [id]);
 
   return (
     <>

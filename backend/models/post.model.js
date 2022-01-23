@@ -16,7 +16,7 @@ username:{type:String,required:false},
 userimg:{type:String,required:false},
 
 
-    likes:{type:String,required:false},
+    likes:{type:Number,required:false},
     comments:[{type:String,required:false}],
 
 }
