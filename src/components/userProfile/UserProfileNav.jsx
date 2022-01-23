@@ -19,9 +19,9 @@ export const UserProfileNav = () => {
   const { firstName, lastName } = userData;
 
   const [receiver, setReceiver] = useState([]);
-  const altimage="https://via.placeholder.com/200";
-  const [pic,setPic]=useState("https://via.placeholder.com/200")
-  const [mycpic,setMycpic]=useState("https://via.placeholder.com/200")
+ 
+  const [pic,setPic]=useState(`https://via.placeholder.com/200`)
+  const [mycpic,setMycpic]=useState(`https://via.placeholder.com/200`)
 
 
   function sendrequest(senderid, receiverid) {
@@ -29,21 +29,22 @@ export const UserProfileNav = () => {
 
     // receiver array editing
     fetch(`http://localhost:1234/user/${id}`).then(d => d.json()).then((res) => {
-
+            
+    
         setReceiver(res.friend_request_in_ids)
       
     }).catch(err => { console.log(err) })
 
        
-      setReceiver([...receiver,senderid])
-      console.log(receiver, "Mai hu receiver")
+      setReceiver(p=>{setReceiver(p.push(senderid))})
+     
 
 
     fetch(`http://localhost:1234/user/${id}`, {
       method: "PATCH",
       body: JSON.stringify({
 
-        friend_request_in_ids: []
+        friend_request_in_ids: receiver
 
       }),
       headers: {
