@@ -45,7 +45,11 @@ export const Option = () => {
      useEffect(()=>{
 
 
-        fetch(`http://localhost:1234/user/${_id}`).then(res=>res.json()).then(res=>setPic(res.img)).catch(err=>{
+        fetch(`http://localhost:1234/profpic/${_id}`).then(res=>res.json()).then(res=>{setPic(res.img);
+    
+        console.log(res, "I am profile picture")
+    
+        }).catch(err=>{
             console.log(err)
         })
 
@@ -58,7 +62,7 @@ export const Option = () => {
             <Center mr={4}>
                 <Link to={'/profile'}>
                     <Tag size='lg' colorScheme='white' borderRadius='full' _hover={{ bg: "#f0f2f5" }} h={10}>
-                        <Avatar size='sm' name={`${firstName} ${lastName}`} ml={-1} mr={2} src='' />
+                        <Avatar size='sm' name={`${firstName} ${lastName}`} ml={-1} mr={2} src={`uploadImgs/${pic}`} />
                         <TagLabel>{firstName}</TagLabel>
                     </Tag>
                 </Link>
