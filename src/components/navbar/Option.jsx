@@ -3,7 +3,7 @@ import { ArrowForwardIcon, ChatIcon, MoonIcon, QuestionIcon, SettingsIcon, Trian
 import { Link, useNavigate } from "react-router-dom";
 import { loadData } from "../../utils/localstore";
 import { saveData } from "../../utils/localstore";
-import { useState } from "react";
+import { useState ,useEffect} from "react";
 
 const Item = ({ iconName, title }) => {
     return (
@@ -16,7 +16,7 @@ const Item = ({ iconName, title }) => {
 export const Option = () => {
 
     const navigate = useNavigate();
-    const [pic,setPic]=useState()
+    const [pic,setPic]=useState("")
     const displayToast = useToast();
     const toast = (title, status) => {
         return displayToast({
@@ -42,8 +42,15 @@ export const Option = () => {
 
 
 
-   
+     useEffect(()=>{
 
+
+        fetch(`http://localhost:1234/user/${_id}`).then(res=>res.json()).then(res=>setPic(res.img)).catch(err=>{
+            console.log(err)
+        })
+
+     },[_id])
+         
 
 
     return (
@@ -67,7 +74,7 @@ export const Option = () => {
                     <MenuList w={'360px'} boxShadow={'2xl'}>
                         <VStack gap={2} fontSize={17}>
 
-                            <MenuItem onClick={() => navigate('/profile')} icon={<Avatar name={`${firstName} ${lastName}`} size={'lg'} src="" />}>
+                            <MenuItem onClick={() => navigate('/profile')} icon={<Avatar name={`${firstName} ${lastName}`} size={'lg'}/>}>
                                 <Text fontSize={20} fontWeight={500} >{firstName} {lastName}</Text>
                                 <Text fontSize={14} color={'grey'}>See your profile</Text>
                             </MenuItem>

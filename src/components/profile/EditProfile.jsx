@@ -70,6 +70,20 @@ export const EditProfile = ({ m, w, title,pic,setPic }) => {
     const uploadProfilePic = (e) => {
 
         e.preventDefault();
+
+        fetch(`http://localhost:1234/profpic/${_id}`, {
+            method: 'DELETE',
+         
+        })
+            .then(d => d.json())
+            .then((res) => {
+               console.log("item delted ",res)
+            })
+            .catch(err => { console.log(err) })
+
+
+
+
         var formData = new FormData();
         console.log(profile ,"mai he hu bta")
        formData.append('user_id',_id)

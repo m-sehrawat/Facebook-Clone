@@ -18,6 +18,9 @@ export const CreatePost = ({getpost}) => {
     console.log(loadData('user'), "mai use data hu")
 
     const makepost = () => {
+        
+        
+
 
         var formData = new FormData();
         formData.append('user_id', _id)
