@@ -7,7 +7,7 @@ import { Post } from "../components/profile/Post";
 import { About } from "../components/profile/About";
 import { Friends } from "../components/profile/Friends";
 import { Photos } from "../components/profile/Photos";
-import { Bkwas } from "../components/bkwas"
+import { Bkwas } from "../components/bkwas";
 import { FriendRequest } from "../components/friends/FriendRequest";
 import { UserPost } from "../components/userProfile/UserPost";
 import { UserAbout } from "../components/userProfile/UserAbout";
@@ -44,4 +44,3 @@ export const Router = () => {
     </>
   );
 };
-
