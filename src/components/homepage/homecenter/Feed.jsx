@@ -4,7 +4,7 @@ import {FiThumbsUp} from "react-icons/fi"
 import {FaRegCommentAlt} from "react-icons/fa";
 import "./feed.css";
 import { RiShareForwardLine } from "react-icons/ri";
-export const Feed = ({ProfilePic, image, username, timestamp, message}) => {
+export const Feed = ({ProfilePic, image, username, timestamp, message, likeCount}) => {
     return (
         <div className ="feed">
         <div className="feed__top">
@@ -26,7 +26,7 @@ export const Feed = ({ProfilePic, image, username, timestamp, message}) => {
         <div className="feed__options">
         <div className="feed__option">
             <FiThumbsUp />
-            <p>Like</p>
+            <p>{likeCount} Like</p>
         </div>
         <div className="feed__option">
             <FaRegCommentAlt/>

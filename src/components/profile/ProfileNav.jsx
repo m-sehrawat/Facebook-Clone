@@ -18,11 +18,6 @@ export const ProfileNav = () => {
 
     const [pic, setPic] = useState('')
     const { firstName, lastName, friend_ids } = loadData('user');
-    const d = loadData('user');
-    console.log('d:', d)
-
-    
-
 
     return (
         <>

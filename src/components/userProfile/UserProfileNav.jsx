@@ -18,26 +18,26 @@ export const UserProfileNav = () => {
   const [userData, setUserData] = useState({ firstName: "", lastName: "" });
   const { firstName, lastName } = userData;
   const [receiver, setReceiver] = useState({});
-  const [pic,setPic]=useState("https://via.placeholder.com/200")
+  const [pic, setPic] = useState("https://via.placeholder.com/200")
 
   function sendrequest(senderid, receiverid) {
-    
+
 
     // receiver array editing
     fetch(`http://localhost:1234/user/${id}`).then(d => d.json()).then((res) => {
-        setReceiver(res)
-      
+      setReceiver(res)
+
     }).catch(err => { console.log(err) })
 
-       var arr=receiver.friend_request_in_ids
-      
-       console.log(arr,"mai he hu wo arry")
+    var arr = receiver.friend_request_in_ids
+
+    console.log(arr, "mai he hu wo arry")
 
     fetch(`http://localhost:1234/user/${id}`, {
       method: "PATCH",
       body: JSON.stringify({
 
-      friend_request_in_ids:[]
+        friend_request_in_ids: []
 
       }),
       headers: {
@@ -53,17 +53,18 @@ export const UserProfileNav = () => {
       });
   }
 
- function getsetprofile(id){
+  function getsetprofile(id) {
 
-    fetch(`http://localhost:1234/profpic/${id}`).then(res=>res.json()).then(res=>{setPic(res.img);
-    
-    
+    fetch(`http://localhost:1234/profpic/${id}`).then(res => res.json()).then(res => {
+      setPic(res.img);
 
-    }).catch(err=>{
-        console.log(err)
+
+
+    }).catch(err => {
+      console.log(err)
     })
 
- }
+  }
 
 
   useEffect(() => {
