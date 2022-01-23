@@ -45,7 +45,13 @@ export const Option = () => {
      useEffect(()=>{
 
 
-        fetch(`http://localhost:1234/profpic/${_id}`).then(res=>res.json()).then(res=>setPic(res.img)).catch(err=>{
+
+        fetch(`http://localhost:1234/profpic/${_id}`).then(res=>res.json()).then(res=>{setPic(res.img);
+    
+        console.log(res, "I am profile picture")
+    
+        }).catch(err=>{
+
             console.log(err)
         })
 
