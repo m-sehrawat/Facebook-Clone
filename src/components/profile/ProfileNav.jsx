@@ -2,7 +2,7 @@ import { Box, Button, Divider, Flex, Heading, HStack, Image, Spacer, Text } from
 import { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import { loadData } from "../../utils/localstore";
-import { EditProfile } from "./EditProfile";
+import { EditProfilePic } from "./EditProfilePic";
 
 
 const NewButton = ({ title, path }) => {
@@ -15,9 +15,14 @@ const NewButton = ({ title, path }) => {
 
 
 export const ProfileNav = () => {
-    const [pic, setPic]=useState('')
 
-    const {firstName, lastName} = loadData('user');
+    const [pic, setPic] = useState('')
+    const { firstName, lastName, friend_ids } = loadData('user');
+    const d = loadData('user');
+    console.log('d:', d)
+
+    
+
 
     return (
         <>
@@ -28,18 +33,18 @@ export const ProfileNav = () => {
                         <Image rounded={10} w={'950px'} src="https://via.placeholder.com/950x300" />
                     </Box>
 
-                    <Box h={'200px'}>
+                    <Box h={'190px'} mt={3}>
                         <Flex>
-                            <Box w={'200px'} h={'200px'} p={3} overflow={'hidden'}>
-                                <Image rounded={'full'} src={`uploadImgs/${pic}`} />
+                            <Box w={'180px'} h={'180px'} rounded={'full'} overflow={'hidden'} border={'2px solid #ececec'}>
+                                <Image src={`uploadImgs/${pic}`} />
                             </Box>
                             <Box p={5} mt={7}>
                                 <Heading>{firstName} {lastName}</Heading>
-                                <Text color={'grey'}>{'Number of friends'}</Text>
+                                <Text color={'grey'}>{friend_ids.length} Friends</Text>
                             </Box>
                             <Spacer />
                             <Box>
-                                <EditProfile m={'120px 50px'} title={'Edit Profile'} pic={pic} setPic={setPic} />
+                                <EditProfilePic m={'120px 50px'} title={'Edit Profile'} pic={pic} setPic={setPic} />
                             </Box>
                         </Flex>
                     </Box>
