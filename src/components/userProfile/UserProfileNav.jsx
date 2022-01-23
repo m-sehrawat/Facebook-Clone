@@ -36,7 +36,9 @@ export const UserProfileNav = () => {
     fetch(`http://localhost:1234/user/${id}`, {
       method: "PATCH",
       body: JSON.stringify({
+
       friend_request_in_ids:[]
+
       }),
       headers: {
         'Content-Type': "application/json"
@@ -49,11 +51,6 @@ export const UserProfileNav = () => {
       .catch((err) => {
         console.log(err);
       });
-
-
-
-
-
   }
 
  function getsetprofile(id){
