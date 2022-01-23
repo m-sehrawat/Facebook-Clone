@@ -73,7 +73,6 @@ export const About = () => {
                             {website ? <IntroText title={website} icon={MdDvr} /> : null}
                             {socialLink ? <IntroText title={socialLink} icon={MdQrCodeScanner} /> : null}
 
-                            
                         </Box>
 
                     </Grid>

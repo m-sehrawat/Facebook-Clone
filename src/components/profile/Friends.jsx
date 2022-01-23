@@ -1,4 +1,4 @@
-import { Box, Center, Flex, Heading, Image, SimpleGrid } from "@chakra-ui/react";
+import { Box, Center, Flex, Heading, Image, SimpleGrid, Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getDataInside, getDataIterate } from "../../utils/getData";
@@ -19,6 +19,14 @@ const FriendBox = ({ firstName, lastName, src, onClick }) => {
         </Box>
     );
 };
+
+const NewText = () => {
+    return (
+        <Flex justify={'center'} mt={'50px'}>
+            <Text fontSize={20} color={'grey'} fontWeight={800}>No friends to show</Text>
+        </Flex>
+    )
+}
 
 export const Friends = () => {
 
@@ -51,16 +59,17 @@ export const Friends = () => {
         <>
             <Box bg={'#f0f2f5'} minH={'300px'} pt={5} pb={'100px'} >
 
-                <Box w={'950px'} m={'auto'} bg={'white'} rounded={6} minH={'300px'} p={5}>
+                <Box w={'950px'} m={'auto'} bg={'white'} rounded={6} minH={'200px'} p={5}>
 
                     <Heading fontSize={23}>Friends</Heading>
-                    <SimpleGrid columns={2} spacing={10} mt={8}>
+                    {friendsId.length === 0 ? <NewText /> : <SimpleGrid columns={2} spacing={10} mt={8}>
 
                         {arr.map((e) => (
-                            <FriendBox  onClick={() => { viewProfile(_id) }} key={e._id} firstName={e.firstName} lastName={e.lastName} src={"https://via.placeholder.com/200"} />
+                            <FriendBox onClick={() => { viewProfile(_id) }} key={e._id} firstName={e.firstName} lastName={e.lastName} src={"https://tinyurl.com/3jtyuzje"} />
                         ))}
 
-                    </SimpleGrid>
+                    </SimpleGrid>}
+
                 </Box>
             </Box>
         </>

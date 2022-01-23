@@ -1,16 +1,10 @@
-import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, Button, useDisclosure, Input, Divider, Box, Heading, Image, Flex, Spacer, VStack, useToast, } from '@chakra-ui/react'
+import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, Button, useDisclosure, Input, Divider, Box, Heading, Flex, VStack, useToast, } from '@chakra-ui/react'
 import { RiEdit2Fill } from 'react-icons/ri';
 import { loadData } from '../../utils/localstore';
-import { useEffect, useState , useRef} from "react"
-import { getData } from '../../utils/getData';
+import { useState } from "react"
 
 
-
-
-
-
-export const EditProfile = ({ m, w, title,pic,setPic, getUserData }) => {
-    
+export const EditProfile = ({ m, w, title, getUserData }) => {
 
     const { isOpen, onOpen, onClose } = useDisclosure();
     const { _id } = loadData("user");
@@ -22,11 +16,7 @@ export const EditProfile = ({ m, w, title,pic,setPic, getUserData }) => {
     const [intro, setIntro] = useState({});
     const [hobbies, setHobbies] = useState({});
     const [website, setWebsite] = useState({});
-    
-    
-  
-  const profile=useRef()
-          
+
 
     const handleChange = (e, state, setState) => {
         let { name, value } = e.target;
@@ -45,79 +35,12 @@ export const EditProfile = ({ m, w, title,pic,setPic, getUserData }) => {
                 getUserData();
                 toast('Task Done', 'Your details updated succesfully', 'success')
                 onClose();
-               
-
             })
             .catch((err) => {
                 console.log(err);
                 toast('Network Error', 'Please try again', 'error')
             })
     }
-
-   useEffect(()=>{
-
-    fetch(`http://localhost:1234/profpic/${_id}`)
-        .then(d => d.json())
-        .then((res) => {
-            setPic(res.img)
-            console.log("Response:",res.img)
-        })
-        .catch(err => { console.log(err) })
-
-
-   },[profile])
-     
-    
-
-    const uploadProfilePic = (e) => {
-
-        e.preventDefault();
-
-        fetch(`http://localhost:1234/profpic/${_id}`, {
-            method: 'DELETE',
-         
-        })
-            .then(d => d.json())
-            .then((res) => {
-               console.log("item delted ",res)
-            })
-            .catch(err => { console.log(err) })
-
-
-
-
-        var formData = new FormData();
-        console.log(profile ,"mai he hu bta")
-       formData.append('user_id',_id)
-       formData.append('mypic', profile.current.files[0])
-
-      console.log(profile.current.files[0], "cat")
-
-        for (var data of formData.entries()){console.log(data,"i am for loop")}
-
-      
-        fetch(`http://localhost:1234/profpic/${_id}`, {
-            method: 'POST',
-            body:formData
-       })
-            .then(d => d.json())
-            .then((res) => {
-                
-                console.log("Response:", res, " I am response",formData)
-               
-            })
-            .catch(err => { console.log(err) })
-
-        
-        
-       
-
-
-        
-
-    }
-
-
 
 
     return (
@@ -131,42 +54,6 @@ export const EditProfile = ({ m, w, title,pic,setPic, getUserData }) => {
                     <Divider />
                     <ModalCloseButton />
                     <ModalBody >
-
-                        <Box m={'10px'}>
-                            <form onSubmit={uploadProfilePic}>
-                                <Flex>
-                                    <Heading fontSize={20}>Profile Pic</Heading>
-                                    <Spacer />
-                                    <input ref={profile} type='file' accept="image/png, image/jpeg" name='mypic'  />
-                                    <Spacer />
-                                    <Button type='submit' >Add</Button>
-                                </Flex>
-                            </form>
-                            <Flex justify={'center'} m={4}>
-                                <Box w={'160px'} h={'160px'} overflow={'hidden'} rounded={'full'}>
-                                    <Image src={`uploadImgs/${pic}`} />
-                                </Box>
-                            </Flex>
-                        </Box>
-                        {/* https://via.placeholder.com/200 */}
-                        <Divider />
-
-                        <Box m={'20px'}>
-                            <Flex>
-                                <Heading fontSize={20}>Cover Photo</Heading>
-                                <Spacer />
-                                <input id='profilePic' type='file' accept="image/png, image/jpeg" />
-                                <Spacer />
-                                <Button>Add</Button>
-                            </Flex>
-                            <Flex justify={'center'} m={4}>
-                                <Box w={'330px'} h={'100px'} overflow={'hidden'} rounded={4}>
-                                    <Image w={'100%'} src="https://via.placeholder.com/200" />
-                                </Box>
-                            </Flex>
-                        </Box>
-
-                        <Divider />
 
                         <Box m={'20px'}>
                             <Heading fontSize={20}>Bio</Heading>
