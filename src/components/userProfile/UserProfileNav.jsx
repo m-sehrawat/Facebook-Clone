@@ -102,7 +102,7 @@ export const UserProfileNav = () => {
           <Box h={"200px"}>
             <Flex>
               <Box w={"200px"} h={"200px"} p={3} overflow={"hidden"}>
-                <Image rounded={"full"} src={`uploadImgs/${pic}` || altimage} />
+                <Image rounded={"full"} src={`uploadImgs/${pic}`} />
               </Box>
               <Box p={5} mt={10}>
                 <Heading>
