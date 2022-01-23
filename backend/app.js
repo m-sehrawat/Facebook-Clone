@@ -45,13 +45,11 @@ app.use("/work", workcontroller)
 app.post("/login", login)
 
 
-// module.exports = app;
-
 const connect = require('./configs/db');
 
 const port = process.env.PORT || 3000
 
-app.listen(port, async () => {
+app.listen(1234, async () => {
   await connect()
-  console.log(`Server running at port ` + port);
+  console.log(`Server running at port 1234`);
 })

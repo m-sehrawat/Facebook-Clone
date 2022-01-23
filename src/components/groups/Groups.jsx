@@ -1,9 +1,6 @@
 import { Box, Button, Center, Flex, Heading, Image, SimpleGrid, Spacer, Text, useToast } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { Heroku } from "../../utils/herokuLink";
 import { CreateGroup } from "./CreateGroup";
-
-
 
 const GroupBox = ({ title, src }) => {
     return (
@@ -26,13 +23,13 @@ export const Groups = () => {
     const [group, setGroup] = useState([]);
     const displayToast = useToast();
     const toast = (title, description, status) => displayToast({ title, description, status, position: 'top', duration: 7000, isClosable: true, });
-    
+
     useEffect(() => {
         getData();
     }, []);
 
     const getData = () => {
-        fetch(`${Heroku}/groups`)
+        fetch(`http://localhost:1234/groups`)
             .then((res) => res.json())
             .then((res) => {
                 console.log(res);
@@ -42,7 +39,7 @@ export const Groups = () => {
     }
 
     const postData = (data, onClose) => {
-        fetch(`${Heroku}/groups`, {
+        fetch(`http://localhost:1234/groups`, {
             method: 'POST',
             body: JSON.stringify(data),
             headers: { 'Content-Type': 'application/json' }
