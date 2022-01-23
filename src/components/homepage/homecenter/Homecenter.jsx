@@ -4,6 +4,7 @@ import "./homecenter.css";
 import { MessageSender } from "./MessageSender";
 import { Feed } from "./Feed";
 import { useEffect, useState } from "react";
+import { Box } from "@chakra-ui/react";
 
 
 export const Homecenter = () => {
@@ -31,7 +32,9 @@ export const Homecenter = () => {
 
             <StoryReel />
 
+            <Box mb={'7px'}>
             <MessageSender getpost={getpost} />
+            </Box>
 
             {arr.map((e) => (
                 <div key={e._id}>
