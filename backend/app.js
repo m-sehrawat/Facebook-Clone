@@ -1,14 +1,14 @@
 const express = require('express');
-const bodyParser=require('body-parser')
+const bodyParser = require('body-parser')
 
 const app = express()
 app.use(express.json())
 
 app.use(
-    bodyParser.urlencoded({
-      extended: true,
-    })
-  );
+  bodyParser.urlencoded({
+    extended: true,
+  })
+);
 
 
 const profpiccontroller = require("./controllers/profilepic.controler")
@@ -43,4 +43,15 @@ app.use("/user", usercontroller)
 app.use("/post", postcontroller)
 app.use("/work", workcontroller)
 app.post("/login", login)
-module.exports = app;
+
+
+// module.exports = app;
+
+const connect = require('./configs/db');
+
+const port = process.env.PORT || 3000
+
+app.listen(port, async () => {
+  await connect()
+  console.log(`Server running at port ` + port);
+})
