@@ -5,7 +5,7 @@ const upload=require('../middleware/upload')
 const router = express.Router();
 
 
-
+    
 
 
 router.post("/:userid", upload.any("story_img"), async (req, res) => {
@@ -89,7 +89,7 @@ router.patch('/:userid/:storyid',async(req,res)=>{
     
     })
 
-
+   
 
 
 
