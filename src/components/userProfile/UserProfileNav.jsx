@@ -17,28 +17,26 @@ export const UserProfileNav = () => {
   const { _id } = loadData("user");
   const [userData, setUserData] = useState({ firstName: "", lastName: "" });
   const { firstName, lastName } = userData;
-  const [receiverin, setReceiverin] = useState([]);
+  const [receiver, setReceiver] = useState({});
+  const [pic,setPic]=useState("https://via.placeholder.com/200")
 
   function sendrequest(senderid, receiverid) {
-    var arr = [];
-    arr.push(senderid);
+    
 
     // receiver array editing
     fetch(`http://localhost:1234/user/${id}`).then(d => d.json()).then((res) => {
-      setReceiverin(res.friend_request_in_ids)
-      console.log("Response:", res.friend_request_in_ids)
+        setReceiver(res)
+      
     }).catch(err => { console.log(err) })
 
-    setReceiverin(p => [...p, ...arr])
-    // var arr3=receiverin;
-    // arr3[arr3.length-1]=senderid
-    //   console.log(arr, "I am arr3")
-    console.log(receiverin)
+       var arr=receiver.friend_request_in_ids
+      
+       console.log(arr,"mai he hu wo arry")
 
     fetch(`http://localhost:1234/user/${id}`, {
       method: "PATCH",
       body: JSON.stringify({
-        friend_request_in_ids: receiverin
+      friend_request_in_ids:[]
       }),
       headers: {
         'Content-Type': "application/json"
@@ -58,7 +56,21 @@ export const UserProfileNav = () => {
 
   }
 
+ function getsetprofile(id){
+
+    fetch(`http://localhost:1234/profpic/${id}`).then(res=>res.json()).then(res=>{setPic(res.img);
+    
+    
+
+    }).catch(err=>{
+        console.log(err)
+    })
+
+ }
+
+
   useEffect(() => {
+    getsetprofile(id)
     getData(id, setUserData);
   }, []);
 
@@ -77,7 +89,7 @@ export const UserProfileNav = () => {
           <Box h={"200px"}>
             <Flex>
               <Box w={"200px"} h={"200px"} p={3} overflow={"hidden"}>
-                <Image rounded={"full"} src="https://via.placeholder.com/200" />
+                <Image rounded={"full"} src={`uploadImgs/${pic}`} />
               </Box>
               <Box p={5} mt={10}>
                 <Heading>
