@@ -30,26 +30,26 @@ export const UserProfileNav = () => {
     // receiver array editing
     fetch(`http://localhost:1234/user/${id}`).then(d => d.json()).then((res) => {
             
-    
+                  
         setReceiver(res.friend_request_in_ids)
       
     }).catch(err => { console.log(err) })
-
+    console.log(receiver , "reciveriver 1")
        
       setReceiver(p=>{setReceiver( p.push(senderid) )})
      
-              console.log(receiver, 'mai hu receiver')
+              console.log(receiver , "reciveriver 2")
 
     fetch(`http://localhost:1234/user/${id}`, {
       method: "PATCH",
       body: JSON.stringify({
 
-        friend_request_in_ids: receiver
+        friend_request_in_ids:receiver
 
       }),
-      // headers: {
-      //   'Content-Type': "application/json"
-      // }
+      headers: {
+        'Content-Type': "application/json"
+      }
     })
       .then((d) => d.json())
       .then((res) => {
