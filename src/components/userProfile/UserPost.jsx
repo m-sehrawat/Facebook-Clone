@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { loadData } from "../../utils/localstore";
 import { getData } from "../../utils/getData";
 import { Homecenter } from "../homepage/homecenter/Homecenter";
+import { Feed } from "../homepage/homecenter/Feed";
 
 const IntroText = ({ icon, title }) => {
     return (
@@ -38,6 +39,23 @@ export const UserPost = () => {
     }, []);
 
 
+    const [arr, setArr] = useState([])
+
+    useEffect(() => {
+        getpost()
+    }, [])
+
+
+    const getpost = () => {
+        fetch(`http://localhost:1234/post`)
+            .then(d => d.json())
+            .then((res) => {
+                setArr(res.reverse());
+            })
+            .catch(err => { console.log(err) })
+    }
+
+
 
     return (
         <>
@@ -45,8 +63,8 @@ export const UserPost = () => {
 
                 <Box w={'950px'} m={'auto'} >
 
-                    <Grid templateColumns='40% 58%' gap={5}>
-                        <Box bg={'white'} rounded={6} p={5} boxShadow={'lg'}>
+                    <Grid templateColumns='38% 60%' gap={5}>
+                        <Box bg={'white'} minH={20} maxH={'420px'} rounded={6} p={5} boxShadow={'lg'}>
                             <Heading fontSize={23}>Intro</Heading>
                             <Text fontSize={18} my={4}>{bio}</Text>
                             {university ? <IntroText title={`Studied at ${university}`} icon={MdSchool} /> : null}
@@ -58,7 +76,17 @@ export const UserPost = () => {
 
                         </Box>
                         <Box minH={20}>
-                        <Homecenter />
+                            {arr.map((e) => (
+                                <div key={e._id}>
+                                    <Feed mgtop={'7px'}
+                                        ProfilePic={`uploadImgs/${e.userimg}`}
+                                        message={e.title}
+                                        timestamp={e.createdAt}
+                                        username={e.username}
+                                        image={`uploadImgs/${e.img}`}
+                                        likeCount={2}
+                                    />
+                                </div>))}
                         </Box>
                     </Grid>
                 </Box>
