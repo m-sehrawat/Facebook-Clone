@@ -19,6 +19,7 @@ export const UserProfileNav = () => {
   const { firstName, lastName } = userData;
   const [receiver, setReceiver] = useState([]);
   const [pic,setPic]=useState("https://via.placeholder.com/200")
+  const [mycpic,setMycpic]=useState("https://via.placeholder.com/200")
 
   function sendrequest(senderid, receiverid) {
     
@@ -65,9 +66,23 @@ export const UserProfileNav = () => {
 
  }
 
+ function getsetcover(id){
+  fetch(`http://localhost:1234/coverpic/${id}`).then(res=>res.json()).then(res=>{setMycpic(res.img);
+    
+    
+
+}).catch(err=>{
+    console.log(err)
+})
+
+
+
+ }
+
 
   useEffect(() => {
     getsetprofile(id)
+    getsetcover(id)
     getData(id, setUserData);
   }, [id]);
 
@@ -79,7 +94,7 @@ export const UserProfileNav = () => {
             <Image
               rounded={10}
               w={"950px"}
-              src="https://via.placeholder.com/950x300"
+              src={`uploadImgs/${mycpic}`}
             />
           </Box>
 
