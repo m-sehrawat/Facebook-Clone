@@ -20,9 +20,22 @@ export const UserPost = () => {
     const [userData, setUserData] = useState({ bio: "", university: "", school: "", currentCity: "", homeTown: "", relationship: "", hobbies: "" });
     const { bio, university, school, currentCity, homeTown, relationship, hobbies } = userData;
 
+
+    const getUserData = () => {
+        fetch(`http://localhost:1234/user/${id}`)
+            .then((res) => res.json())
+            .then((res) => {
+                setUserData(res);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    }
+
     useEffect(() => {
-        getData(id, setUserData);
+        getUserData();
     }, []);
+
 
 
     return (
