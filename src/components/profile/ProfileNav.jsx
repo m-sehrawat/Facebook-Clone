@@ -17,6 +17,7 @@ const NewButton = ({ title, path }) => {
 export const ProfileNav = () => {
 
     const [pic, setPic] = useState('')
+    const [mycpic,setMycpic]=useState("")
     const { firstName, lastName, friend_ids } = loadData('user');
     const d = loadData('user');
     console.log('d:', d)
@@ -30,7 +31,7 @@ export const ProfileNav = () => {
                 <Box w={'950px'} h={'570px'} m={'auto'}>
 
                     <Box overflow={'hidden'} h={'300px'}>
-                        <Image rounded={10} w={'950px'} src="https://via.placeholder.com/950x300" />
+                        <Image rounded={10} w={'950px'} src={`uploadImgs/${mycpic}`} />
                     </Box>
 
                     <Box h={'190px'} mt={3}>
@@ -40,11 +41,11 @@ export const ProfileNav = () => {
                             </Box>
                             <Box p={5} mt={7}>
                                 <Heading>{firstName} {lastName}</Heading>
-                                <Text color={'grey'}>{friend_ids.length} Friends</Text>
+                                <Text color={'grey'}>{0} Friends</Text>
                             </Box>
                             <Spacer />
                             <Box>
-                                <EditProfilePic m={'120px 50px'} title={'Edit Profile'} pic={pic} setPic={setPic} />
+                                <EditProfilePic m={'120px 50px'} title={'Edit Profile'} pic={pic} setPic={setPic}  mycpic={mycpic} setMycpic={setMycpic} />
                             </Box>
                         </Flex>
                     </Box>

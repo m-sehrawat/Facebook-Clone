@@ -4,13 +4,10 @@ const mongoose = require("mongoose")
 
 
 const coverpicSchema= mongoose.Schema({
-    user_id: {
-        type: mongoose.Schema.Types.ObjectId, 
-        ref:'user',
-        required: true},
+    user_id:{type:String,required:true},
    
 
-img:{type:String,required:true}
+   img:{type:String,required:false}
 
 
 }

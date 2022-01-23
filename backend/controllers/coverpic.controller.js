@@ -7,14 +7,14 @@ const router = express.Router();
 const bodyParser = require('body-parser')
 
 
-router.post("/:userid", upload.single("cover_img"), async (req, res) => {
+router.post("/:userid", upload.single("cpic"), async (req, res) => {
 
 
     try {
       const coverpic = await Coverpic.create({
         user_id:req.params.userid,  
         
-        img:req.file.path
+        img:req.file.filename
       });
   
       console.log(coverpic)
@@ -51,7 +51,7 @@ router.post("/:userid", upload.single("cover_img"), async (req, res) => {
    
 })
 
-router.patch('/:userid',async(req,res)=>{
+router.patch('/:userid',upload.single("cpic"),async(req,res)=>{
 
     try{
       const covpic=await Coverpic.findOneAndUpdate({user_id:req.params.userid},req.body,{new:true}).lean().exec()
