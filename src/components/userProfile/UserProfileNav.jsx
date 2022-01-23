@@ -20,7 +20,7 @@ export const UserProfileNav = () => {
 
   const [receiver, setReceiver] = useState([]);
   const [pic,setPic]=useState("https://via.placeholder.com/200")
-  const [mycpic,setMycpic]=useState("https://via.placeholder.com/200")
+  const [mycpic,setMycpic]=useState("https://via.placeholder.com/900x350")
 
 
   function sendrequest(senderid, receiverid) {
@@ -95,9 +95,8 @@ export const UserProfileNav = () => {
     <>
       <Box h={"570px"} bg={"white"}>
         <Box w={"950px"} h={"570px"} m={"auto"}>
-          <Box overflow={"hidden"} h={"300px"}>
-            <Image
-              rounded={10}
+          <Box overflow={"hidden"} h={"300px"} rounded={10}>
+            <Image              
               w={"950px"}
               src={`uploadImgs/${mycpic}`}
             />
@@ -105,11 +104,11 @@ export const UserProfileNav = () => {
 
           <Box h={"200px"}>
             <Flex>
-              <Box w={"200px"} h={"200px"} p={3} overflow={"hidden"}>
-                <Image rounded={"full"} src={`uploadImgs/${pic}`} />
+              <Box  w={'180px'} h={'180px'} rounded={'full'} overflow={"hidden"} border={'2px solid #ececec'}>
+                <Image src={`uploadImgs/${pic}`} />
               </Box>
               <Box p={5} mt={10}>
-                <Heading>
+                <Heading p={5} mt={7}>
                   {firstName} {lastName}
                 </Heading>
               </Box>

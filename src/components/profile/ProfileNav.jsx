@@ -16,8 +16,8 @@ const NewButton = ({ title, path }) => {
 
 export const ProfileNav = () => {
 
-    const [pic, setPic] = useState('')
-    const [mycpic,setMycpic]=useState("")
+    const [pic, setPic] = useState('https://via.placeholder.com/200')
+    const [mycpic,setMycpic]=useState("https://via.placeholder.com/900x350")
     const { firstName, lastName, friend_ids } = loadData('user');
 
     return (
@@ -25,8 +25,8 @@ export const ProfileNav = () => {
             <Box h={'570px'} bg={'white'}>
                 <Box w={'950px'} h={'570px'} m={'auto'}>
 
-                    <Box overflow={'hidden'} h={'300px'}>
-                        <Image rounded={10} w={'950px'} src={`uploadImgs/${mycpic}`} />
+                    <Box overflow={'hidden'} h={'300px'} rounded={10}>
+                        <Image  w={'950px'} src={`uploadImgs/${mycpic}`} />
                     </Box>
 
                     <Box h={'190px'} mt={3}>
