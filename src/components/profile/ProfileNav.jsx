@@ -25,7 +25,7 @@ export const ProfileNav = () => {
             <Box h={'570px'} bg={'white'}>
                 <Box w={'950px'} h={'570px'} m={'auto'}>
 
-                    <Box overflow={'hidden'} h={'300px'} rounded={10}>
+                    <Box overflow={'hidden'} h={'300px'} rounded={10} border={'2px solid #ececec'}>
                         <Image  w={'950px'} src={`uploadImgs/${mycpic}`} />
                     </Box>
 
@@ -51,7 +51,7 @@ export const ProfileNav = () => {
                             <NewButton title={'Post'} path={'/profile'} />
                             <NewButton title={'About'} path={'/profile/about'} />
                             <NewButton title={'Friends'} path={'/profile/friends'} />
-                            <NewButton title={'Photos'} path={'/profile/photos'} />
+                            {/* <NewButton title={'Photos'} path={'/profile/photos'} /> */}
                         </HStack>
                     </Box>
                 </Box>

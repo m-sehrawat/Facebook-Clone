@@ -19,8 +19,8 @@ export const UserProfileNav = () => {
   const { firstName, lastName } = userData;
 
   const [receiver, setReceiver] = useState([]);
-  const [pic,setPic]=useState("https://via.placeholder.com/200")
-  const [mycpic,setMycpic]=useState("https://via.placeholder.com/900x350")
+  const [pic, setPic] = useState("https://via.placeholder.com/200")
+  const [mycpic, setMycpic] = useState("https://via.placeholder.com/900x350")
 
 
   function sendrequest(senderid, receiverid) {
@@ -29,13 +29,13 @@ export const UserProfileNav = () => {
     // receiver array editing
     fetch(`http://localhost:1234/user/${id}`).then(d => d.json()).then((res) => {
 
-        setReceiver(res.friend_request_in_ids)
-      
+      setReceiver(res.friend_request_in_ids)
+
     }).catch(err => { console.log(err) })
 
-       
-      setReceiver([...receiver,senderid])
-      console.log(receiver, "Mai hu receiver")
+
+    setReceiver([...receiver, senderid])
+    console.log(receiver, "Mai hu receiver")
 
 
     fetch(`http://localhost:1234/user/${id}`, {
@@ -71,18 +71,19 @@ export const UserProfileNav = () => {
 
   }
 
- function getsetcover(id){
-  fetch(`http://localhost:1234/coverpic/${id}`).then(res=>res.json()).then(res=>{setMycpic(res.img);
-    
-    
-
-}).catch(err=>{
-    console.log(err)
-})
+  function getsetcover(id) {
+    fetch(`http://localhost:1234/coverpic/${id}`).then(res => res.json()).then(res => {
+      setMycpic(res.img);
 
 
 
- }
+    }).catch(err => {
+      console.log(err)
+    })
+
+
+
+  }
 
 
   useEffect(() => {
@@ -95,16 +96,16 @@ export const UserProfileNav = () => {
     <>
       <Box h={"570px"} bg={"white"}>
         <Box w={"950px"} h={"570px"} m={"auto"}>
-          <Box overflow={"hidden"} h={"300px"} rounded={10}>
-            <Image              
+          <Box overflow={"hidden"} h={"300px"} rounded={10} border={'2px solid #ececec'}>
+            <Image
               w={"950px"}
               src={`uploadImgs/${mycpic}`}
             />
           </Box>
 
-          <Box h={"200px"}>
+          <Box h={"190px"} mt={3}>
             <Flex>
-              <Box  w={'180px'} h={'180px'} rounded={'full'} overflow={"hidden"} border={'2px solid #ececec'}>
+              <Box w={'180px'} h={'180px'} rounded={'full'} overflow={"hidden"} border={'2px solid #ececec'}>
                 <Image src={`uploadImgs/${pic}`} />
               </Box>
               <Box p={5} mt={10}>
@@ -132,7 +133,7 @@ export const UserProfileNav = () => {
             <HStack>
               <NewButton title={"Post"} path={"/userprofile"} />
               <NewButton title={"About"} path={"/userprofile/about"} />
-              <NewButton title={"Photos"} path={"/userprofile/photos"} />
+              {/* <NewButton title={"Photos"} path={"/userprofile/photos"} /> */}
             </HStack>
           </Box>
         </Box>

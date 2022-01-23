@@ -44,7 +44,7 @@ export const UserPost = () => {
 
                 <Box w={'950px'} m={'auto'} >
 
-                    <Grid templateColumns='40% 58%' gap={5} border={'1px solid red'}>
+                    <Grid templateColumns='40% 58%' gap={5}>
                         <Box bg={'white'} rounded={6} p={5} boxShadow={'lg'}>
                             <Heading fontSize={23}>Intro</Heading>
                             <Text fontSize={18} my={4}>{bio}</Text>
@@ -56,7 +56,7 @@ export const UserPost = () => {
                             {hobbies ? <IntroText title={hobbies} icon={MdSkateboarding} /> : null}
 
                         </Box>
-                        <Box border={'1px solid red'} h={20}>
+                        <Box h={20}>
 
                         </Box>
                     </Grid>
