@@ -36,7 +36,7 @@ export const Homecenter = () => {
             {arr.map((e) => (
                 <Feed
                     key={e._id}
-                    ProfilePic={''}
+                    ProfilePic={`uploadImgs/${e.userimg}`}
                     message={e.title}
                     timestamp={e.createdAt}
                     username={e.username}

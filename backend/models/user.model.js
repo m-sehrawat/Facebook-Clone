@@ -27,18 +27,10 @@ const userSchema = new Schema(
         socialLink: { type: String, required: false },
 
         friend_ids: [{ type: String, required: false }],
+        
+        friend_request_in_ids: [{ type: String, required: false }],
 
-        friend_request_in_ids: [{
-            type: Schema.Types.ObjectId,
-            ref: "user",
-            required: false
-        }],
-
-        friend_request_out_ids: [{
-            type: Schema.Types.ObjectId,
-            ref: "user",
-            required: false
-        }],
+        friend_request_out_ids: [{ type: String, required: false }],  
 
     }, {
     versionKey: false,

@@ -32,7 +32,10 @@ router.post("/:userid", upload.single("post_img"), async (req, res) => {
         user_id:req.params.userid,  
         title: req.body.title,
         username:req.body.username,
+        userimg:req.body.userimg,
         img:req.file.filename,
+        likes:req.body.likes,
+        comments:req.body.comments
         
       });
   

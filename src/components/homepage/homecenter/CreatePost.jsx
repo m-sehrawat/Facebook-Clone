@@ -1,6 +1,6 @@
 import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalCloseButton, Button, useDisclosure, Divider, Textarea, VStack, Input, HStack, Text, useToast, } from '@chakra-ui/react'
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRef } from 'react';
 import { loadData } from '../../../utils/localstore';
 export const CreatePost = ({getpost}) => {
@@ -10,9 +10,29 @@ export const CreatePost = ({getpost}) => {
 
     const photo = useRef()
     const { _id, firstName } = loadData('user')
+    const [pic,setPic]=useState("")
 
     const displayToast = useToast();
     const toast = (title, description, status) => displayToast({ title, description, status, position: 'top', duration: 7000, isClosable: true, });
+
+    function getsetprofile(id){
+
+        fetch(`http://localhost:1234/profpic/${id}`).then(res=>res.json()).then(res=>{setPic(res.img);
+        
+        
+    
+        }).catch(err=>{
+            console.log(err)
+        })
+    
+     }
+   useEffect(()=>{
+
+    getsetprofile(_id)
+
+
+   },[_id])
+
 
 
     console.log(loadData('user'), "mai use data hu")
@@ -27,6 +47,7 @@ export const CreatePost = ({getpost}) => {
         formData.append('title', text)
         formData.append('username', firstName)
         formData.append('post_img', photo.current.files[0])
+        formData.append('userimg',pic)
 
         fetch(`http://localhost:1234/post/${_id}`, {
             method: 'POST',
