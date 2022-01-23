@@ -36,7 +36,7 @@ export const ProfileNav = () => {
                             </Box>
                             <Box p={5} mt={7}>
                                 <Heading>{firstName} {lastName}</Heading>
-                                <Text color={'grey'}>{0} Friends</Text>
+                                <Text color={'grey'}>{friend_ids.length} Friends</Text>
                             </Box>
                             <Spacer />
                             <Box>
