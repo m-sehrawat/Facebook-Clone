@@ -39,13 +39,14 @@
     "web-vitals": "^2.1.3"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start-react": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "gacp": "git add . && git commit -m updated && git push",
-    "server": " nodemon backend/server",
-    "chat": "nodemon chatapp/index"
+    "server": " nodemon backend/app.js",
+    "chat": "nodemon chatapp/index",
+    "start": "node backend/app.js"
   },
   "eslintConfig": {
     "extends": [
@@ -66,6 +67,7 @@
     ]
   },
   "devDependencies": {
+    "mini-css-extract-plugin": "^2.5.2",
     "tailwindcss": "^3.0.15"
   }
 }
