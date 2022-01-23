@@ -3,7 +3,7 @@ import { ArrowForwardIcon, ChatIcon, MoonIcon, QuestionIcon, SettingsIcon, Trian
 import { Link, useNavigate } from "react-router-dom";
 import { loadData } from "../../utils/localstore";
 import { saveData } from "../../utils/localstore";
-
+import { useState } from "react";
 
 const Item = ({ iconName, title }) => {
     return (
@@ -16,7 +16,7 @@ const Item = ({ iconName, title }) => {
 export const Option = () => {
 
     const navigate = useNavigate();
-
+    const [pic,setPic]=useState()
     const displayToast = useToast();
     const toast = (title, status) => {
         return displayToast({
@@ -38,7 +38,13 @@ export const Option = () => {
 
 
 
-    const { firstName, lastName } = loadData('user') || { firstName: "", lastName: "" };
+    const { firstName, lastName, _id } = loadData('user') || { firstName: "", lastName: "" ,_id:""};
+
+
+
+   
+
+
 
     return (
         <>
