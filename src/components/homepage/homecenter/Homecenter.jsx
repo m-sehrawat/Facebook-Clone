@@ -34,14 +34,17 @@ export const Homecenter = () => {
             <MessageSender getpost={getpost} />
 
             {arr.map((e) => (
-                <Feed
-                    key={e._id}
+                <div key={e._id}>
+                    <Feed
                     ProfilePic={`uploadImgs/${e.userimg}`}
                     message={e.title}
                     timestamp={e.createdAt}
                     username={e.username}
                     image={`uploadImgs/${e.img}`}
-                />))}
+                    likeCount={2}
+                />
+                <input type={'text'} />
+                </div>))}
         </div>
     )
 }
