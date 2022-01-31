@@ -2,6 +2,7 @@ import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody,
 import { RiEdit2Fill } from 'react-icons/ri';
 import { loadData } from '../../utils/localstore';
 import { useState } from "react"
+import { Heroku } from '../../utils/herokuLink';
 
 
 export const EditProfile = ({ m, w, title, getUserData }) => {
@@ -24,7 +25,7 @@ export const EditProfile = ({ m, w, title, getUserData }) => {
 
 
     const handleSubmit = (data) => {
-        fetch(`http://localhost:1234/user/${_id}`, {
+        fetch(`${Heroku}/user/${_id}`, {
             method: 'PATCH',
             body: JSON.stringify(data),
             headers: { 'Content-Type': 'application/json' }

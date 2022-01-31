@@ -6,6 +6,7 @@ import { loginfailure, loginsuccess } from "../../featuresRedux/auth/action"
 import { Signup } from './Signup';
 import { saveData } from '../../utils/localstore';
 import { loadData } from '../../utils/localstore';
+import { Heroku } from '../../utils/herokuLink';
 
 export const Login = () => {
 
@@ -24,7 +25,7 @@ export const Login = () => {
 
         const getdata = async () => {
             try {
-                const res = await fetch("http://localhost:1234/login", {
+                const res = await fetch(`${Heroku}/login`, {
                     method: "POST",
                     body: JSON.stringify(form),
                     headers: { "Content-Type": "application/json" }

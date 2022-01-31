@@ -2,6 +2,7 @@ import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody,
 import { RiEdit2Fill } from 'react-icons/ri';
 import { loadData } from '../../utils/localstore';
 import { useEffect, useRef } from "react"
+import { Heroku } from '../../utils/herokuLink';
 
 
 
@@ -15,7 +16,7 @@ export const EditProfilePic = ({ m, w, title, pic, setPic, mycpic, setMycpic }) 
 
     useEffect(() => {
 
-        fetch(`http://localhost:1234/profpic/${_id}`)
+        fetch(`${Heroku}/profpic/${_id}`)
             .then(d => d.json())
             .then((res) => {
                 setPic(res.img)
@@ -28,7 +29,7 @@ export const EditProfilePic = ({ m, w, title, pic, setPic, mycpic, setMycpic }) 
 
     useEffect(() => {
 
-        fetch(`http://localhost:1234/coverpic/${_id}`)
+        fetch(`${Heroku}/coverpic/${_id}`)
             .then(d => d.json())
             .then((res) => {
                 setMycpic(res.img)
@@ -43,7 +44,7 @@ export const EditProfilePic = ({ m, w, title, pic, setPic, mycpic, setMycpic }) 
     const uploadProfilePic = (e) => {
         e.preventDefault();
 
-        fetch(`http://localhost:1234/profpic/${_id}`, {
+        fetch(`${Heroku}/profpic/${_id}`, {
             method: 'DELETE',
         })
             .then(d => d.json())
@@ -62,7 +63,7 @@ export const EditProfilePic = ({ m, w, title, pic, setPic, mycpic, setMycpic }) 
 
         for (var data of formData.entries()) { console.log(data, "i am for loop") }
 
-        fetch(`http://localhost:1234/profpic/${_id}`, {
+        fetch(`${Heroku}/profpic/${_id}`, {
             method: 'POST',
             body: formData
         })
@@ -77,7 +78,7 @@ export const EditProfilePic = ({ m, w, title, pic, setPic, mycpic, setMycpic }) 
     const uploadcoverPic = (e) => {
         e.preventDefault();
 
-        fetch(`http://localhost:1234/coverpic/${_id}`, {
+        fetch(`${Heroku}/coverpic/${_id}`, {
             method: 'DELETE',
         })
             .then(d => d.json())
@@ -96,7 +97,7 @@ export const EditProfilePic = ({ m, w, title, pic, setPic, mycpic, setMycpic }) 
 
         for (var data of formData.entries()) { console.log(data, "i am for loop") }
 
-        fetch(`http://localhost:1234/coverpic/${_id}`, {
+        fetch(`${Heroku}/coverpic/${_id}`, {
             method: 'POST',
             body: formData
         })

@@ -6,6 +6,7 @@ import { MdMapsHomeWork, MdPlace, MdSkateboarding, MdAccountBalance, MdSchool } 
 import { useEffect, useState } from "react";
 import { Homecenter } from "../homepage/homecenter/Homecenter";
 import { Feed } from "../homepage/homecenter/Feed";
+import { Heroku } from "../../utils/herokuLink";
 
 const IntroText = ({ icon, title }) => {
     return (
@@ -23,7 +24,7 @@ export const Post = () => {
     const { bio, university, school, currentCity, homeTown, relationship, hobbies } = data;
 
     const getUserData = () => {
-        fetch(`http://localhost:1234/user/${_id}`)
+        fetch(`${Heroku}/user/${_id}`)
             .then((res) => res.json())
             .then((res) => {
                 setData(res);
@@ -45,7 +46,7 @@ export const Post = () => {
 
 
     const getpost = () => {
-        fetch(`http://localhost:1234/post`)
+        fetch(`${Heroku}/post`)
             .then(d => d.json())
             .then((res) => {
                 setArr(res.reverse());

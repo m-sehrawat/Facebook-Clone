@@ -1,10 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { Avatar, Box, Image } from "@chakra-ui/react";
 import { FiThumbsUp } from "react-icons/fi"
 import { FaRegCommentAlt } from "react-icons/fa";
 import "./feed.css";
 import { RiShareForwardLine } from "react-icons/ri";
-export const Feed = ({ ProfilePic, image, username, timestamp, message, likeCount, wid, mgtop }) => {
+export const Feed = ({ ProfilePic, image, username, timestamp, message, wid, mgtop }) => {
+
+    const [like, setLike] = useState(0)
+
+    const handleLike = () => {
+        setLike((p) => {
+            if (p === 1) {
+                return 0
+            } else {
+                return p + 1;
+            }
+        })
+    }
+
     return (
         <Box w={wid} my={mgtop}>
             <div className="feed">
@@ -25,9 +38,9 @@ export const Feed = ({ ProfilePic, image, username, timestamp, message, likeCoun
                     </Box>
                 </div>
                 <div className="feed__options">
-                    <div className="feed__option">
-                        <FiThumbsUp />
-                        <p>{likeCount} Like</p>
+                    <div onClick={handleLike} className="feed__option">
+                        <FiThumbsUp  />
+                        <p>{like === 0 ? '': like} Like</p>
                     </div>
                     <div className="feed__option">
                         <FaRegCommentAlt />

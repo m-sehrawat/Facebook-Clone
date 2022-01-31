@@ -5,6 +5,7 @@ import { MessageSender } from "./MessageSender";
 import { Feed } from "./Feed";
 import { useEffect, useState } from "react";
 import { Box } from "@chakra-ui/react";
+import { Heroku } from "../../../utils/herokuLink";
 
 
 export const Homecenter = () => {
@@ -17,7 +18,7 @@ export const Homecenter = () => {
 
 
     const getpost = () => {
-        fetch(`http://localhost:1234/post`)
+        fetch(`${Heroku}/post`)
             .then(d => d.json())
             .then((res) => {
                 setArr(res.reverse());
@@ -44,7 +45,6 @@ export const Homecenter = () => {
                     timestamp={e.createdAt}
                     username={e.username}
                     image={`uploadImgs/${e.img}`}
-                    likeCount={2}
                 />
                 
                 </div>))}

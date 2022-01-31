@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { loadData } from "../../utils/localstore";
 import { saveData } from "../../utils/localstore";
 import { useState ,useEffect} from "react";
+import { Heroku } from "../../utils/herokuLink";
 
 const Item = ({ iconName, title }) => {
     return (
@@ -16,7 +17,7 @@ const Item = ({ iconName, title }) => {
 export const Option = () => {
 
     const navigate = useNavigate();
-    const [pic,setPic]=useState("")
+    const [pic,setPic]=useState("");
     const displayToast = useToast();
     const toast = (title, status) => {
         return displayToast({
@@ -46,7 +47,7 @@ export const Option = () => {
 
 
 
-        fetch(`http://localhost:1234/profpic/${_id}`).then(res=>res.json()).then(res=>{setPic(res.img);
+        fetch(`${Heroku}/profpic/${_id}`).then(res=>res.json()).then(res=>{setPic(res.img);
     
         console.log(res, "I am profile picture")
     

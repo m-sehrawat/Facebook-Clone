@@ -2,6 +2,7 @@ import { Search2Icon } from "@chakra-ui/icons";
 import { Avatar, Center, Container, Flex, Image, Input, InputGroup, InputLeftElement, Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Heroku } from "../../utils/herokuLink";
 import { saveData } from "../../utils/localstore";
 
 export const Search = () => {
@@ -23,7 +24,7 @@ export const Search = () => {
     const searchUser = async (username) => {
         try {
             if (username.length < 3) { return false };
-            let res = await fetch(`http://localhost:1234/search/${username}`);
+            let res = await fetch(`${Heroku}/search/${username}`);
             let data = await res.json();
             setArr(data);
         } catch (e) {

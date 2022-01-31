@@ -4,6 +4,7 @@ import { AlertDialogFooter, Box, Button, Divider, Flex, Heading, HStack, Image, 
 import { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import { getData } from "../../utils/getData";
+import { Heroku } from "../../utils/herokuLink";
 import { loadData } from "../../utils/localstore";
 
 const NewButton = ({ title, path }) => {
@@ -38,7 +39,7 @@ export const UserProfileNav = () => {
    
     var t={};
     // receiver array editing
-    fetch(`http://localhost:1234/user/${id}`).then(d => d.json()).then((res) => {
+    fetch(`${Heroku}/user/${id}`).then(d => d.json()).then((res) => {
            
           t=res;
           
@@ -46,7 +47,7 @@ export const UserProfileNav = () => {
           console.log(t, "mai t hu")
           
            
-    fetch(`http://localhost:1234/user/${id}`, {method: "PATCH",body: JSON.stringify(t),headers: {
+    fetch(`${Heroku}/user/${id}`, {method: "PATCH",body: JSON.stringify(t),headers: {
       'Content-Type': "application/json"
       }}).then((d) => d.json()).then((res) => { console.log("Response:", res, " I am response from patch request receiver");setSent(true)})
      .catch((err) => {console.log(err);});   
@@ -62,11 +63,11 @@ export const UserProfileNav = () => {
 function editsenderarr(){
   var obj={}
 
- fetch(`http://localhost:1234/user/${_id}`).then(d => d.json()).then((res) => {
+ fetch(`${Heroku}/user/${_id}`).then(d => d.json()).then((res) => {
             obj=res;
             obj.friend_request_out_ids.push(receiverid)
 
-  fetch(`http://localhost:1234/user/${_id}`, {method: "PATCH",body: JSON.stringify(obj),headers: {
+  fetch(`${Heroku}/user/${_id}`, {method: "PATCH",body: JSON.stringify(obj),headers: {
 'Content-Type': "application/json"
 }}).then((d) => d.json()).then((res) => { console.log("Response:", res, " I am response from patch request sender");})
 .catch((err) => {console.log(err);});
@@ -79,18 +80,18 @@ editsenderarr()
 }
   
 
-function getsetprofile(id) {fetch(`http://localhost:1234/profpic/${id}`).then(res => res.json()).then(res => { setPic(res.img);
+function getsetprofile(id) {fetch(`${Heroku}/profpic/${id}`).then(res => res.json()).then(res => { setPic(res.img);
    }).catch(err => {console.log(err)})}
 
  function getsetcover(id){
-  fetch(`http://localhost:1234/coverpic/${id}`).then(res=>res.json()).then(res=>{setMycpic(res.img);}).catch(err=>{
+  fetch(`${Heroku}/coverpic/${id}`).then(res=>res.json()).then(res=>{setMycpic(res.img);}).catch(err=>{
     console.log(err)})}
 
 
 
 function getsetAlreadyfrd(){
   var alf={}
-  fetch(`http://localhost:1234/user/${id}`).then((d) => d.json()).then((res) => {
+  fetch(`${Heroku}/user/${id}`).then((d) => d.json()).then((res) => {
     alf=res;
      
     alf.friend_request_in_ids.includes(_id)?setAlreadyfrd(true):setAlreadyfrd(false)
@@ -102,7 +103,7 @@ function getsetAlreadyfrd(){
    }
 
   function getsetcover(id) {
-    fetch(`http://localhost:1234/coverpic/${id}`).then(res => res.json()).then(res => {
+    fetch(`${Heroku}/coverpic/${id}`).then(res => res.json()).then(res => {
       setMycpic(res.img);
 
 

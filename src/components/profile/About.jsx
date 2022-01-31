@@ -4,6 +4,7 @@ import { EditProfile } from "./EditProfile";
 import { AiFillHeart } from "react-icons/ai";
 import { MdMapsHomeWork, MdPlace, MdSkateboarding, MdAccountBalance, MdSchool, MdPermContactCalendar, MdQrCodeScanner, MdImportContacts, MdDvr, MdVolumeUp } from "react-icons/md";
 import { useEffect, useState } from "react";
+import { Heroku } from "../../utils/herokuLink";
 
 const IntroText = ({ icon, title }) => {
     return (
@@ -21,7 +22,7 @@ export const About = () => {
     const { university, school, currentCity, homeTown, relationship, hobbies, date, interest, language, website, socialLink } = data;
     
     const getUserData = () => {
-        fetch(`http://localhost:1234/user/${_id}`)
+        fetch(`${Heroku}/user/${_id}`)
             .then((res) => res.json())
             .then((res) => {
                 setData(res);

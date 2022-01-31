@@ -6,6 +6,7 @@ import { loadData } from "../../utils/localstore";
 import { getData } from "../../utils/getData";
 import { Homecenter } from "../homepage/homecenter/Homecenter";
 import { Feed } from "../homepage/homecenter/Feed";
+import { Heroku } from "../../utils/herokuLink";
 
 const IntroText = ({ icon, title }) => {
     return (
@@ -24,7 +25,7 @@ export const UserPost = () => {
 
 
     const getUserData = () => {
-        fetch(`http://localhost:1234/user/${id}`)
+        fetch(`${Heroku}/user/${id}`)
             .then((res) => res.json())
             .then((res) => {
                 setUserData(res);
@@ -47,7 +48,7 @@ export const UserPost = () => {
 
 
     const getpost = () => {
-        fetch(`http://localhost:1234/post`)
+        fetch(`${Heroku}/post`)
             .then(d => d.json())
             .then((res) => {
                 setArr(res.reverse());

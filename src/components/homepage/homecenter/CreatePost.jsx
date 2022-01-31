@@ -3,6 +3,8 @@ import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalCloseBu
 import { useEffect, useState } from 'react';
 import { useRef } from 'react';
 import { loadData } from '../../../utils/localstore';
+import {Heroku} from '../../../utils/herokuLink';
+
 export const CreatePost = ({getpost}) => {
 
     const { isOpen, onOpen, onClose } = useDisclosure();
@@ -10,14 +12,14 @@ export const CreatePost = ({getpost}) => {
 
     const photo = useRef()
     const { _id, firstName } = loadData('user')
-    const [pic,setPic]=useState("")
+    const [pic,setPic]=useState("") 
 
     const displayToast = useToast();
     const toast = (title, description, status) => displayToast({ title, description, status, position: 'top', duration: 7000, isClosable: true, });
 
     function getsetprofile(id){
 
-        fetch(`http://localhost:1234/profpic/${id}`).then(res=>res.json()).then(res=>{setPic(res.img);
+        fetch(`${Heroku}/profpic/${id}`).then(res=>res.json()).then(res=>{setPic(res.img);
         
         
     
@@ -49,7 +51,7 @@ export const CreatePost = ({getpost}) => {
         formData.append('post_img', photo.current.files[0])
         formData.append('userimg',pic)
 
-        fetch(`http://localhost:1234/post/${_id}`, {
+        fetch(`${Heroku}/post/${_id}`, {
             method: 'POST',
             body: formData
         })

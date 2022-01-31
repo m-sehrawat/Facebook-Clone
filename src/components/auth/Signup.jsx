@@ -1,5 +1,6 @@
 import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, Button, useDisclosure, Text, Heading, Divider, Flex, HStack, Input, VStack, Box, Select, useToast } from '@chakra-ui/react'
 import { useState } from "react";
+import { Heroku } from '../../utils/herokuLink';
 
 
 export const Signup = () => {
@@ -31,7 +32,7 @@ export const Signup = () => {
 
         if (firstName && lastName && email && password.length > 7 && date && gender) {
 
-            fetch("http://localhost:1234/register", {
+            fetch(`${Heroku}/register`, {
                 method: 'POST',
                 body: JSON.stringify(form),
                 headers: { 'Content-Type': 'application/json' }
