@@ -2,17 +2,27 @@ import React, { useEffect, useState } from "react"
 import "./friendrequest.css";
 import { Leftsidebar } from "./Leftsidebar";
 
-import { Box, Button, Center, Heading, Image, SimpleGrid, Text } from "@chakra-ui/react";
+import { Box, Button, Center, Flex, Heading, Image, SimpleGrid, Text } from "@chakra-ui/react";
 import { loadData } from "../../utils/localstore";
 import { useNavigate } from "react-router-dom";
 import { getDataInside, getDataIterate, getDataRequest } from "../../utils/getData";
+
+
+const NewText = () => {
+    return (
+        <Flex  justify={'center'} mt={'50px'}>
+            <Text fontSize={20} color={'grey'} fontWeight={800}>No friends to show</Text>
+        </Flex>
+    )
+}
+
 
 const FriendList = ({ title, src, element }) => {
 
     const { _id } = loadData('user');
 
-    const confirmRequest  = (receiver, senderObj) => {
-        
+    const confirmRequest = (receiver, senderObj) => {
+
     }
 
     return (
@@ -24,7 +34,7 @@ const FriendList = ({ title, src, element }) => {
                 <Text fontWeight={500} fontSize={20}>{title}</Text>
             </Box>
             <Center h={'50px'} w={'100%'} p={4} mr={'5px'} >
-                <Button onClick={()=>{confirmRequest( _id, element)}} w={'100%'} bgColor={"#2e81f4"} color={"white"}>Confirm</Button>
+                <Button onClick={() => { confirmRequest(_id, element) }} w={'100%'} bgColor={"#2e81f4"} color={"white"}>Confirm</Button>
             </Center>
             <Center h={'50px'} w={'100%'} p={4} mr={'5px'} >
                 <Button w={'100%'}>Delete</Button>
@@ -52,9 +62,24 @@ export const FriendRequest = () => {
         })
     }, [friendRequestId])
 
+    const array = [
+        {
+            firstName: "Deepak",
+            lastName: "Sharma"
+        },
+        {
+            firstName: "Rashmi",
+            lastName: "Jha"
+        },
+        {
+            firstName: "Swarnika",
+            lastName: "Singh"
+        },
+    ]
 
-    const confirmRequest  = () => {
-        
+
+    const confirmRequest = () => {
+
     }
 
 
@@ -67,8 +92,8 @@ export const FriendRequest = () => {
                 </Box>
                 <SimpleGrid columns={5} spacing={3} w={'1100px'} m={'auto'} minH={200}>
 
-                    {arr.map((e) => (
-                        <FriendList element={e} title={`${e.firstName} ${e.lastName}`} src={"https://via.placeholder.com/200"} />
+                    {array.map((e) => (
+                        <FriendList element={e} title={`${e.firstName} ${e.lastName}`} src={"https://tinyurl.com/555fszda"} />
                     ))}
 
                 </SimpleGrid>

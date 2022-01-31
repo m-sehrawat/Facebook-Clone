@@ -5,25 +5,25 @@ export const StoryReel = () => {
     return (
         <div className="storyReel">
         <Story
-        image ={"sun.jpg"}
+        image ={"story1.jpg"}
         ProfileSrc=""
         title="Bhargav Katira" />
          <Story
-        image ={"sun.jpg"}
+        image ={"story2.jpg"}
         ProfileSrc=""
-        title="Bhargav Katira" />
+        title="Mohit Sehrawat" />
          <Story
-        image ={"sun.jpg"}
+        image ={"story3.jpg"}
         ProfileSrc=""
-        title="Bhargav Katira" />
+        title="Swarnika Sharma" />
          <Story
-        image ={"sun.jpg"}
+        image ={"story4.jpg"}
         ProfileSrc=""
-        title="Bhargav Katira" />
+        title="Deepak Solanki" />
          <Story
-        image ={"sun.jpg"}
+        image ={"story5.jpg"}
         ProfileSrc=""
-        title="Bhargav Katira" />
+        title="Tarun Mahajan" />
          
             
         </div>

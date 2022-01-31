@@ -4,6 +4,8 @@ import { EditProfile } from "./EditProfile";
 import { AiFillHeart } from "react-icons/ai";
 import { MdMapsHomeWork, MdPlace, MdSkateboarding, MdAccountBalance, MdSchool } from "react-icons/md";
 import { useEffect, useState } from "react";
+import { Homecenter } from "../homepage/homecenter/Homecenter";
+import { Feed } from "../homepage/homecenter/Feed";
 
 const IntroText = ({ icon, title }) => {
     return (
@@ -35,15 +37,31 @@ export const Post = () => {
         getUserData();
     }, []);
 
+    const [arr, setArr] = useState([])
+
+    useEffect(() => {
+        getpost()
+    }, [])
+
+
+    const getpost = () => {
+        fetch(`http://localhost:1234/post`)
+            .then(d => d.json())
+            .then((res) => {
+                setArr(res.reverse());
+            })
+            .catch(err => { console.log(err) })
+    }
+
 
     return (
         <>
             <Box bg={'#f0f2f5'} minH={'300px'} pt={5} pb={'100px'}>
 
-                <Box w={'950px'} m={'auto'} >
+                <Box w={'1000px'} m={'auto'} >
 
-                    <Grid templateColumns='40% 58%' gap={5}>
-                        <Box minH={20} bg={'white'} rounded={6} p={5} boxShadow={'lg'}>
+                    <Grid templateColumns='38% 60%' gap={5}>
+                        <Box minH={20} maxH={'420px'} bg={'white'} rounded={6} p={5} boxShadow={'lg'}>
                             <Heading fontSize={23}>Intro</Heading>
                             <Text fontSize={18} my={4}>{bio}</Text>
                             {university ? <IntroText title={`Studied at ${university}`} icon={MdSchool} /> : null}
@@ -56,8 +74,18 @@ export const Post = () => {
                             <EditProfile w={'100%'} m={'15px auto 5px'} title={'Edit Intro'} getUserData={getUserData} />
 
                         </Box>
-                        <Box border={'1px solid red'} h={20}>
-
+                        <Box minH={20}>
+                            {arr.map((e) => (
+                                <div key={e._id}>
+                                    <Feed mgtop={'7px'}
+                                        ProfilePic={`uploadImgs/${e.userimg}`}
+                                        message={e.title}
+                                        timestamp={e.createdAt}
+                                        username={e.username}
+                                        image={`uploadImgs/${e.img}`}
+                                        likeCount={2}
+                                    />
+                                </div>))}
                         </Box>
                     </Grid>
                 </Box>

@@ -4,6 +4,7 @@ import "./homecenter.css";
 import { MessageSender } from "./MessageSender";
 import { Feed } from "./Feed";
 import { useEffect, useState } from "react";
+import { Box } from "@chakra-ui/react";
 
 
 export const Homecenter = () => {
@@ -31,11 +32,13 @@ export const Homecenter = () => {
 
             <StoryReel />
 
+            <Box mb={'7px'}>
             <MessageSender getpost={getpost} />
+            </Box>
 
             {arr.map((e) => (
                 <div key={e._id}>
-                    <Feed
+                    <Feed wid={'70%'} mgtop={'7px'}
                     ProfilePic={`uploadImgs/${e.userimg}`}
                     message={e.title}
                     timestamp={e.createdAt}
@@ -43,7 +46,7 @@ export const Homecenter = () => {
                     image={`uploadImgs/${e.img}`}
                     likeCount={2}
                 />
-                <input type={'text'} />
+                
                 </div>))}
         </div>
     )

@@ -1,4 +1,6 @@
-import { AlertDialogFooter, Box, Button, Divider, Flex, Heading, HStack, Image, Spacer } from "@chakra-ui/react";
+
+import { AlertDialogFooter, Box, Button, Divider, Flex, Heading, HStack, Image, Spacer, useToast } from "@chakra-ui/react";
+
 import { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import { getData } from "../../utils/getData";
@@ -19,14 +21,19 @@ export const UserProfileNav = () => {
   const [userData, setUserData] = useState({ firstName: "", lastName: "" });
   const { firstName, lastName } = userData;
 
+
  
   
   const [pic,setPic]=useState(`https://via.placeholder.com/200`)
   const [mycpic,setMycpic]=useState(`https://via.placeholder.com/200`)
   const [alreadyfrd,setAlreadyfrd]=useState(false)
   const [sent,setSent]=useState(false)
- 
-  
+
+  const displayToast = useToast();
+  const toast = (title, description, status) => displayToast({ title, description, status, position: 'top', duration: 7000, isClosable: true, });
+
+
+
   function sendrequest(senderid, receiverid) {
    
     var t={};
@@ -45,10 +52,12 @@ export const UserProfileNav = () => {
      .catch((err) => {console.log(err);});   
 
 
+
           
         
         }).catch(err => { console.log(err) })   
          
+
 
 function editsenderarr(){
   var obj={}
@@ -67,8 +76,8 @@ function editsenderarr(){
 }
 editsenderarr()
 
-
-  }
+}
+  
 
 function getsetprofile(id) {fetch(`http://localhost:1234/profpic/${id}`).then(res => res.json()).then(res => { setPic(res.img);
    }).catch(err => {console.log(err)})}
@@ -76,6 +85,7 @@ function getsetprofile(id) {fetch(`http://localhost:1234/profpic/${id}`).then(re
  function getsetcover(id){
   fetch(`http://localhost:1234/coverpic/${id}`).then(res=>res.json()).then(res=>{setMycpic(res.img);}).catch(err=>{
     console.log(err)})}
+
 
 
 function getsetAlreadyfrd(){
@@ -91,6 +101,21 @@ function getsetAlreadyfrd(){
    
    }
 
+  function getsetcover(id) {
+    fetch(`http://localhost:1234/coverpic/${id}`).then(res => res.json()).then(res => {
+      setMycpic(res.img);
+
+
+
+    }).catch(err => {
+      console.log(err)
+    })
+
+
+
+  }
+
+
 
   useEffect(() => {
     getsetprofile(id)
@@ -103,21 +128,20 @@ function getsetAlreadyfrd(){
     <>
       <Box h={"570px"} bg={"white"}>
         <Box w={"950px"} h={"570px"} m={"auto"}>
-          <Box overflow={"hidden"} h={"300px"}>
+          <Box overflow={"hidden"} h={"300px"} rounded={10} border={'2px solid #ececec'}>
             <Image
-              rounded={10}
               w={"950px"}
               src={`uploadImgs/${mycpic}`}
             />
           </Box>
 
-          <Box h={"200px"}>
+          <Box h={"190px"} mt={3}>
             <Flex>
-              <Box w={"200px"} h={"200px"} p={3} overflow={"hidden"}>
-                <Image rounded={"full"} src={`uploadImgs/${pic}`} />
+              <Box w={'180px'} h={'180px'} rounded={'full'} overflow={"hidden"} border={'2px solid #ececec'}>
+                <Image src={`uploadImgs/${pic}`} />
               </Box>
               <Box p={5} mt={10}>
-                <Heading>
+                <Heading p={5} mt={7}>
                   {firstName} {lastName}
                 </Heading>
               </Box>
@@ -127,7 +151,7 @@ function getsetAlreadyfrd(){
                   colorScheme={"blue"}
                   m={"120px 50px"}
                   onClick={() => {
-                    sendrequest(_id, id);
+                    toast('Friend Request Send', '','success')
                   }}
                 >
                   Send Request
@@ -141,7 +165,7 @@ function getsetAlreadyfrd(){
             <HStack>
               <NewButton title={"Post"} path={"/userprofile"} />
               <NewButton title={"About"} path={"/userprofile/about"} />
-              <NewButton title={"Photos"} path={"/userprofile/photos"} />
+              {/* <NewButton title={"Photos"} path={"/userprofile/photos"} /> */}
             </HStack>
           </Box>
         </Box>
