@@ -1,4 +1,4 @@
-import { Box, Button, Divider, Flex, Heading, HStack, Image, Spacer } from "@chakra-ui/react";
+import { AlertDialogFooter, Box, Button, Divider, Flex, Heading, HStack, Image, Spacer } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import { getData } from "../../utils/getData";
@@ -15,86 +15,87 @@ const NewButton = ({ title, path }) => {
 export const UserProfileNav = () => {
   const id = loadData("viewProfileId");
   const { _id } = loadData("user");
+  const currUser=loadData("user")
   const [userData, setUserData] = useState({ firstName: "", lastName: "" });
   const { firstName, lastName } = userData;
 
-  const [receiver, setReceiver] = useState([]);
  
+  
   const [pic,setPic]=useState(`https://via.placeholder.com/200`)
   const [mycpic,setMycpic]=useState(`https://via.placeholder.com/200`)
-
-var arr=[];
+  const [alreadyfrd,setAlreadyfrd]=useState(false)
+  const [sent,setSent]=useState(false)
+ 
+  
   function sendrequest(senderid, receiverid) {
-
-
+   
+    var t={};
     // receiver array editing
     fetch(`http://localhost:1234/user/${id}`).then(d => d.json()).then((res) => {
-            
-                  
-        setReceiver(res.friend_request_in_ids)
-      
-    }).catch(err => { console.log(err) })
-    console.log(receiver , "reciveriver 1")
-       
-      setReceiver(p=>{setReceiver( p.push(senderid) )})
-     
-             
-      for(var i=0;i<receiver.length;i++){
-          arr[i]=receiver[i]
-      }
+           
+          t=res;
+          
+          t.friend_request_in_ids.push(senderid)
+          console.log(t, "mai t hu")
+          
+           
+    fetch(`http://localhost:1234/user/${id}`, {method: "PATCH",body: JSON.stringify(t),headers: {
+      'Content-Type': "application/json"
+      }}).then((d) => d.json()).then((res) => { console.log("Response:", res, " I am response from patch request receiver");setSent(true)})
+     .catch((err) => {console.log(err);});   
 
-      console.log(arr ,"I ma arr")
 
-    fetch(`http://localhost:1234/user/${id}`, {
-      method: "PATCH",
-      body: JSON.stringify({
+          
+        
+        }).catch(err => { console.log(err) })   
+         
 
-        friend_request_in_ids:arr
+function editsenderarr(){
+  var obj={}
 
-      }),
-      headers: {
-        'Content-Type': "application/json"
-      }
-    })
-      .then((d) => d.json())
-      .then((res) => {
-        console.log("Response:", res, " I am response from patch reques");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+ fetch(`http://localhost:1234/user/${_id}`).then(d => d.json()).then((res) => {
+            obj=res;
+            obj.friend_request_out_ids.push(receiverid)
+
+  fetch(`http://localhost:1234/user/${_id}`, {method: "PATCH",body: JSON.stringify(obj),headers: {
+'Content-Type': "application/json"
+}}).then((d) => d.json()).then((res) => { console.log("Response:", res, " I am response from patch request sender");})
+.catch((err) => {console.log(err);});
+
+
+}).catch(err => { console.log(err) })
+}
+editsenderarr()
+
+
   }
 
-  function getsetprofile(id) {
-
-    fetch(`http://localhost:1234/profpic/${id}`).then(res => res.json()).then(res => {
-      setPic(res.img);
-
-
-
-    }).catch(err => {
-      console.log(err)
-    })
-
-  }
+function getsetprofile(id) {fetch(`http://localhost:1234/profpic/${id}`).then(res => res.json()).then(res => { setPic(res.img);
+   }).catch(err => {console.log(err)})}
 
  function getsetcover(id){
-  fetch(`http://localhost:1234/coverpic/${id}`).then(res=>res.json()).then(res=>{setMycpic(res.img);
+  fetch(`http://localhost:1234/coverpic/${id}`).then(res=>res.json()).then(res=>{setMycpic(res.img);}).catch(err=>{
+    console.log(err)})}
+
+
+function getsetAlreadyfrd(){
+  var alf={}
+  fetch(`http://localhost:1234/user/${id}`).then((d) => d.json()).then((res) => {
+    alf=res;
+     
+    alf.friend_request_in_ids.includes(_id)?setAlreadyfrd(true):setAlreadyfrd(false)
     
     
-
-}).catch(err=>{
-    console.log(err)
-})
-
-
-
- }
+    })
+   .catch((err) => {console.log(err);});  
+   
+   }
 
 
   useEffect(() => {
     getsetprofile(id)
     getsetcover(id)
+    getsetAlreadyfrd()
     getData(id, setUserData);
   }, [id]);
 

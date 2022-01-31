@@ -24,7 +24,7 @@ export const Login = () => {
 
         const getdata = async () => {
             try {
-                const res = await fetch("http://localhost:3000/login", {
+                const res = await fetch("http://localhost:1234/login", {
                     method: "POST",
                     body: JSON.stringify(form),
                     headers: { "Content-Type": "application/json" }
