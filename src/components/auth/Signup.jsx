@@ -5,7 +5,7 @@ import { Heroku } from '../../utils/herokuLink';
 
 export const Signup = () => {
 
-    const { isOpen, onOpen, onClose } = useDisclosure();
+    const { isOpen, onOpen, onClose } = useDisclosure() ;
 
     const initState = {
         firstName: "",
