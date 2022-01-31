@@ -1,4 +1,6 @@
-import { Box, Button, Divider, Flex, Heading, HStack, Image, Spacer, useToast } from "@chakra-ui/react";
+
+import { AlertDialogFooter, Box, Button, Divider, Flex, Heading, HStack, Image, Spacer, useToast } from "@chakra-ui/react";
+
 import { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import { getData } from "../../utils/getData";
@@ -15,12 +17,17 @@ const NewButton = ({ title, path }) => {
 export const UserProfileNav = () => {
   const id = loadData("viewProfileId");
   const { _id } = loadData("user");
+  const currUser=loadData("user")
   const [userData, setUserData] = useState({ firstName: "", lastName: "" });
   const { firstName, lastName } = userData;
 
-  const [receiver, setReceiver] = useState([]);
-  const [pic, setPic] = useState("https://via.placeholder.com/200")
-  const [mycpic, setMycpic] = useState("https://via.placeholder.com/900x350")
+
+ 
+  
+  const [pic,setPic]=useState(`https://via.placeholder.com/200`)
+  const [mycpic,setMycpic]=useState(`https://via.placeholder.com/200`)
+  const [alreadyfrd,setAlreadyfrd]=useState(false)
+  const [sent,setSent]=useState(false)
 
   const displayToast = useToast();
   const toast = (title, description, status) => displayToast({ title, description, status, position: 'top', duration: 7000, isClosable: true, });
@@ -28,52 +35,71 @@ export const UserProfileNav = () => {
 
 
   function sendrequest(senderid, receiverid) {
-
-
+   
+    var t={};
     // receiver array editing
     fetch(`http://localhost:1234/user/${id}`).then(d => d.json()).then((res) => {
+           
+          t=res;
+          
+          t.friend_request_in_ids.push(senderid)
+          console.log(t, "mai t hu")
+          
+           
+    fetch(`http://localhost:1234/user/${id}`, {method: "PATCH",body: JSON.stringify(t),headers: {
+      'Content-Type': "application/json"
+      }}).then((d) => d.json()).then((res) => { console.log("Response:", res, " I am response from patch request receiver");setSent(true)})
+     .catch((err) => {console.log(err);});   
 
-      setReceiver(res.friend_request_in_ids)
-
-    }).catch(err => { console.log(err) })
 
 
-    setReceiver([...receiver, senderid])
-    console.log(receiver, "Mai hu receiver")
+          
+        
+        }).catch(err => { console.log(err) })   
+         
 
 
-    fetch(`http://localhost:1234/user/${id}`, {
-      method: "PATCH",
-      body: JSON.stringify({
+function editsenderarr(){
+  var obj={}
 
-        friend_request_in_ids: []
+ fetch(`http://localhost:1234/user/${_id}`).then(d => d.json()).then((res) => {
+            obj=res;
+            obj.friend_request_out_ids.push(receiverid)
 
-      }),
-      headers: {
-        'Content-Type': "application/json"
-      }
+  fetch(`http://localhost:1234/user/${_id}`, {method: "PATCH",body: JSON.stringify(obj),headers: {
+'Content-Type': "application/json"
+}}).then((d) => d.json()).then((res) => { console.log("Response:", res, " I am response from patch request sender");})
+.catch((err) => {console.log(err);});
+
+
+}).catch(err => { console.log(err) })
+}
+editsenderarr()
+
+}
+  
+
+function getsetprofile(id) {fetch(`http://localhost:1234/profpic/${id}`).then(res => res.json()).then(res => { setPic(res.img);
+   }).catch(err => {console.log(err)})}
+
+ function getsetcover(id){
+  fetch(`http://localhost:1234/coverpic/${id}`).then(res=>res.json()).then(res=>{setMycpic(res.img);}).catch(err=>{
+    console.log(err)})}
+
+
+
+function getsetAlreadyfrd(){
+  var alf={}
+  fetch(`http://localhost:1234/user/${id}`).then((d) => d.json()).then((res) => {
+    alf=res;
+     
+    alf.friend_request_in_ids.includes(_id)?setAlreadyfrd(true):setAlreadyfrd(false)
+    
+    
     })
-      .then((d) => d.json())
-      .then((res) => {
-        console.log("Response:", res, " I am response from patch reques");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-
-  function getsetprofile(id) {
-
-    fetch(`http://localhost:1234/profpic/${id}`).then(res => res.json()).then(res => {
-      setPic(res.img);
-
-
-
-    }).catch(err => {
-      console.log(err)
-    })
-
-  }
+   .catch((err) => {console.log(err);});  
+   
+   }
 
   function getsetcover(id) {
     fetch(`http://localhost:1234/coverpic/${id}`).then(res => res.json()).then(res => {
@@ -90,9 +116,11 @@ export const UserProfileNav = () => {
   }
 
 
+
   useEffect(() => {
     getsetprofile(id)
     getsetcover(id)
+    getsetAlreadyfrd()
     getData(id, setUserData);
   }, [id]);
 
